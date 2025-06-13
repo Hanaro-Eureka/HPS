@@ -23,7 +23,7 @@ const config: Config = {
     'text-white',
     'text-black',
     'text-yellow-300',
-    'text-[color:#10AB9F]',
+    'text-[color:#10AB9F]', //color code from figma
   ],
 
   theme: {
