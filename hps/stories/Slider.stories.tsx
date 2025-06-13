@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { useState } from 'react';
-import RadixSlider from '../components/atoms/Slider';
+import RadixSlider from '../app/pension/components/Slider';
 
 const meta: Meta<typeof RadixSlider> = {
   title: 'Atoms/Slider',
