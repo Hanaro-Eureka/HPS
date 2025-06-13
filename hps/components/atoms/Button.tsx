@@ -5,8 +5,8 @@ import { cn } from '@/lib/utils';
 
 type Props = {
   className?: string;
-  onClick?: () => void;
-  bgColor?: string;
+  onClick: () => void;
+  bgColor: string;
 };
 
 export default function Button({
