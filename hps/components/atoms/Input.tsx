@@ -16,7 +16,7 @@ export default function Input({
   className = 'w-full left-5 absolute justify-start text-lg focus:outline-none',
 }: PropsWithChildren<Props>) {
   return (
-    <div className='w-80 h-14 left-0 top-0 absolute bg-white rounded-lg outline-1 flex items-center outline-offset-[-1px] outline-zinc-200 overflow-hidden'>
+    <div className='w-80 h-14 left-0 top-0 absolute bg-white rounded-lg outline-1 flex items-center outline-offset-[-1] outline-zinc-200 overflow-hidden'>
       <input
         name={name}
         placeholder={placeholder}
