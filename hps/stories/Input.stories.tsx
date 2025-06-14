@@ -30,7 +30,7 @@ export const IdInput: Story = {
   },
 };
 
-export const PasswordI: Story = {
+export const PasswordInput: Story = {
   args: {
     className:
       'w-full left-5 absolute justify-start text-lg focus:outline-none',
