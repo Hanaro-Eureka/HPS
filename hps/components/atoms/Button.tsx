@@ -6,12 +6,12 @@ import { cn } from '@/lib/utils';
 type Props = {
   className?: string;
   onClick: () => void;
-  bgColor?: string;
+  bgColor: string;
 };
 
 export default function Button({
   className,
-  bgColor = 'bg-[#019591]',
+  bgColor,
   onClick,
   children,
 }: PropsWithChildren<Props>) {

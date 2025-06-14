@@ -1,7 +1,7 @@
 import Button from '@/components/atoms/Button';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
-const meta: Meta = {
+const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
   component: Button,
   tags: ['autodocs'],
@@ -16,7 +16,7 @@ export const CompleteButton: Story = {
     children: '완료',
     bgColor: 'bg-[#F3F4F6]',
     className:
-      'w-[8.6875rem] h-[2.5rem] text-neutral-800 text-base relative text-center justify-center rounded-lg',
+      'w-36 h-9 text-neutral-800 text-base relative text-center justify-center rounded-lg',
   },
 };
 
@@ -24,8 +24,7 @@ export const NowGaipButton: Story = {
   args: {
     children: '지금 가입하기',
     bgColor: 'bg-[#fff]',
-    className:
-      'w-[7.875rem] h-[2.5rem] relative text-center justify-center rounded-lg',
+    className: 'w-32 h-10 relative text-center justify-center rounded-lg',
   },
 };
 
