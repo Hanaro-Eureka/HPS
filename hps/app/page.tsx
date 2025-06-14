@@ -1,5 +1,6 @@
 'use client';
 
+import Checkbox from '@/components/atoms/Checkbox';
 import Image from 'next/image';
 import { ChangeEvent, useState } from 'react';
 
