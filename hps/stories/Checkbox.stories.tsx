@@ -19,7 +19,8 @@ export const CheckedBox: Story = {
       <Checkbox
         id='checked-story'
         checked={isChecked}
-        bgColor='#2F9E8C'
+        bgColor='bg-[#2F9E8C]'
+        borderColor='border-[#2F9E8C]'
         onChange={(e) => setIsChecked(e.target.checked)}
       />
     );
@@ -33,7 +34,8 @@ export const NoneCheckedBox: Story = {
       <Checkbox
         id='none-checked-story'
         checked={isChecked}
-        bgColor='#2F9E8C'
+        bgColor='bg-[#2F9E8C]'
+        borderColor='border-[#2F9E8C]'
         onChange={(e) => setIsChecked(e.target.checked)}
       />
     );
