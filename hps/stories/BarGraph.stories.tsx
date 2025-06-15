@@ -42,23 +42,23 @@ export const Default: Story = {
       {
         age: '60세',
         predictedNps: 980000,
-        barColor: '#8884d8',
+        barColor: '#F9CC52',
       },
       {
         age: '65세',
         predictedNps: 1050000,
-        barColor: '#1a1a1a',
+        barColor: '#FEB8B3',
       },
       {
         age: '70세',
         predictedNps: 1300000,
-        barColor: '#2F9E8C',
+        barColor: '#62CFE5',
       },
     ],
     xDataKey: 'predictedNps',
     yDataKey: 'age',
-    width: 300,
-    height: 500,
+    width: 500,
+    height: 300,
     className: 'p-5',
   },
 };

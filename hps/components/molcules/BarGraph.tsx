@@ -4,7 +4,6 @@ import {
   Bar,
   BarChart,
   Cell,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -41,11 +40,23 @@ export default function BarGraph({
         data={data}
         className={className}
       >
-        <XAxis type='number' dataKey={xDataKey} />
+        <XAxis type='number' dataKey={xDataKey} hide />
         <YAxis type='category' dataKey={yDataKey} />
         <Tooltip />
-        <Legend />
-        <Bar dataKey='predictedNps'>
+        <Bar
+          dataKey='predictedNps'
+          label={({ x, y, width, height, value }) => (
+            <text
+              x={x + width + 8}
+              y={y! + height / 2}
+              fill='#999'
+              fontSize={16}
+              dominantBaseline='middle'
+            >
+              월 {(value / 10000).toLocaleString()} 만원
+            </text>
+          )}
+        >
           {data.map((entry, index) => (
             <Cell key={index} fill={entry.barColor} />
           ))}
