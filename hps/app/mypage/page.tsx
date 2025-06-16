@@ -18,14 +18,16 @@ export default function MyPage() {
       <div className='flex grow w-full items-center justify-between'>
         <Button
           aria-label='뒤로 가기'
-          className='text-base'
-          bgColor='bg-white'
+          className='text-base '
+          bgColor='bg-background'
           onClick={() => alert('뒤로가기!')}
         >
           <Image src='/goback.svg' alt='뒤로가기' width={10} height={18} />
         </Button>
 
-        <Title className='text-base justify-center'>{user.name}님의 정보</Title>
+        <Title className='text-base justify-center text-black-font font-[500]'>
+          {user.name}님의 정보
+        </Title>
         <div />
       </div>
 
@@ -62,8 +64,8 @@ export default function MyPage() {
         />
 
         <Button
-          bgColor='bg-[#019591]'
-          className='w-full h-14 px-5 mt-10 text-white text-base rounded-lg'
+          bgColor='bg-hana-button'
+          className='w-full h-14 px-5 mt-10 text-white text-base rounded-lg font-[500]'
           onClick={() => alert('로그아웃 버튼 클릭')}
         >
           로그아웃
