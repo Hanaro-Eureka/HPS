@@ -38,9 +38,7 @@ export default function Checkbox({
           checked ? bgColor : 'bg-transparent'
         )}
       >
-        {checked && (
-          <img src='check.svg' alt='Checked' className='w-4 h-4'></img>
-        )}
+        {checked && <img src='check.svg' alt='Checked' className='w-4 h-4' />}
       </div>
     </label>
   );
