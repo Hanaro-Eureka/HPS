@@ -32,8 +32,8 @@ export default function CheckBoxText({
         onChange={onChange}
       />
       <div className='flex flex-col'>
-        <span className='text-base font-bold text-black-900'>{text}</span>
-        <span className='text-xs text-green-700 mt-3'>{description}</span>
+        <span className='text-base font-[500]'>{text}</span>
+        <span className='text-xs mt-3 text-hana-green'>{description}</span>
       </div>
     </label>
   );
