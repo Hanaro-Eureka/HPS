@@ -116,8 +116,11 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    @apply box-border;
   }
   body {
     @apply bg-background text-foreground;
+    min-height: 100vh;
+    overflow: hidden;
   }
 }
