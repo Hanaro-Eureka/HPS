@@ -21,7 +21,7 @@ type Props = {
 export default function List({ date, data, className }: Props) {
   return (
     <div className={cn('flex flex-col', className)}>
-      <Text tag='h2' className='text-sm text-[#909090] mb-1.5'>
+      <Text tag='h2' className='text-sm text-gray-time mb-1.5'>
         {date}
       </Text>
 

@@ -20,7 +20,7 @@ export default function Input({
       <input
         name={name}
         placeholder={placeholder}
-        className='w-full h-full px-2 text-[#979797] focus:outline-none'
+        className='w-full h-full px-2 text-black-font focus:outline-none'
         type={type}
       />
     </div>
