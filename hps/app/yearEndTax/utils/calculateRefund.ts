@@ -1,5 +1,5 @@
 type Params = {
-  salary: number; // 연 총급여 (세전 기준)
+  salary: number; // 연 총급여 (세전 기준. 월급*12)
   spending: number; // 카드 등 총 소비액
   creditRate: number; // 신용카드 사용 비중 (%)
   checkRate: number; // 체크카드·현금영수증 사용 비중 (%)
@@ -7,7 +7,7 @@ type Params = {
 };
 
 export function calculateRefund({
-  salary,
+  salary, 
   spending,
   creditRate,
   checkRate,

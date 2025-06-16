@@ -7,7 +7,7 @@ import { calculateRefund } from './utils/calculateRefund';
 
 export default function YearEndTaxPage() {
   const result = calculateRefund({
-    salary: 60000000,
+    salary: 60000000, // 월급 500 기준
     spending: 18000000,
     creditRate: 60,
     checkRate: 40,
