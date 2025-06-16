@@ -19,7 +19,11 @@ export default function Checkbox({
   onChange,
 }: Props) {
   return (
-    <label htmlFor={id} className='cursor-pointer block w-10 h-10 relative'>
+    <label
+      htmlFor={id}
+      className='cursor-pointer block w-6 h-6
+     relative'
+    >
       <input
         id={id}
         type='checkbox'
@@ -29,13 +33,13 @@ export default function Checkbox({
       />
       <div
         className={cn(
-          'flex items-center justify-center w-full h-full rounded-lg border-2 transition-colors duration-200',
+          'flex items-center justify-center w-full h-full rounded border transition-colors duration-200',
           borderColor,
           checked ? bgColor : 'bg-transparent'
         )}
       >
         {checked && (
-          <img src='check.svg' alt='Checked' className='w-6 h-6'></img>
+          <img src='check.svg' alt='Checked' className='w-4 h-4'></img>
         )}
       </div>
     </label>
