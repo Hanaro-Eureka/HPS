@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 
 type Props = {
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   bgColor: string;
 };
 
