@@ -1,8 +1,93 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
+
+/* font */
+@font-face {
+  font-family: 'Hana';
+  src: url('/fonts/Hana2-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hana';
+  src: url('/fonts/Hana2-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hana';
+  src: url('/fonts/Hana2-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hana';
+  src: url('/fonts/Hana2-Bold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hana';
+  src: url('/fonts/Hana2-Heavy.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 디자인 시스템 */
+@layer styles {
+  :root {
+    --hana-green: #2f9e8c;
+    --hana-logo: #10ab9f;
+    --hana-smallText: #2f9e8c;
+    --hana-chartchat: #56b8ab;
+    --hana-hanaman: #e5f5f2;
+    --hana-button: #019591;
+    --gray-time: #909090;
+    --gray-login: #aab0b9;
+    --gray-font: #838383;
+    --gray-hanamanText: #909090;
+    --chart-first: #f9cc52;
+    --chart-second: #feb8b3;
+    --chart-third: #62cfe5;
+    --chart-overflow: #e97272;
+    --black-font: #212121;
+    --black-modal: #565959;
+    --black-checked: #ebc4c4;
+    --background: #fcfcfc;
+  }
+
+  @theme inline {
+    --font-hana: 'Hana', sans-serif;
+    --color-hana-green: var(--hana-green);
+    --color-hana-logo: var(--hana-logo);
+    --color-hana-smallText: var(--hana-smallText);
+    --color-hana-chartchat: var(--hana-chartchat);
+    --color-hana-hanaman: var(--hana-hanaman);
+    --color-hana-button: var(--hana-button);
+    --color-gray-time: var(--gray-time);
+    --color-gray-login: var(--gray-login);
+    --color-gray-font: var(--gray-font);
+    --color-gray-hanamanText: var(--gray-hanamanText);
+    --color-chart-first: var(--chart-first);
+    --color-chart-second: var(--chart-second);
+    --color-chart-third: var(--chart-third);
+    --color-chart-overflow: var(--chart-overflow);
+    --color-black-font: var(--black-font);
+    --color-black-modal: var(--black-modal);
+    --color-black-checked: var(--black-checked);
+  }
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -46,15 +131,12 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -116,8 +198,13 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    @apply box-border;
+    /* background-color: transparent; */
   }
   body {
     @apply bg-background text-foreground;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: var(--font-hana);
   }
 }
