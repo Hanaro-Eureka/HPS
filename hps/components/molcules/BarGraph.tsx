@@ -57,8 +57,8 @@ export default function BarGraph({
             </text>
           )}
         >
-          {data.map((entry, index) => (
-            <Cell key={index} fill={entry.barColor} />
+          {data.map((entry) => (
+            <Cell key={entry.age} fill={entry.barColor} />
           ))}
         </Bar>
       </BarChart>

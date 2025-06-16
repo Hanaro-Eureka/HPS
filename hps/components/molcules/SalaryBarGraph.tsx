@@ -11,24 +11,46 @@ import {
 } from 'recharts';
 
 type Props = {
-  data: { moreSpent: number; leastSpent: number }[];
+  data: { moreSpent: number; leastSpent: number; name?: string }[];
   width?: number;
   height?: number;
   className?: string;
   colors: { moreSpent: string; leastSpent: string };
 };
 
-const CustomBar = (props: Partial<BarProps>) => {
-  const { x, y, width, height, fill } = props;
+const CustomBar = (
+  props: Partial<BarProps> & { radius: [number, number, number, number] }
+) => {
+  const {
+    x = 0,
+    y = 0,
+    width = 0,
+    height = 0,
+    fill = '#000',
+    radius = [0, 0, 0, 0],
+  } = props;
+
+  const [tl, tr, br, bl] = radius;
+
+  const path = `
+    M${Number(x) + tl},${y}
+    h${width - tl - tr}
+    ${tr > 0 ? `a${tr},${tr} 0 0 1 ${tr},${tr}` : ''}
+    v${height - tr - br}
+    ${br > 0 ? `a${br},${br} 0 0 1 ${-br},${br}` : ''}
+    h${-width + br + bl}
+    ${bl > 0 ? `a${bl},${bl} 0 0 1 ${-bl},${-bl}` : ''}
+    v${-height + bl + tl}
+    ${tl > 0 ? `a${tl},${tl} 0 0 1 ${tl},${-tl}` : ''}
+    z
+  `;
+
   return (
-    <rect
-      x={x}
-      y={y}
-      width={width}
-      height={height}
+    <path
+      d={path}
       fill={fill}
-      stroke='#000000' // border 색상
-      strokeWidth={1} // border 두께
+      stroke={fill === '#FFFFFF' ? '#56B8AB' : fill}
+      strokeWidth={1}
     />
   );
 };
@@ -40,9 +62,6 @@ export default function SalaryBarChart({
   height = 100,
   colors,
 }: Props) {
-  type propertyKey = keyof (typeof data)[0];
-  const property = Object.keys(data[0]) as propertyKey[];
-
   return (
     <ResponsiveContainer width='100%' height={height}>
       <BarChart
@@ -54,16 +73,18 @@ export default function SalaryBarChart({
         <XAxis type='number' hide />
         <YAxis type='category' dataKey='name' hide />
         <Tooltip formatter={(value: number) => value.toLocaleString() + '원'} />
-        {property.map((p) => (
-          <Bar
-            key={p}
-            dataKey={p}
-            stackId='a'
-            radius={p === property[0] ? [10, 0, 0, 10] : [0, 10, 10, 0]}
-            fill={colors[p]}
-            shape={<CustomBar />}
-          />
-        ))}
+        <Bar
+          dataKey='moreSpent'
+          stackId='a'
+          shape={<CustomBar radius={[10, 0, 0, 10]} />}
+          fill={colors.moreSpent}
+        />
+        <Bar
+          dataKey='leastSpent'
+          stackId='a'
+          shape={<CustomBar radius={[0, 10, 10, 0]} />}
+          fill={colors.leastSpent}
+        />
       </BarChart>
     </ResponsiveContainer>
   );
