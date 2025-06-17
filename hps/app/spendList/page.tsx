@@ -8,40 +8,31 @@ import SalaryBarGraph from '@/components/molcules/SalaryBarGraph';
 import icons from '@/constants/categoryIcons';
 import { consumptionData } from '@/constants/consumptionData';
 import Image from 'next/image';
-
-const formatDate = (dateStr: string) =>
-  `${+dateStr.slice(4, 6)}월 ${+dateStr.slice(6, 8)}일`;
-const formatTime = (dateStr: string) =>
-  `${dateStr.slice(9, 11)}:${dateStr.slice(11, 13)}`;
-
-const currentMonth = new Date().getMonth() + 1; // 1월 index가 0
-const thisMonthData = consumptionData.filter(
-  (item) => +item.trans_date.slice(4, 6) === currentMonth
-);
-
-const grouped = thisMonthData.reduce<Record<string, typeof thisMonthData>>(
-  (acc, cur) => {
-    const key = cur.trans_date.slice(0, 8);
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(cur);
-    return acc;
-  },
-  {}
-);
-
-const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+import {
+  calculateSpendingStatus,
+  filterThisMonthData,
+  formatDate,
+  formatTime,
+  getCurrentMonth,
+  groupByDate,
+} from './utils/spending';
 
 const salary = 2800000;
+const currentMonth = getCurrentMonth();
+
+const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
+const grouped = groupByDate(thisMonthData);
+const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+
 const totalSpending = thisMonthData.reduce(
   (sum, item) => sum + item.trans_amt,
   0
 );
-const isOverSpent = totalSpending > salary;
 
-const used = isOverSpent
-  ? (salary / totalSpending) * 100
-  : (totalSpending / salary) * 100;
-const remain = 100 - used;
+const { isOverSpent, used, remain } = calculateSpendingStatus(
+  salary,
+  totalSpending
+);
 
 export default function SpendListPage() {
   return (
@@ -115,7 +106,14 @@ export default function SpendListPage() {
           />
 
           <div
-            className='absolute top-full mt-1.5 -translate-x-1/2 text-sm text-center text-[500]'
+            className={`absolute top-full mt-1.5 text-sm text-center text-[500] ${
+              (Math.min(totalSpending, salary) /
+                Math.max(totalSpending, salary)) *
+                100 >
+              90
+                ? 'translate-x-[-100%] text-right'
+                : '-translate-x-1/2'
+            }`}
             style={{
               left: `${
                 (Math.min(totalSpending, salary) /
@@ -126,12 +124,12 @@ export default function SpendListPage() {
           >
             <span>{isOverSpent ? '내 월급' : '내 소비'}</span>
             <br />
-            <span>
+            <span className='whitespace-nowrap'>
               {(isOverSpent ? salary : totalSpending).toLocaleString()}원
             </span>
           </div>
 
-          <div className='absolute -top-10 right-0 text-sm text-right text-[500] whitespace-nowrap leading-tight'>
+          <div className='absolute -top-10 right-0 text-sm text-right text-[500]'>
             <span className={isOverSpent ? 'text-spend-alert' : ''}>
               {isOverSpent ? '내 소비' : '내 월급'}
             </span>
