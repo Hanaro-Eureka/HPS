@@ -85,6 +85,7 @@ button:hover {
     --black-checked: #ebc4c4;
     --background: #fcfcfc;
     --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
+    --spend-alert: #d83e3e;
   }
 
   @theme inline {
@@ -106,6 +107,7 @@ button:hover {
     --color-black-font: var(--black-font);
     --color-black-modal: var(--black-modal);
     --color-black-checked: var(--black-checked);
+    --color-spend-alert: var(--spend-alert);
   }
 }
 

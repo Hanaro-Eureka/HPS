@@ -35,16 +35,18 @@ export const Default: Story = {
   args: {
     data: [
       {
-        moreSpent: 2800000,
-        leastSpent: 330000,
+        used: 2800000,
+        remain: 330000,
       },
     ],
     width: 300,
     height: 100,
     className: 'p-5',
     colors: {
-      moreSpent: '#56B8AB',
-      leastSpent: '#E97272',
+      used: '#56B8AB',
+      remain: '#E97272',
+      lStroke: '',
+      rStroke: '',
     },
   },
 };
@@ -52,16 +54,18 @@ export const SpentMoreThanIncome: Story = {
   args: {
     data: [
       {
-        moreSpent: 3330000,
-        leastSpent: 2800000,
+        used: 3330000,
+        remain: 2800000,
       },
     ],
     width: 300,
     height: 100,
     className: 'p-5',
     colors: {
-      moreSpent: '#56B8AB',
-      leastSpent: '#FFFFFF',
+      used: '#56B8AB',
+      remain: '#E97272',
+      lStroke: '',
+      rStroke: '',
     },
   },
 };
