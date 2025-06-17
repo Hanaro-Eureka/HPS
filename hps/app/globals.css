@@ -84,7 +84,8 @@ button:hover {
     --black-modal: #565959;
     --black-checked: #ebc4c4;
     --background: #fcfcfc;
-    --button-gray: #f3f4f6;
+    --button-lightgray: #f3f4f6;
+    --button-gray: #e5e7eb;
     --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
   }
 
@@ -107,7 +108,9 @@ button:hover {
     --color-black-font: var(--black-font);
     --color-black-modal: var(--black-modal);
     --color-black-checked: var(--black-checked);
+    --color-button-lightgray: var(--button-lightgray);
     --color-button-gray: var(--button-gray);
+    --color-shadow-default: var(--shadow-taxbox);
   }
 }
 
