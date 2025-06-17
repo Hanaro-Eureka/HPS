@@ -25,10 +25,10 @@ export default function ListItem({
           {icon}
         </div>
         <div className='flex flex-col'>
-          <Text tag='strong' className='text-base font-[500] '>
+          <Text tag='strong' className='text-black-font text-base font-[500]'>
             {label}
           </Text>
-          <Text tag='span' className='text-sm font-[500] text-[#909090] '>
+          <Text tag='span' className='text-xs text-gray-time font-[500]'>
             {time}
           </Text>
         </div>
@@ -36,7 +36,7 @@ export default function ListItem({
 
       <Text
         tag='span'
-        className='text-right text-base font-[500] text-[#2F9E8C]'
+        className='text-right text-base text-hana-green font-[500]'
       >
         {amount.toLocaleString()}원
       </Text>

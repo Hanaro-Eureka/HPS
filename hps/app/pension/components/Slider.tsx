@@ -22,7 +22,7 @@ export default function RadixSlider({
 }: Props) {
   return (
     <div className='w-full max-w-md'>
-      <label className='block text-[#212121] text-md mb-2'>{label}</label>
+      <label className='block text-black-font text-md mb-2'>{label}</label>
 
       <Slider.Root
         className='relative flex h-5 w-full touch-none select-none items-center'
