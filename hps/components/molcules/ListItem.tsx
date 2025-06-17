@@ -35,7 +35,7 @@ export default function ListItem({
         <div className='w-9 h-9 rounded-full flex items-center justify-center'>
           {icon}
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-col gap-1'>
           <Text tag='strong' className='text-black-font text-base font-[500]'>
             {label}
           </Text>
