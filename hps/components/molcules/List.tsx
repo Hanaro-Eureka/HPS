@@ -29,7 +29,7 @@ export default function List({
 }: Props) {
   return (
     <div className={cn('flex flex-col', className)}>
-      <Text tag='h2' className='text-sm text-gray-time mb-1.5'>
+      <Text tag='h2' className='font-[500] text-sm text-gray-time ml-6'>
         {date}
       </Text>
 
