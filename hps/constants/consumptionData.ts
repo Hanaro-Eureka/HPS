@@ -1,4 +1,4 @@
-const consumptionData = [
+export const consumptionData = [
   {
     trans_date: '20250112T113230',
     trans_amt: 16650,
@@ -72,24 +72,6 @@ const consumptionData = [
     pay_id: '110-848-947855',
   },
   {
-    trans_date: '20250104T140240',
-    trans_amt: 53067,
-    merchant_name: 'ABC마트',
-    trans_title: '여름 반팔티',
-    trans_category: 'shopping',
-    pay_method: '선불',
-    pay_id: '선불머니',
-  },
-  {
-    trans_date: '20250109T233034',
-    trans_amt: 105230,
-    merchant_name: '김밥천국',
-    trans_title: '점심 식사',
-    trans_category: 'restaurant',
-    pay_method: '은행',
-    pay_id: '110-677-167954',
-  },
-  {
     trans_date: '20250123T131435',
     trans_amt: 74865,
     merchant_name: '더부스',
@@ -128,7 +110,7 @@ const consumptionData = [
   {
     trans_date: '20250118T082019',
     trans_amt: 38583,
-    merchant_name: '유니클로',
+    merchant_name: 'ZARA',
     trans_title: '여름 반팔티',
     trans_category: 'shopping',
     pay_method: '카드',
@@ -137,7 +119,7 @@ const consumptionData = [
   {
     trans_date: '20250102T112401',
     trans_amt: 64999,
-    merchant_name: '더부스',
+    merchant_name: 'GS25',
     trans_title: '치킨세트',
     trans_category: 'pub',
     pay_method: '무통장',
@@ -151,15 +133,6 @@ const consumptionData = [
     trans_category: 'shopping',
     pay_method: '무통장',
     pay_id: '무통장',
-  },
-  {
-    trans_date: '20250129T015128',
-    trans_amt: 116253,
-    merchant_name: '이디야커피',
-    trans_title: '아이스 아메리카노',
-    trans_category: 'cafe',
-    pay_method: '선불',
-    pay_id: '선불머니',
   },
   {
     trans_date: '20250111T165418',
@@ -181,8 +154,8 @@ const consumptionData = [
   },
   {
     trans_date: '20250101T181930',
-    trans_amt: 128262,
-    merchant_name: '더부스',
+    trans_amt: 12820,
+    merchant_name: '포장마차',
     trans_title: '안주3종',
     trans_category: 'pub',
     pay_method: '무통장',
@@ -199,7 +172,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250102T125830',
-    trans_amt: 156130,
+    trans_amt: 15610,
     merchant_name: '김밥천국',
     trans_title: '도시락 2개',
     trans_category: 'restaurant',
@@ -208,7 +181,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250118T145307',
-    trans_amt: 75734,
+    trans_amt: 7570,
     merchant_name: '할리스커피',
     trans_title: '카페라떼',
     trans_category: 'cafe',
@@ -226,7 +199,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250125T113326',
-    trans_amt: 138515,
+    trans_amt: 13855,
     merchant_name: '할리스커피',
     trans_title: '모닝커피',
     trans_category: 'cafe',
@@ -244,7 +217,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250126T152447',
-    trans_amt: 130308,
+    trans_amt: 13030,
     merchant_name: '한솥도시락',
     trans_title: '도시락 2개',
     trans_category: 'restaurant',
@@ -361,7 +334,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250207T145103',
-    trans_amt: 90538,
+    trans_amt: 9053,
     merchant_name: '비어오크',
     trans_title: '안주3종',
     trans_category: 'pub',
@@ -397,8 +370,8 @@ const consumptionData = [
   },
   {
     trans_date: '20250228T012950',
-    trans_amt: 129527,
-    merchant_name: '한솥도시락',
+    trans_amt: 12952,
+    merchant_name: '본죽',
     trans_title: '도시락 2개',
     trans_category: 'restaurant',
     pay_method: '은행',
@@ -412,15 +385,6 @@ const consumptionData = [
     trans_category: 'shopping',
     pay_method: '선불',
     pay_id: '선불머니',
-  },
-  {
-    trans_date: '20250201T101254',
-    trans_amt: 69549,
-    merchant_name: '비어오크',
-    trans_title: '안주3종',
-    trans_category: 'pub',
-    pay_method: '무통장',
-    pay_id: '무통장',
   },
   {
     trans_date: '20250207T034831',
@@ -666,15 +630,6 @@ const consumptionData = [
     pay_id: '무통장',
   },
   {
-    trans_date: '20250316T174446',
-    trans_amt: 139695,
-    merchant_name: '스타벅스',
-    trans_title: '모닝커피',
-    trans_category: 'cafe',
-    pay_method: '은행',
-    pay_id: '110-666-590023',
-  },
-  {
     trans_date: '20250326T193953',
     trans_amt: 152184,
     merchant_name: '버거킹',
@@ -810,15 +765,6 @@ const consumptionData = [
     pay_id: '110-848-947855',
   },
   {
-    trans_date: '20250406T153622',
-    trans_amt: 117595,
-    merchant_name: '더부스',
-    trans_title: '치킨세트',
-    trans_category: 'pub',
-    pay_method: '은행',
-    pay_id: '110-666-590023',
-  },
-  {
     trans_date: '20250403T204120',
     trans_amt: 128834,
     merchant_name: 'ABC마트',
@@ -882,15 +828,6 @@ const consumptionData = [
     pay_id: '선불머니',
   },
   {
-    trans_date: '20250411T042610',
-    trans_amt: 109009,
-    merchant_name: '할리스커피',
-    trans_title: '아이스 아메리카노',
-    trans_category: 'cafe',
-    pay_method: '은행',
-    pay_id: '110-848-947855',
-  },
-  {
     trans_date: '20250421T070353',
     trans_amt: 47968,
     merchant_name: '비어오크',
@@ -901,8 +838,8 @@ const consumptionData = [
   },
   {
     trans_date: '20250413T150358',
-    trans_amt: 139525,
-    merchant_name: '더부스',
+    trans_amt: 13955,
+    merchant_name: '맘스터치',
     trans_title: '치킨세트',
     trans_category: 'pub',
     pay_method: '무통장',
@@ -1224,24 +1161,6 @@ const consumptionData = [
     pay_id: '****9042',
   },
   {
-    trans_date: '20250516T051430',
-    trans_amt: 82000,
-    merchant_name: '스타벅스',
-    trans_title: '아이스 아메리카노',
-    trans_category: 'cafe',
-    pay_method: '은행',
-    pay_id: '110-738-808723',
-  },
-  {
-    trans_date: '20250510T030922',
-    trans_amt: 59000,
-    merchant_name: '비어오크',
-    trans_title: '맥주와 안주',
-    trans_category: 'pub',
-    pay_method: '선불',
-    pay_id: '선불머니',
-  },
-  {
     trans_date: '20250527T075511',
     trans_amt: 159000,
     merchant_name: '더부스',
@@ -1413,15 +1332,6 @@ const consumptionData = [
     pay_id: '무통장',
   },
   {
-    trans_date: '20250608T010818',
-    trans_amt: 93924,
-    merchant_name: '김밥천국',
-    trans_title: '햄버거 세트',
-    trans_category: 'restaurant',
-    pay_method: '은행',
-    pay_id: '110-666-590023',
-  },
-  {
     trans_date: '20250601T134709',
     trans_amt: 22345,
     merchant_name: '쿠팡',
@@ -1432,7 +1342,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250612T032823',
-    trans_amt: 126591,
+    trans_amt: 12650,
     merchant_name: '한솥도시락',
     trans_title: '햄버거 세트',
     trans_category: 'restaurant',
@@ -1495,7 +1405,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250627T201811',
-    trans_amt: 60301,
+    trans_amt: 6030,
     merchant_name: '버거킹',
     trans_title: '도시락 2개',
     trans_category: 'restaurant',
@@ -1522,7 +1432,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250608T004706',
-    trans_amt: 79894,
+    trans_amt: 7800,
     merchant_name: '스타벅스',
     trans_title: '모닝커피',
     trans_category: 'cafe',
@@ -1549,7 +1459,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250625T113940',
-    trans_amt: 68968,
+    trans_amt: 6800,
     merchant_name: '스타벅스',
     trans_title: '카페라떼',
     trans_category: 'cafe',
@@ -1585,7 +1495,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250627T102101',
-    trans_amt: 115316,
+    trans_amt: 11530,
     merchant_name: '한솥도시락',
     trans_title: '도시락 2개',
     trans_category: 'restaurant',
@@ -1603,7 +1513,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250619T011826',
-    trans_amt: 111153,
+    trans_amt: 1100,
     merchant_name: '김밥천국',
     trans_title: '점심 식사',
     trans_category: 'restaurant',
@@ -1621,7 +1531,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250622T231446',
-    trans_amt: 152017,
+    trans_amt: 15201,
     merchant_name: '할리스커피',
     trans_title: '아이스 아메리카노',
     trans_category: 'cafe',
@@ -1657,7 +1567,7 @@ const consumptionData = [
   },
   {
     trans_date: '20250615T135105',
-    trans_amt: 61905,
+    trans_amt: 6190,
     merchant_name: '김밥천국',
     trans_title: '도시락 2개',
     trans_category: 'restaurant',
@@ -1679,15 +1589,6 @@ const consumptionData = [
     merchant_name: 'ABC마트',
     trans_title: '샌들',
     trans_category: 'shopping',
-    pay_method: '선불',
-    pay_id: '선불머니',
-  },
-  {
-    trans_date: '20250701T135636',
-    trans_amt: 98434,
-    merchant_name: '이디야커피',
-    trans_title: '모닝커피',
-    trans_category: 'cafe',
     pay_method: '선불',
     pay_id: '선불머니',
   },
@@ -1735,14 +1636,5 @@ const consumptionData = [
     trans_category: 'pub',
     pay_method: '무통장',
     pay_id: '무통장',
-  },
-  {
-    trans_date: '20250702T102932',
-    trans_amt: 130235,
-    merchant_name: '김밥천국',
-    trans_title: '점심 식사',
-    trans_category: 'restaurant',
-    pay_method: '카드',
-    pay_id: '****2089',
   },
 ];
