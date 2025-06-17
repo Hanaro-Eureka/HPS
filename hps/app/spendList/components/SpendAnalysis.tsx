@@ -11,10 +11,11 @@ export default function SpendAnalysis() {
   const currentMonth = getCurrentMonth();
   const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
   const salary = 2800000;
-  const totalSpending = thisMonthData.reduce(
-    (sum, item) => sum + item.trans_amt,
-    0
-  );
+  const totalSpending = 2792000;
+  // const totalSpending = thisMonthData.reduce(
+  //   (sum, item) => sum + item.trans_amt,
+  //   0
+  // );
   const { isOverSpent, used, remain } = calculateSpendingStatus(
     salary,
     totalSpending
@@ -34,10 +35,9 @@ export default function SpendAnalysis() {
               remain,
             },
           ]}
-          height={40}
           colors={{
             used: '#56b8ab',
-            remain: isOverSpent ? '#e97272' : 'white',
+            remain: isOverSpent ? '#e97272' : '#E4F4F1',
             lStroke: '#56b8ab',
             rStroke: isOverSpent ? '#e97272' : '#56b8ab',
           }}
