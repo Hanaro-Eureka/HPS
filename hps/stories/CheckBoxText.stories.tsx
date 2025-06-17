@@ -12,15 +12,15 @@ export default meta;
 
 type Story = StoryObj<typeof CheckBoxText>;
 
-export const First: Story = {
+export const Colortest: Story = {
   render: () => {
     const [checked, setChecked] = useState(false);
     return (
       <CheckBoxText
         id='agree'
         checked={checked}
-        bgColor='bg-[#2F9E8C]'
-        borderColor='border-[#2F9E8C]'
+        bgColor='bg-hana-green'
+        borderColor='border-chart-first'
         text='체크카드 사용 비중 높이기'
         description='신용카드 대비 공제율이 2배!'
         onChange={(e) => setChecked(e.target.checked)}
