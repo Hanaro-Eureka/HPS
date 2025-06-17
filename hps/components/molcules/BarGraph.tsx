@@ -58,7 +58,7 @@ export default function BarGraph({
               fill='#999'
               fontSize={16}
               dominantBaseline='middle'
-              className='font-[`Hana2.0_M`]'
+              className='font-[500] text-hana-hanaman'
             >
               월 {(value / 10000).toLocaleString()} 만원
             </text>
