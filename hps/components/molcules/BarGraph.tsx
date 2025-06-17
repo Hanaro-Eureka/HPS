@@ -29,37 +29,35 @@ export default function BarGraph({
   height = 300,
 }: Props) {
   return (
-    <div className='p-5'>
-      <ResponsiveContainer width='100%' height={height}>
-        <BarChart
-          layout='vertical'
-          height={height}
-          data={data}
-          margin={{ top: 20, right: 100, left: 0, bottom: 5 }}
+    <ResponsiveContainer width='100%' height={height}>
+      <BarChart
+        layout='vertical'
+        height={height}
+        data={data}
+        margin={{ top: 20, right: 100, left: 0, bottom: 5 }}
+      >
+        <XAxis type='number' dataKey={xDataKey} hide />
+        <YAxis type='category' dataKey={yDataKey} width={50} />
+        <Tooltip />
+        <Bar
+          dataKey='predictedNps'
+          label={({ x, y, width, height, value }) => (
+            <text
+              x={x + width + 8}
+              y={y! + height / 2}
+              fill='#999'
+              fontSize={16}
+              dominantBaseline='middle'
+            >
+              월 {(value / 10000).toLocaleString()} 만원
+            </text>
+          )}
         >
-          <XAxis type='number' dataKey={xDataKey} hide />
-          <YAxis type='category' dataKey={yDataKey} width={50} />
-          <Tooltip />
-          <Bar
-            dataKey='predictedNps'
-            label={({ x, y, width, height, value }) => (
-              <text
-                x={x + width + 8}
-                y={y! + height / 2}
-                fill='#999'
-                fontSize={16}
-                dominantBaseline='middle'
-              >
-                월 {(value / 10000).toLocaleString()} 만원
-              </text>
-            )}
-          >
-            {data.map((entry) => (
-              <Cell key={entry.age} fill={entry.barColor} />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+          {data.map((entry) => (
+            <Cell key={entry.age} fill={entry.barColor} />
+          ))}
+        </Bar>
+      </BarChart>
+    </ResponsiveContainer>
   );
 }
