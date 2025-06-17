@@ -17,7 +17,7 @@ export default function TabBarItem({
   return (
     <button
       onClick={onClick}
-      className='flex flex-col items-center justify-center space-y-1'
+      className='flex flex-1 flex-col items-center justify-center py-4 gap-1'
     >
       <Image
         src={icon}
