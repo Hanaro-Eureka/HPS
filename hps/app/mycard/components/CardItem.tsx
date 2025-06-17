@@ -2,28 +2,33 @@
 
 import Text from '@/components/atoms/Text';
 import SalaryBarGraph from '@/components/molcules/SalaryBarGraph';
+import { getTotalSpent } from '../utils/cardResult';
 
 type Props = {
-  label: string;
-  amount: number;
-  type: 'deduction' | 'refund';
+  idx: number;
+  cardName: string;
+  cardAmount: number;
 };
 
-export default function CardItem({ label, amount, type }: Props) {
+const cardImages = ['images/card1.png', 'images/card2.png', 'images/card3.png'];
+export default function CardItem({ idx, cardName, cardAmount }: Props) {
   const colors = {
     moreSpent: 'var(--hana-green)',
     leastSpent: 'var(--gray-time)',
   };
+  const usedAmount = getTotalSpent({ idx });
+  const isAchieved = usedAmount >= cardAmount;
+
   return (
-    <div className='flex justify-center items-centers gap-6 bg-white rounded-lg shadow-sm'>
+    <div className='flex py-7 pl-7 pr-3 justify-between bg-white rounded-lg [box-shadow:var(--shadow-taxbox)]'>
       <img
-        src='images/card1.png'
-        alt='카드1 이미지'
-        className='items-center justify-center py-7'
+        src={cardImages[idx]}
+        alt={`카드${idx + 1} 이미지`}
+        className='items-center justify-center'
       />
 
-      <div className='flex flex-col justify-center items-center '>
-        <Text className='text-base font-[400]'>하나 달달하나 카드</Text>
+      <div className='flex flex-col w-46 justify-start'>
+        <Text className='text-base font-[400]'>{cardName}</Text>
         <SalaryBarGraph
           data={[{ name: '전체 카드', used: 500000, remain: 200000 }]}
           colors={{
@@ -32,9 +37,19 @@ export default function CardItem({ label, amount, type }: Props) {
           }}
           height={100}
         />
-        <Text className='text-xs font-[400] text-gray-time text-center'>
-          실적 달성까지 9만원!
-        </Text>
+        {isAchieved ? (
+          <Text className='text-xs font-[400] text-hana-green text-center'>
+            실적 달성!
+          </Text>
+        ) : (
+          <Text className='text-xs font-[400] text-gray-time text-center'>
+            실적 달성까지
+            <span className='text-hana-green'>
+              {' '}
+              {cardAmount - usedAmount}원!
+            </span>
+          </Text>
+        )}
       </div>
     </div>
   );
