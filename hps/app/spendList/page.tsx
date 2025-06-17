@@ -6,99 +6,20 @@ import Title from '@/components/atoms/Title';
 import ListItem from '@/components/molcules/ListItem';
 import SalaryBarGraph from '@/components/molcules/SalaryBarGraph';
 import icons from '@/constants/categoryIcons';
+import { consumptionData } from '@/constants/consumptionData';
 import Image from 'next/image';
-
-const dummyData = [
-  {
-    trans_date: '20250504T061735',
-    trans_amt: 51000,
-    merchant_name: '스타벅스',
-    trans_title: '카페라떼',
-    trans_category: 'cafe',
-    pay_method: '은행',
-    pay_id: '110-409-941505',
-  },
-  {
-    trans_date: '20250529T125434',
-    trans_amt: 11000,
-    merchant_name: '할리스커피',
-    trans_title: '카페라떼',
-    trans_category: 'cafe',
-    pay_method: '무통장',
-    pay_id: '무통장',
-  },
-  {
-    trans_date: '20250526T213436',
-    trans_amt: 155000,
-    merchant_name: '매머드커피',
-    trans_title: '여름 반팔티',
-    trans_category: 'shopping',
-    pay_method: '카드',
-    pay_id: '****3346',
-  },
-  {
-    trans_date: '20250527T111641',
-    trans_amt: 98000,
-    merchant_name: '한솥도시락',
-    trans_title: '도시락 2개',
-    trans_category: 'restaurant',
-    pay_method: '카드',
-    pay_id: '****2066',
-  },
-  {
-    trans_date: '20250509T200723',
-    trans_amt: 10000,
-    merchant_name: '버거킹',
-    trans_title: '점심 식사',
-    trans_category: 'restaurant',
-    pay_method: '선불',
-    pay_id: '선불머니',
-  },
-  {
-    trans_date: '20250516T125743',
-    trans_amt: 55000,
-    merchant_name: '스타벅스',
-    trans_title: '모닝커피',
-    trans_category: 'cafe',
-    pay_method: '무통장',
-    pay_id: '무통장',
-  },
-  {
-    trans_date: '20250511T161735',
-    trans_amt: 39000,
-    merchant_name: '스타벅스',
-    trans_title: '모닝커피',
-    trans_category: 'cafe',
-    pay_method: '카드',
-    pay_id: '****1912',
-  },
-  {
-    trans_date: '20250529T202826',
-    trans_amt: 122000,
-    merchant_name: '무신사',
-    trans_title: '샌들',
-    trans_category: 'shopping',
-    pay_method: '선불',
-    pay_id: '선불머니',
-  },
-  {
-    trans_date: '20250515T160538',
-    trans_amt: 62000,
-    merchant_name: 'ABC마트',
-    trans_title: '샌들',
-    trans_category: 'shopping',
-    pay_method: '카드',
-    pay_id: '****6342',
-  },
-];
 
 const formatDate = (dateStr: string) =>
   `${+dateStr.slice(4, 6)}월 ${+dateStr.slice(6, 8)}일`;
 const formatTime = (dateStr: string) =>
   `${dateStr.slice(9, 11)}:${dateStr.slice(11, 13)}`;
 
-//날짜별로 그룹화 데이터 . 날짜 key에 소비 내역 모음.
-const grouped = dummyData.reduce<Record<string, typeof dummyData>>(
+const currentMonth = new Date().getMonth() + 1; // 1월 index가 0
+const thisMonthData = consumptionData.filter(
+  (item) => +item.trans_date.slice(4, 6) === currentMonth
+);
+
+const grouped = thisMonthData.reduce<Record<string, typeof thisMonthData>>(
   (acc, cur) => {
     const key = cur.trans_date.slice(0, 8);
     if (!acc[key]) acc[key] = [];
@@ -108,31 +29,19 @@ const grouped = dummyData.reduce<Record<string, typeof dummyData>>(
   {}
 );
 
-//최신순 정렬 .
 const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+
 const salary = 2800000;
-const totalSpending =
-  dummyData.reduce((sum, item) => sum + item.trans_amt, 0) + 3000000;
+const totalSpending = thisMonthData.reduce(
+  (sum, item) => sum + item.trans_amt,
+  0
+);
 const isOverSpent = totalSpending > salary;
 
-let used = 0;
-let remain = 0;
-
-if (isOverSpent) {
-  used = (salary / totalSpending) * 100;
-  remain = 100 - used;
-} else {
-  used = (totalSpending / salary) * 100;
-  remain = 100 - used;
-}
-
-const graphData = [
-  {
-    name: '소비 내역',
-    used,
-    remain,
-  },
-];
+const used = isOverSpent
+  ? (salary / totalSpending) * 100
+  : (totalSpending / salary) * 100;
+const remain = 100 - used;
 
 export default function SpendListPage() {
   return (
@@ -154,10 +63,10 @@ export default function SpendListPage() {
       </Title>
 
       <div className='flex-1 overflow-y-auto mt-6 ml-1 pr-1'>
-        <div className='flex flex-col gap-4 pb-32'>
+        <div className='flex flex-col gap-4'>
           {sortedDates.map((date) => (
             <div key={date}>
-              <Text className='text-sm font-[500] mb-1.5 text-[#909090]'>
+              <Text className='text-sm font-[500] mb-1.5 text-gray-time'>
                 {formatDate(date)}
               </Text>
               {grouped[date]
@@ -182,25 +91,31 @@ export default function SpendListPage() {
         </div>
       </div>
 
-      <div className='w-full mt-8 mb-32'>
-        <Title tag='h2' className='text-2xl font-[500] ml-1.5'>
-          6월 소비 내역
+      <div className='w-full mt-8 mb-24'>
+        <Title tag='h2' className='text-2xl font-[500] ml-1.5 pb-10'>
+          {currentMonth}월 소비 내역
         </Title>
-        <div className='relative w-full mt-5.5 '>
+
+        <div className='relative w-full mt-5'>
           <SalaryBarGraph
-            data={graphData}
+            data={[
+              {
+                name: '소비 내역',
+                used,
+                remain,
+              },
+            ]}
+            height={40}
             colors={{
               used: '#56b8ab',
               remain: isOverSpent ? '#e97272' : 'white',
-              //테두리 색상
-              lStroke: isOverSpent ? '#56b8ab' : '#56b8ab',
+              lStroke: '#56b8ab',
               rStroke: isOverSpent ? '#e97272' : '#56b8ab',
             }}
           />
 
           <div
             className='absolute top-full mt-1.5 -translate-x-1/2 text-sm text-center text-[500]'
-            //경계지점 (비율)계산.
             style={{
               left: `${
                 (Math.min(totalSpending, salary) /
@@ -216,7 +131,7 @@ export default function SpendListPage() {
             </span>
           </div>
 
-          <div className='absolute top-full right-0 mt-1.5 text-sm text-right text-[500]'>
+          <div className='absolute -top-10 right-0 text-sm text-right text-[500] whitespace-nowrap leading-tight'>
             <span className={isOverSpent ? 'text-spend-alert' : ''}>
               {isOverSpent ? '내 소비' : '내 월급'}
             </span>
