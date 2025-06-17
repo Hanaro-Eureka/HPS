@@ -61,6 +61,7 @@ model User {
   loginId      String         @db.VarChar(60)
   password     String         @db.VarChar(255)
   createdAt    DateTime       @default(now()) @db.DateTime(0)
+  isSalaryMan  Boolean        @default(true)
   Account      Account[]
   CheckBox     CheckBox[]
   Pension      Pension[]
