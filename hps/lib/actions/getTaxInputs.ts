@@ -5,9 +5,20 @@ import { consumptionData } from '@/constants/consumptionData';
 import prisma from '../db';
 
 export async function getTaxInputs(userId: number) {
-  // 사용자의 급여 누적 합산
+  const currentYear = new Date().getFullYear();
+
+  const startOfYear = new Date(`${currentYear}-01-01T00:00:00`);
+  const endOfYear = new Date(`${currentYear}-12-31T23:59:59`);
+
+  // 올해의 급여만 필터링
   const salaries = await prisma.salary.findMany({
-    where: { userId },
+    where: {
+      userId,
+      depositDate: {
+        gte: startOfYear,
+        lte: endOfYear,
+      },
+    },
   });
 
   const salary = salaries.reduce((sum, s) => sum + s.amount, 0); // 실제 누적 소득
