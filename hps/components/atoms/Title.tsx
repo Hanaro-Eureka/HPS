@@ -1,8 +1,8 @@
 import { JSX, PropsWithChildren } from 'react';
 
 type Props = {
-  className: string;
-  tag?: keyof JSX.IntrinsicElements;
+  className?: string;
+  tag: keyof JSX.IntrinsicElements;
 };
 export default function Title({
   children,
