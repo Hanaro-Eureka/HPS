@@ -1,38 +1,10 @@
 'use client';
 
 import Button from '@/components/atoms/Button';
-import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
-import ListItem from '@/components/molcules/ListItem';
-import SalaryBarGraph from '@/components/molcules/SalaryBarGraph';
-import icons from '@/constants/categoryIcons';
-import { consumptionData } from '@/constants/consumptionData';
 import Image from 'next/image';
-import {
-  calculateSpendingStatus,
-  filterThisMonthData,
-  formatDate,
-  formatTime,
-  getCurrentMonth,
-  groupByDate,
-} from './utils/spending';
-
-const salary = 2800000;
-const currentMonth = getCurrentMonth();
-
-const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
-const grouped = groupByDate(thisMonthData);
-const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
-
-const totalSpending = thisMonthData.reduce(
-  (sum, item) => sum + item.trans_amt,
-  0
-);
-
-const { isOverSpent, used, remain } = calculateSpendingStatus(
-  salary,
-  totalSpending
-);
+import SpendAnalysis from './components/SpendAnalysis';
+import SpendList from './components/SpendList';
 
 export default function SpendListPage() {
   return (
@@ -53,93 +25,8 @@ export default function SpendListPage() {
         이번달 소비 내역
       </Title>
 
-      <div className='flex-1 overflow-y-auto mt-6 ml-1 pr-1'>
-        <div className='flex flex-col gap-4'>
-          {sortedDates.map((date) => (
-            <div key={date}>
-              <Text className='text-sm font-[500] mb-1.5 text-gray-time'>
-                {formatDate(date)}
-              </Text>
-              {grouped[date]
-                .sort((a, b) => b.trans_date.localeCompare(a.trans_date))
-                .map((item, idx) => (
-                  <ListItem
-                    key={idx}
-                    icon={
-                      <Image
-                        src={icons[item.trans_category as keyof typeof icons]}
-                        alt={item.trans_category}
-                        className='w-9 h-9'
-                      />
-                    }
-                    label={item.merchant_name}
-                    time={formatTime(item.trans_date)}
-                    amount={-item.trans_amt}
-                  />
-                ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className='w-full mt-8 mb-24'>
-        <Title tag='h2' className='text-2xl font-[500] ml-1.5 pb-10'>
-          {currentMonth}월 소비 내역
-        </Title>
-
-        <div className='relative w-full mt-5'>
-          <SalaryBarGraph
-            data={[
-              {
-                name: '소비 내역',
-                used,
-                remain,
-              },
-            ]}
-            height={40}
-            colors={{
-              used: '#56b8ab',
-              remain: isOverSpent ? '#e97272' : 'white',
-              lStroke: '#56b8ab',
-              rStroke: isOverSpent ? '#e97272' : '#56b8ab',
-            }}
-          />
-
-          <div
-            className={`absolute top-full mt-1.5 text-sm text-center text-[500] ${
-              (Math.min(totalSpending, salary) /
-                Math.max(totalSpending, salary)) *
-                100 >
-              90
-                ? 'translate-x-[-100%] text-right'
-                : '-translate-x-1/2'
-            }`}
-            style={{
-              left: `${
-                (Math.min(totalSpending, salary) /
-                  Math.max(totalSpending, salary)) *
-                100
-              }%`,
-            }}
-          >
-            <span>{isOverSpent ? '내 월급' : '내 소비'}</span>
-            <br />
-            <span className='whitespace-nowrap'>
-              {(isOverSpent ? salary : totalSpending).toLocaleString()}원
-            </span>
-          </div>
-
-          <div className='absolute -top-10 right-0 text-sm text-right text-[500]'>
-            <span className={isOverSpent ? 'text-spend-alert' : ''}>
-              {isOverSpent ? '내 소비' : '내 월급'}
-            </span>
-            <br />
-            <span className={isOverSpent ? 'text-spend-alert' : ''}>
-              {(isOverSpent ? totalSpending : salary).toLocaleString()}원
-            </span>
-          </div>
-        </div>
-      </div>
+      <SpendList />
+      <SpendAnalysis />
     </div>
   );
 }
