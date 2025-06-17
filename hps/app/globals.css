@@ -65,6 +65,7 @@
     --black-modal: #565959;
     --black-checked: #ebc4c4;
     --background: #fcfcfc;
+    --spend-alert: #d83e3e;
   }
 
   @theme inline {
@@ -86,6 +87,7 @@
     --color-black-font: var(--black-font);
     --color-black-modal: var(--black-modal);
     --color-black-checked: var(--black-checked);
+    --color-spend-alert: var(--spend-alert);
   }
 }
 
@@ -200,13 +202,11 @@
     @apply border-border outline-ring/50;
     @apply box-border;
     /* background-color: transparent; */
-
   }
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
     overflow: hidden;
     font-family: var(--font-hana);
-
   }
 }
