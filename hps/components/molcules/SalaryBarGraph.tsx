@@ -15,17 +15,16 @@ type Props = {
     used: number;
     remain: number;
   }[];
+  height: number;
   colors: {
     used: string;
     remain: string;
-    lStroke: string;
-    rStroke: string;
   };
 };
-export default function SalaryBarGraph({ data, colors }: Props) {
-  const { used, remain, lStroke, rStroke } = colors;
+export default function SalaryBarGraph({ data, colors, height }: Props) {
+  const { used, remain } = colors;
   return (
-    <div style={{ width: '100%', height: 60 }}>
+    <div style={{ width: '100%', height: height }}>
       <ResponsiveContainer width='100%' height='100%'>
         <BarChart
           layout='vertical'
@@ -44,7 +43,7 @@ export default function SalaryBarGraph({ data, colors }: Props) {
             fill={used}
             // stroke={lStroke}
             radius={[10, 0, 0, 10]}
-            barSize={40}
+            barSize={height - 20}
           />
           <Bar
             dataKey='remain'
@@ -53,7 +52,7 @@ export default function SalaryBarGraph({ data, colors }: Props) {
             // stroke={rStroke}
             strokeWidth={2}
             radius={[0, 10, 10, 0]}
-            barSize={40}
+            barSize={height - 20}
           />
         </BarChart>
       </ResponsiveContainer>
