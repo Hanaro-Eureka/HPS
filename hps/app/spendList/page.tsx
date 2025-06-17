@@ -4,6 +4,7 @@ import Button from '@/components/atoms/Button';
 import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
 import ListItem from '@/components/molcules/ListItem';
+import SalaryBarGraph from '@/components/molcules/SalaryBarGraph';
 import icons from '@/constants/categoryIcons';
 import Image from 'next/image';
 
@@ -29,7 +30,7 @@ const dummyData = [
   {
     trans_date: '20250526T213436',
     trans_amt: 155000,
-    merchant_name: '쿠팡',
+    merchant_name: '매머드커피',
     trans_title: '여름 반팔티',
     trans_category: 'shopping',
     pay_method: '카드',
@@ -91,22 +92,15 @@ const dummyData = [
   },
 ];
 
-// 날짜 → '_월 __일' 형식
-function formatDate(dateStr: string) {
-  const month = Number(dateStr.slice(4, 6));
-  const day = Number(dateStr.slice(6, 8));
-  return `${month}월 ${day}일`;
-}
+const formatDate = (dateStr: string) =>
+  `${+dateStr.slice(4, 6)}월 ${+dateStr.slice(6, 8)}일`;
+const formatTime = (dateStr: string) =>
+  `${dateStr.slice(9, 11)}:${dateStr.slice(11, 13)}`;
 
-// 시간 → HH:mm 형식
-function formatTime(dateStr: string) {
-  return `${dateStr.slice(9, 11)}:${dateStr.slice(11, 13)}`;
-}
-
-// 날짜별로 그룹화 + 시간 정렬
+//날짜별로 그룹화 데이터 . 날짜 key에 소비 내역 모음.
 const grouped = dummyData.reduce<Record<string, typeof dummyData>>(
   (acc, cur) => {
-    const key = cur.trans_date.slice(0, 8); // '20250527'
+    const key = cur.trans_date.slice(0, 8);
     if (!acc[key]) acc[key] = [];
     acc[key].push(cur);
     return acc;
@@ -114,12 +108,35 @@ const grouped = dummyData.reduce<Record<string, typeof dummyData>>(
   {}
 );
 
-// 날짜 정렬 (최신 날짜가 위로)
+//최신순 정렬 .
 const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+const salary = 2800000;
+const totalSpending =
+  dummyData.reduce((sum, item) => sum + item.trans_amt, 0) + 40000;
+const isOverSpent = totalSpending > salary;
+
+let used = 0;
+let remain = 0;
+
+if (isOverSpent) {
+  used = (salary / totalSpending) * 100;
+  remain = 100 - used;
+} else {
+  used = (totalSpending / salary) * 100;
+  remain = 100 - used;
+}
+
+const graphData = [
+  {
+    name: '소비 내역',
+    used,
+    remain,
+  },
+];
 
 export default function SpendListPage() {
   return (
-    <div className='flex flex-col h-screen w-full px-5 py-5'>
+    <div className='flex flex-col h-screen w-full pt-15 px-5 py-5'>
       <div className='flex items-center justify-between'>
         <Button
           aria-label='뒤로 가기'
@@ -165,10 +182,46 @@ export default function SpendListPage() {
         </div>
       </div>
 
-      <div className='mt-15 w-full mb-24'>
-        <Title tag='h2' className='text-2xl font-[500] mb-4 ml-1.5'>
+      <div className='w-full mt-8 mb-32'>
+        <Title tag='h2' className='text-2xl font-[500] ml-1.5'>
           6월 소비 내역
         </Title>
+        <div className='relative w-full mt-5.5'>
+          <SalaryBarGraph
+            data={graphData}
+            colors={{
+              used: '#48B9A0',
+              remain: isOverSpent ? '#F26464' : '#FFFFFF',
+            }}
+          />
+
+          <div
+            className='absolute top-full mt-1.5 -translate-x-1/2 text-sm text-center text-[500'
+            style={{
+              left: `${
+                (Math.min(totalSpending, salary) /
+                  Math.max(totalSpending, salary)) *
+                100
+              }%`,
+            }}
+          >
+            <span>{isOverSpent ? '내 월급' : '내 소비'}</span>
+            <br />
+            <span>
+              {(isOverSpent ? salary : totalSpending).toLocaleString()}원
+            </span>
+          </div>
+
+          <div className='absolute top-full right-0 mt-1.5 text-sm text-right text-[500]'>
+            <span className={isOverSpent ? 'text-[#D83E3E]' : ''}>
+              {isOverSpent ? '내 소비' : '내 월급'}
+            </span>
+            <br />
+            <span className={isOverSpent ? 'text-[#D83E3E]' : ''}>
+              {(isOverSpent ? totalSpending : salary).toLocaleString()}원
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
