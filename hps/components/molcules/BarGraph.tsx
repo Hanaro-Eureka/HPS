@@ -37,7 +37,17 @@ export default function BarGraph({
         margin={{ top: 20, right: 100, left: 0, bottom: 5 }}
       >
         <XAxis type='number' dataKey={xDataKey} hide />
-        <YAxis type='category' dataKey={yDataKey} width={50} />
+        <YAxis
+          type='category'
+          dataKey={yDataKey}
+          width={50}
+          tick={{
+            fontSize: 14,
+            fontFamily: 'Hana',
+            fill: '#949494',
+            fontWeight: 400,
+          }}
+        />
         <Tooltip />
         <Bar
           dataKey='predictedNps'
@@ -48,6 +58,7 @@ export default function BarGraph({
               fill='#999'
               fontSize={16}
               dominantBaseline='middle'
+              className='font-[`Hana2.0_M`]'
             >
               월 {(value / 10000).toLocaleString()} 만원
             </text>
