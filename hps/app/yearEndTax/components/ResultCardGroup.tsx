@@ -9,7 +9,7 @@ type Props = {
 
 export default function ResultCardGroup({ deduction, refund }: Props) {
   return (
-    <section className='bg-white rounded-3xl mt-10 shadow-[0_0_4px_rgba(0,0,0,0.15)]'>
+    <section className='bg-white rounded-3xl mt-10 [box-shadow:var(--shadow-taxbox)]'>
       <div className='flex justify-between divide-x divide-[color:var(--divide)] py-2'>
         <ResultCardItem
           label='예상 누적 공제액'

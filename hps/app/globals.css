@@ -84,6 +84,7 @@ button:hover {
     --black-modal: #565959;
     --black-checked: #ebc4c4;
     --background: #fcfcfc;
+    --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
   }
 
   @theme inline {
