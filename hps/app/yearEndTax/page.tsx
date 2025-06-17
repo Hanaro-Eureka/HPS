@@ -1,27 +1,14 @@
-'use client';
-
 import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
 import { cardData } from '@/constants/cardData';
-import { useEffect, useState } from 'react';
 import { getTaxInputs } from '@/lib/actions/getTaxInputs';
 import Card from './components/Card';
 import CheckList from './components/CheckList';
 import ResultCardGroup from './components/ResultCardGroup';
 import { calculateRefund } from './utils/calculateRefund';
 
-export default function YearEndTaxPage() {
-  const [salary, setSalary] = useState<number | null>(null);
-  const [spending, setSpending] = useState<number | null>(null);
-
-  useEffect(() => {
-    // userId는 임시로 1로 고정
-    (async () => {
-      const { salary, spending } = await getTaxInputs(1);
-      setSalary(salary);
-      setSpending(spending);
-    })();
-  }, []);
+export default async function YearEndTaxPage() {
+  const { salary, spending } = await getTaxInputs(1);
 
   if (salary === null || spending === null) {
     return <p className='text-center mt-10 text-black-font'>로딩 중...</p>;
@@ -37,7 +24,7 @@ export default function YearEndTaxPage() {
   const totalAmt = creditAmt + checkAmt;
   const creditRate = totalAmt ? Math.round((creditAmt / totalAmt) * 100) : 0;
   const checkRate = totalAmt ? Math.round((checkAmt / totalAmt) * 100) : 0;
-  const isGoodRate: boolean = creditAmt > checkAmt;
+  // const isGoodRate: boolean = creditAmt > checkAmt;
 
   const result = calculateRefund({
     salary,
