@@ -87,6 +87,7 @@ button:hover {
     --button-lightgray: #f3f4f6;
     --button-gray: #e5e7eb;
     --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
+    --spend-alert: #d83e3e;
   }
 
   @theme inline {
@@ -111,6 +112,7 @@ button:hover {
     --color-button-lightgray: var(--button-lightgray);
     --color-button-gray: var(--button-gray);
     --color-shadow-default: var(--shadow-taxbox);
+    --color-spend-alert: var(--spend-alert);
   }
 }
 

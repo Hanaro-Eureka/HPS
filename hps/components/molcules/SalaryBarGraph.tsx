@@ -11,15 +11,18 @@ import {
 } from 'recharts';
 
 type Props = {
-  data: { moreSpent: number; leastSpent: number; name?: string }[];
+  data: { used: number; remain: number; name?: string }[];
   width?: number;
   height?: number;
   className?: string;
-  colors: { moreSpent: string; leastSpent: string };
+  colors: { used: string; remain: string; lStroke: string; rStroke: string };
 };
 
 const CustomBar = (
-  props: Partial<BarProps> & { radius: [number, number, number, number] }
+  props: Partial<BarProps> & {
+    radius: [number, number, number, number];
+    stroke?: string;
+  }
 ) => {
   const {
     x = 0,
@@ -27,6 +30,7 @@ const CustomBar = (
     width = 0,
     height = 0,
     fill = '#000',
+    stroke,
     radius = [0, 0, 0, 0],
   } = props;
 
@@ -49,17 +53,17 @@ const CustomBar = (
     <path
       d={path}
       fill={fill}
-      stroke={fill === '#FFFFFF' ? '#56B8AB' : fill}
-      strokeWidth={1}
+      stroke={stroke ?? 'none'}
+      strokeWidth={stroke ? 2 : 0}
     />
   );
 };
 
 export default function SalaryBarChart({
   data,
-  className = 'p-5',
-  width = 500,
-  height = 100,
+  className = '',
+  width = 600,
+  height = 40,
   colors,
 }: Props) {
   return (
@@ -68,22 +72,35 @@ export default function SalaryBarChart({
         layout='vertical'
         width={width}
         data={data}
+        margin={{ top: 0, right: 2, left: 2, bottom: 0 }}
         className={className}
       >
         <XAxis type='number' hide />
         <YAxis type='category' dataKey='name' hide />
         <Tooltip formatter={(value: number) => value.toLocaleString() + '원'} />
         <Bar
-          dataKey='moreSpent'
+          dataKey='used'
           stackId='a'
-          shape={<CustomBar radius={[10, 0, 0, 10]} />}
-          fill={colors.moreSpent}
+          shape={
+            <CustomBar
+              radius={[10, 0, 0, 10]}
+              fill={colors.used}
+              stroke={colors.lStroke} // 왼쪽 테두리 색상
+            />
+          }
+          fill={colors.used}
         />
         <Bar
-          dataKey='leastSpent'
+          dataKey='remain'
           stackId='a'
-          shape={<CustomBar radius={[0, 10, 10, 0]} />}
-          fill={colors.leastSpent}
+          shape={
+            <CustomBar
+              radius={[0, 10, 10, 0]}
+              fill={colors.remain}
+              stroke={colors.rStroke}
+            />
+          }
+          fill={colors.remain}
         />
       </BarChart>
     </ResponsiveContainer>
