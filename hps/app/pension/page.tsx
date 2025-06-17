@@ -36,10 +36,10 @@ export default async function YearEndTaxPage() {
   return (
     <div className='flex flex-col w-full items-center justify-start gap-8 px-3.5 py-12'>
       <div className='flex flex-col w-full justify-center gap-1 px-2.5'>
-        <Title tag='h1' className='text-2xl font-semibold mt-4'>
+        <Title tag='h1' className='text-2xl font-[600] mt-4'>
           국민 연금
         </Title>
-        <Text className='text-sm font-medium text-black mt-2'>
+        <Text className='text-sm font-[500] text-black-font mt-2'>
           당신의 노후, 국민연금으로 얼마나 준비됐을까요?
         </Text>
       </div>
@@ -50,7 +50,7 @@ export default async function YearEndTaxPage() {
             key={index}
             className='bg-white rounded-3xl shadow-[0_0_4px_rgba(0,0,0,0.15)] flex-1'
           >
-            <Text className='text-xs font-medium text-black px-4 py-5 text-center'>
+            <Text className='text-xs font-[500] text-black-font px-4 py-5 text-center'>
               {item.title}
               <br />
               {item.value}
