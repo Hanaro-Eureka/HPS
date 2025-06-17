@@ -112,7 +112,7 @@ const grouped = dummyData.reduce<Record<string, typeof dummyData>>(
 const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 const salary = 2800000;
 const totalSpending =
-  dummyData.reduce((sum, item) => sum + item.trans_amt, 0) + 40000;
+  dummyData.reduce((sum, item) => sum + item.trans_amt, 0) + 3000000;
 const isOverSpent = totalSpending > salary;
 
 let used = 0;
@@ -186,17 +186,21 @@ export default function SpendListPage() {
         <Title tag='h2' className='text-2xl font-[500] ml-1.5'>
           6월 소비 내역
         </Title>
-        <div className='relative w-full mt-5.5'>
+        <div className='relative w-full mt-5.5 '>
           <SalaryBarGraph
             data={graphData}
             colors={{
-              used: '#48B9A0',
-              remain: isOverSpent ? '#F26464' : '#FFFFFF',
+              used: '#56b8ab',
+              remain: isOverSpent ? '#e97272' : 'white',
+              //테두리 색상
+              lStroke: isOverSpent ? '#56b8ab' : '#56b8ab',
+              rStroke: isOverSpent ? '#e97272' : '#56b8ab',
             }}
           />
 
           <div
-            className='absolute top-full mt-1.5 -translate-x-1/2 text-sm text-center text-[500'
+            className='absolute top-full mt-1.5 -translate-x-1/2 text-sm text-center text-[500]'
+            //경계지점 (비율)계산.
             style={{
               left: `${
                 (Math.min(totalSpending, salary) /
@@ -213,11 +217,11 @@ export default function SpendListPage() {
           </div>
 
           <div className='absolute top-full right-0 mt-1.5 text-sm text-right text-[500]'>
-            <span className={isOverSpent ? 'text-[#D83E3E]' : ''}>
+            <span className={isOverSpent ? 'text-spend-alert' : ''}>
               {isOverSpent ? '내 소비' : '내 월급'}
             </span>
             <br />
-            <span className={isOverSpent ? 'text-[#D83E3E]' : ''}>
+            <span className={isOverSpent ? 'text-spend-alert' : ''}>
               {(isOverSpent ? totalSpending : salary).toLocaleString()}원
             </span>
           </div>
