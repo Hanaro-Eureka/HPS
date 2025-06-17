@@ -1,7 +1,26 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0;
+}
+
+body {
+  margin: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
 
 /* font */
 @font-face {
@@ -65,6 +84,7 @@
     --black-modal: #565959;
     --black-checked: #ebc4c4;
     --background: #fcfcfc;
+    --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
   }
 
   @theme inline {
@@ -110,6 +130,7 @@
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
+  --divide: var(--divide);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
@@ -146,6 +167,7 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+  --divide: #918b8b;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -200,13 +222,11 @@
     @apply border-border outline-ring/50;
     @apply box-border;
     /* background-color: transparent; */
-
   }
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
     overflow: hidden;
     font-family: var(--font-hana);
-
   }
 }
