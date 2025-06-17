@@ -9,24 +9,24 @@ export default function SimulatorChartComponent() {
   const [value, setValue] = useState([65]);
 
   const data = [
-    { age: '60세', predictedNps: 980000, barColor: '#F9CC52' },
+    { age: '60세', predictedNps: 980000, barColor: 'bg-chart-first' },
     {
       age: `${value}세`,
       predictedNps: 1050000,
-      barColor: '#FEB8B3',
+      barColor: 'bg-chart-second',
     },
     {
       age: '70세',
       predictedNps: 1300000,
-      barColor: '#62CFE5',
+      barColor: 'bg-chart-third',
     },
   ];
 
   return (
     <>
-      <div className='flex flex-col w-full items-center justify-start gap-5 px-2.5'>
-        <div className='flex flex-row w-full items-center justify-between'>
-          <Text className='text-2xl font-medium text-black'>
+      <div className='flex flex-row w-full items-center justify-between'>
+        <div className='flex flex-col w-full items-center justify-start gap-5 px-2.5'>
+          <Text className='text-2xl font-[500] text-black-font'>
             예상 연금 시뮬레이터
           </Text>
         </div>
