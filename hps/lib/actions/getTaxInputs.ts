@@ -2,7 +2,7 @@
 
 import { calculateRefund } from '@/app/yearEndTax/utils/calculateRefund';
 import { consumptionData } from '@/constants/consumptionData';
-import prisma from '../db';
+import { getThisYearSalary } from './salary-actions';
 
 export async function getTaxInputs(userId: number) {
   const currentYear = new Date().getFullYear();
@@ -11,15 +11,7 @@ export async function getTaxInputs(userId: number) {
   const endOfYear = new Date(`${currentYear}-12-31T23:59:59`);
 
   // 올해의 급여만 필터링
-  const salaries = await prisma.salary.findMany({
-    where: {
-      userId,
-      depositDate: {
-        gte: startOfYear,
-        lte: endOfYear,
-      },
-    },
-  });
+  const salaries = await getThisYearSalary(userId, startOfYear, endOfYear);
 
   const salary = salaries.reduce((sum, s) => sum + s.amount, 0); // 실제 누적 소득
 

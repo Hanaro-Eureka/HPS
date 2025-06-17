@@ -7,3 +7,18 @@ export const getSalaryWithUserId = async (userId: number) =>
       depositDate: 'desc',
     },
   });
+
+export const getThisYearSalary = async (
+  userId: number,
+  startOfYear: Date,
+  endOfYear: Date
+) =>
+  prisma.salary.findMany({
+    where: {
+      userId,
+      depositDate: {
+        gte: startOfYear,
+        lte: endOfYear,
+      },
+    },
+  });
