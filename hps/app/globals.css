@@ -233,7 +233,6 @@ button:hover {
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
-    overflow: hidden;
     font-family: var(--font-hana);
   }
 }
