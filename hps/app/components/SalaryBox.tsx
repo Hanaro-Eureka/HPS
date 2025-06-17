@@ -22,7 +22,7 @@ export default async function SalaryBox() {
   return (
     <>
       <div
-        className='w-80 h-52 pt-8 bg-white rounded-3xl px-6 flex shadow-card
+        className='w-80 h-52 pt-8 bg-white rounded-3xl px-6 flex [box-shadow:var(--shadow-taxbox)]
       overflow-hidden'
       >
         <div className='flex flex-col w-40'>
