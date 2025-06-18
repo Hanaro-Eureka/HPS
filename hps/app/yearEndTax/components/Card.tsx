@@ -15,7 +15,6 @@ export default function Card() {
               alt='smallCreditCard'
               width={52}
               height={52}
-              className='rounded-full'
             />
             <Text className='text-gray-font text-sm font-[400] text-center'>
               신용카드
@@ -26,8 +25,7 @@ export default function Card() {
               src='/Img_CheckCard(Big).svg'
               alt='bigCheckCard'
               width={90}
-              height={91}
-              className='rounded-full'
+              height={90}
             />
             <Text className='text-gray-font text-sm font-[400] text-center'>
               체크카드
@@ -41,8 +39,7 @@ export default function Card() {
               src='/Img_CreditCard(Big).svg'
               alt='bigCreditCard'
               width={90}
-              height={91}
-              className='rounded-full'
+              height={90}
             />
             <Text className='text-gray-font text-sm font-[400] text-center'>
               신용카드
@@ -54,7 +51,6 @@ export default function Card() {
               alt='smallCheckCard'
               width={52}
               height={52}
-              className='rounded-full'
             />
             <Text className='text-gray-font text-sm font-[400] text-center'>
               체크카드
