@@ -48,7 +48,7 @@ export default function CheckList() {
   return (
     <div>
       {isGoodRate() ? (
-        <div className='ml-4 space-y-6 '>
+        <div className='space-y-6 '>
           <CheckBoxText
             id='cashReceipt'
             checked={checkedItems.cashReceipt}
@@ -78,7 +78,7 @@ export default function CheckList() {
           />
         </div>
       ) : (
-        <div className='ml-4 space-y-6'>
+        <div className='space-y-6'>
           <CheckBoxText
             id='betterCheckCard'
             checked={checkedItems.betterCheckCard}

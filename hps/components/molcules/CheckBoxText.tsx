@@ -21,7 +21,10 @@ export default function CheckBoxText({
   onChange,
 }: Props) {
   return (
-    <label htmlFor={id} className='flex items-center gap-5.5 cursor-pointer'>
+    <label
+      htmlFor={id}
+      className='flex items-center gap-5.5 cursor-pointer pl-4.5'
+    >
       <Checkbox
         id={id}
         checked={checked}
