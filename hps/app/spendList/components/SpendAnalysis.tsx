@@ -11,11 +11,10 @@ export default function SpendAnalysis() {
   const currentMonth = getCurrentMonth();
   const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
   const salary = 2800000;
-  const totalSpending = 2792000;
-  // const totalSpending = thisMonthData.reduce(
-  //   (sum, item) => sum + item.trans_amt,
-  //   0
-  // );
+  const totalSpending = thisMonthData.reduce(
+    (sum, item) => sum + item.trans_amt,
+    0
+  );
   const { isOverSpent, used, remain } = calculateSpendingStatus(
     salary,
     totalSpending
