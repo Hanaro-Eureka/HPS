@@ -34,12 +34,10 @@ export default function SpendAnalysis() {
               remain,
             },
           ]}
-          height={40}
+          height={60}
           colors={{
             used: '#56b8ab',
-            remain: isOverSpent ? '#e97272' : 'white',
-            lStroke: '#56b8ab',
-            rStroke: isOverSpent ? '#e97272' : '#56b8ab',
+            remain: isOverSpent ? '#e97272' : '#E4F4F1',
           }}
         />
 
