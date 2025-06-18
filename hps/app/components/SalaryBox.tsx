@@ -26,14 +26,24 @@ export default async function SalaryBox() {
       overflow-hidden'
       >
         <div className='flex flex-col w-40'>
-          <div className='border border-hana-smallText rounded-lg text-hana-smallText text-xs font-[500] leading-none py-1 px-2.5 text-center'>
+          <div className='border border-hana-smallText rounded-md text-hana-smallText text-xs font-[500] leading-none py-1 px-2.5 text-center items-center'>
             다음 월급까지 D-{diffInDays}
           </div>
-          <Image src={'/ic_pig.svg'} alt='pig' width={97} height={123} />
+          <div className='flex justify-center mt-2'>
+            <Image
+              src={'/ic_pig.svg'}
+              alt='pig'
+              width={97}
+              height={123}
+              className='items-center'
+            />
+          </div>
         </div>
-        <div className='flex flex-col font-[500] w-40 pl-6'>
+        <div className='flex flex-col  w-40 pl-6'>
           <div className='font-[500] h-6 text-center'>최근 나의 월급</div>
-          <div className='mt-14 text-center'>{lastSalary?.amount}원</div>
+          <div className='mt-14 text-center text-xl font-[600] '>
+            {lastSalary?.amount}원
+          </div>
         </div>
       </div>
     </>
