@@ -41,7 +41,6 @@ export default function SalaryBarGraph({ data, colors, height }: Props) {
             dataKey='used'
             stackId='a'
             fill={used}
-            // stroke={lStroke}
             radius={[10, 0, 0, 10]}
             barSize={height - 20}
           />
@@ -49,7 +48,6 @@ export default function SalaryBarGraph({ data, colors, height }: Props) {
             dataKey='remain'
             stackId='a'
             fill={remain}
-            // stroke={rStroke}
             strokeWidth={2}
             radius={[0, 10, 10, 0]}
             barSize={height - 20}
