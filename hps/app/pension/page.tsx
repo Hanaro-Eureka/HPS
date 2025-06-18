@@ -1,35 +1,31 @@
+'use client';
+
 import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
-import { getFirstPensionDate, getLastSalary } from '@/lib/actions/salary';
-import { getUserIsSalaryMan } from '@/lib/actions/users';
-import SimulatorChartComponent from './components/SimulatorChartComponent';
-import { calcPensionDate } from './utils/pensionCalc';
+import BarGraph from '@/components/molcules/BarGraph';
+import { useState } from 'react';
+import RadixSlider from './components/Slider';
 
-export default async function YearEndTaxPage() {
-  const userId = 1;
-  const isSalaryman = await getUserIsSalaryMan(userId);
-  const lastSalary = await getLastSalary(userId);
-  const lastPensionAmount = lastSalary * 0.045;
-
-  console.log(`lastsalary: ${lastSalary}`);
-  console.log(`lastPensionAmount: ${lastPensionAmount}`);
-  // 직장인 여부에 따라 연금 금액 계산
-  // 직장인은 마지막 월급의 4.5%, 자영업자는 9%로 계산
-  const userPensionAmount = isSalaryman
-    ? lastPensionAmount
-    : lastPensionAmount * 2; //마지막 월급의 4.5% 직장인이 아니면 9%로 계산
-
-  const firstPensionDateResult = await getFirstPensionDate(userId);
-  const userPensiondate = firstPensionDateResult
-    ? await calcPensionDate(firstPensionDateResult.depositDate)
-    : 0;
-  const userPensionPaid = 20; //가입기간 더미데이터
+export default function YearEndTaxPage() {
   const contents = [
-    { title: '누적 납입액', value: `${userPensionAmount + 2730000}원` },
-    { title: '최근 납입내역', value: `월 ${userPensionAmount}원` },
+    { title: '누적 납입액', value: '2,730,000원' },
+    { title: '최근 납입내역', value: '월 135,000원' },
+    { title: '가입 기간', value: '총 20개월' },
+  ];
+
+  const [value, setValue] = useState([65]);
+
+  const data = [
+    { age: '60세', predictedNps: 980000, barColor: '#F9CC52' },
     {
-      title: '가입 기간',
-      value: `총 ${userPensionPaid + userPensiondate}개월`,
+      age: `${value}세`,
+      predictedNps: 1050000,
+      barColor: '#FEB8B3',
+    },
+    {
+      age: '70세',
+      predictedNps: 1300000,
+      barColor: '#62CFE5',
     },
   ];
 
@@ -58,7 +54,29 @@ export default async function YearEndTaxPage() {
           </section>
         ))}
       </div>
-      <SimulatorChartComponent />
+
+      <div className='flex flex-col w-full items-center justify-start gap-5 px-2.5'>
+        <div className='flex flex-row w-full items-center justify-between'>
+          <Text className='text-2xl font-[500] text-black-font'>
+            예상 연금 시뮬레이터
+          </Text>
+        </div>
+
+        <RadixSlider value={value} onChange={setValue} />
+        <div className='flex flex-row w-full items-center justify-between'>
+          <Text className='text-sm mt-2 text-black-font font-[300]'>
+            선택된 나이 : {value[0]}세
+          </Text>
+        </div>
+      </div>
+      <div className='flex flex-col w-full items-center justify-start pt-10'>
+        <BarGraph
+          xDataKey='predictedNps'
+          yDataKey='age'
+          data={data}
+          height={150}
+        ></BarGraph>
+      </div>
     </div>
   );
 }
