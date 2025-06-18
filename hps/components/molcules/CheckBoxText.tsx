@@ -1,5 +1,3 @@
-'use client';
-
 import { ChangeEvent } from 'react';
 import Checkbox from '../atoms/Checkbox';
 
@@ -33,7 +31,7 @@ export default function CheckBoxText({
       />
       <div className='flex flex-col'>
         <span className='text-base font-[500]'>{text}</span>
-        <span className='text-xs mt-3 text-hana-green'>{description}</span>
+        <span className='text-xs mt-1 text-hana-green'>{description}</span>
       </div>
     </label>
   );

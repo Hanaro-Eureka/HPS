@@ -2,7 +2,7 @@
 
 import Text from '@/components/atoms/Text';
 import Image from 'next/image';
-import { isGoodRate } from '../utils/calculrateRate';
+import { isGoodRate } from '../utils/calculateRate';
 
 export default function Card() {
   return (

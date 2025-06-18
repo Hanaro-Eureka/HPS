@@ -1,28 +1,54 @@
 'use client';
 
 import CheckBoxText from '@/components/molcules/CheckBoxText';
-import { useState } from 'react';
-import { isGoodRate } from '../utils/calculrateRate';
+import { useEffect, useState } from 'react';
+import {
+  getCheckBoxByUserId,
+  updateCheckBoxField,
+} from '@/lib/actions/checkbox-action';
+import { isGoodRate } from '../utils/calculateRate';
+
+const fieldMap = {
+  betterCheckCard: 'upCheckRatilo',
+  cashReceipt: 'cashRcpIssue',
+  cultureLife: 'upCultureSpend',
+  marketGift: 'voucherUsed',
+} as const;
+
+type LocalCheckState = Record<keyof typeof fieldMap, boolean>;
 
 export default function CheckList() {
-  const [checkedItems, setCheckedItems] = useState({
-    betterCheckCard: true,
-    cashReceipt: false,
-    cultureLife: false,
-    marketGift: false,
-  });
+  const [checkedItems, setCheckedItems] = useState<LocalCheckState | null>(
+    null
+  );
 
-  const handleChange = (key: keyof typeof checkedItems) => {
-    setCheckedItems((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
+  useEffect(() => {
+    (async () => {
+      const data = await getCheckBoxByUserId(1); // userId 고정
+      setCheckedItems({
+        betterCheckCard: !!data?.upCheckRatilo,
+        cashReceipt: !!data?.cashRcpIssue,
+        cultureLife: !!data?.upCultureSpend,
+        marketGift: !!data?.voucherUsed,
+      });
+    })();
+  }, []);
+
+  const handleChange = async (key: keyof typeof fieldMap) => {
+    await updateCheckBoxField(fieldMap[key]);
+    setCheckedItems((prev) => (prev ? { ...prev, [key]: !prev[key] } : prev));
   };
 
+  if (!checkedItems) {
+    return (
+      <div className='text-sm text-gray-500 text-center'>불러오는 중...</div>
+    );
+  }
+
   return (
-    <>
+    <div>
       {isGoodRate() ? (
-        <div className='space-y-8'>
+        <div className='ml-4 space-y-6 '>
           <CheckBoxText
             id='cashReceipt'
             checked={checkedItems.cashReceipt}
@@ -52,7 +78,16 @@ export default function CheckList() {
           />
         </div>
       ) : (
-        <div className='space-y-8'>
+        <div className='ml-4 space-y-6'>
+          <CheckBoxText
+            id='betterCheckCard'
+            checked={checkedItems.betterCheckCard}
+            bgColor='bg-hana-green'
+            borderColor='border-hana-green'
+            text='체크카드 사용 비중 높이기'
+            description='신용카드 대비 공제율이 2배!'
+            onChange={() => handleChange('betterCheckCard')}
+          />
           <CheckBoxText
             id='cashReceipt'
             checked={checkedItems.cashReceipt}
@@ -61,15 +96,6 @@ export default function CheckList() {
             text='현금영수증 발급하기'
             description='현금영수증 발급시 30% 공제!'
             onChange={() => handleChange('cashReceipt')}
-          />
-          <CheckBoxText
-            id='cultureLife'
-            checked={checkedItems.cultureLife}
-            bgColor='bg-hana-green'
-            borderColor='border-hana-green'
-            text='문화생활(도서, 영화, 공연) 즐기기'
-            description='총 급여 7천만원 이하 근로자만 해당'
-            onChange={() => handleChange('cultureLife')}
           />
           <CheckBoxText
             id='marketGift'
@@ -82,6 +108,6 @@ export default function CheckList() {
           />
         </div>
       )}
-    </>
+    </div>
   );
 }
