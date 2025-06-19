@@ -8,6 +8,8 @@ type Props = {
   label: string;
   time: string;
   amount: number;
+  onClick?: () => void;
+  isSelected?: boolean;
   className?: string;
 };
 
@@ -16,15 +18,24 @@ export default function ListItem({
   label,
   time,
   amount,
+  onClick,
+  isSelected = false,
   className,
 }: Props) {
   return (
-    <div className={cn('flex items-center justify-between py-4', className)}>
+    <div
+      onClick={onClick}
+      className={cn(
+        'flex items-center justify-between py-4 px-6',
+        isSelected && 'bg-black-checked',
+        className
+      )}
+    >
       <div className='flex items-center gap-3'>
         <div className='w-9 h-9 rounded-full flex items-center justify-center'>
           {icon}
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-col gap-1'>
           <Text tag='strong' className='text-black-font text-base font-[500]'>
             {label}
           </Text>
