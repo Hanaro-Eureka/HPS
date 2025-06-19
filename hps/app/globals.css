@@ -85,6 +85,7 @@ button:hover {
     --black-checked: #ebc4c4;
     --background: #fcfcfc;
     --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
+    --shadow-salarybox: 0 0 4 0 rgba(0, 0, 0, 0.25);
     --spend-alert: #d83e3e;
   }
 
@@ -217,6 +218,10 @@ button:hover {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.bg-gradient-salary {
+  background: linear-gradient(to bottom, #e5f5f3 0%, #fefefe 100%);
 }
 
 @layer base {

@@ -1,15 +1,15 @@
-'use client';
+import MainBar from './components/MainNav';
+import SalaryBox from './components/SalaryBox';
 
-import BottomTabBar from '@/components/organisms/BottomTab/BottomTabBar';
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <div className='min-h-screen pb-16 bg-gray-50'>
-      <div className='p-4'>
-        <h1 className='text-xl font-bold mb-4'>메인 페이지</h1>
-        <p>여기에 메인 페이지 콘텐츠가 들어갑니다.</p>
+    <>
+      <div className='min-h-screen overflow-hidden pt-12 px-6 bg-gradient-salary'>
+        <MainBar />
+        <div className='flex items-center justify-center'>
+          <SalaryBox />
+        </div>
       </div>
-      <BottomTabBar />
-    </div>
+    </>
   );
 }

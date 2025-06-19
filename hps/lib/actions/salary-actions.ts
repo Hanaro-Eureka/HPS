@@ -1,0 +1,24 @@
+import prisma from '../db';
+
+export const getSalaryWithUserId = async (userId: number) =>
+  prisma.salary.findFirst({
+    where: { userId }, // 원하는 userId로 바꿔주세요
+    orderBy: {
+      depositDate: 'desc',
+    },
+  });
+
+export const getThisYearSalary = async (
+  userId: number,
+  startOfYear: Date,
+  endOfYear: Date
+) =>
+  prisma.salary.findMany({
+    where: {
+      userId,
+      depositDate: {
+        gte: startOfYear,
+        lte: endOfYear,
+      },
+    },
+  });
