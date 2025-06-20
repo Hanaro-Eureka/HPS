@@ -1,5 +1,3 @@
-'use client';
-
 import { ChangeEvent } from 'react';
 import Checkbox from '../atoms/Checkbox';
 
@@ -23,7 +21,10 @@ export default function CheckBoxText({
   onChange,
 }: Props) {
   return (
-    <label htmlFor={id} className='flex items-center gap-5.5 cursor-pointer'>
+    <label
+      htmlFor={id}
+      className='flex items-center gap-5.5 cursor-pointer pl-4.5'
+    >
       <Checkbox
         id={id}
         checked={checked}
@@ -33,7 +34,7 @@ export default function CheckBoxText({
       />
       <div className='flex flex-col'>
         <span className='text-base font-[500]'>{text}</span>
-        <span className='text-xs mt-3 text-hana-green'>{description}</span>
+        <span className='text-xs mt-1 text-hana-green'>{description}</span>
       </div>
     </label>
   );

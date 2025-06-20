@@ -7,23 +7,25 @@ type Props = {
   className?: string;
   onClick?: () => void;
   bgColor: string;
+  type?: 'button' | 'submit' | 'reset';
 };
 
 export default function Button({
   className,
+  type,
   bgColor,
   onClick,
   children,
 }: PropsWithChildren<Props>) {
   return (
     <button
+      type={type}
       className={cn(
         `${bgColor}
          `,
         className
       )}
       onClick={onClick}
-      type='button'
     >
       {children}
     </button>
