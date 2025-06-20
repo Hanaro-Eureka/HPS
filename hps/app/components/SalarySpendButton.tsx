@@ -14,28 +14,21 @@ export default function SalarySpendButton({ lastSalary }: Props) {
       <Button
         bgColor='bg-white'
         onClick={() => router.push('/spendList')}
-        className='rounded-3xl'
+        className='rounded-3xl w-44 h-32 [box-shadow:var(--shadow-taxbox)]
+      overflow-hidden mt-16'
       >
-        <div
-          className='w-80 h-52 pt-8 rounded-3xl px-6 flex [box-shadow:var(--shadow-taxbox)]
-      overflow-hidden'
-        >
-          <div className='flex flex-col w-40'>
-            <div className='flex justify-center mt-2'>
-              <Image
-                src={'/ic_pig.svg'}
-                alt='pig'
-                width={97}
-                height={123}
-                className='items-center'
-              />
-            </div>
+        <div className='flex flex-col mt-6 mb-8'>
+          <div className='flex justify-center text-center'>
+            <div className='font-[500] w-24 h-6 text-center'>이번 달 수입</div>
+            <Image
+              src={'/cogwheel.svg'}
+              alt='최근 수입원 선택 페이지로 이동'
+              width={20}
+              height={20}
+            />
           </div>
-          <div className='flex flex-col  w-40 pl-6'>
-            <div className='font-[500] h-6 text-center'>최근 나의 월급</div>
-            <div className='mt-14 text-center text-xl font-[600] '>
-              {lastSalary.toLocaleString()}원
-            </div>
+          <div className='mt-4 text-center text-xl font-[600] '>
+            {lastSalary.toLocaleString()}원
           </div>
         </div>
       </Button>

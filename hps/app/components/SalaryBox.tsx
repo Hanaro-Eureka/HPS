@@ -1,4 +1,5 @@
 import { getSalariesWithUserId } from '@/lib/actions/salary-actions';
+import HanaMonWithCard from './HanaMonWithCard';
 import SalarySpendButton from './SalarySpendButton';
 
 export default async function SalaryBox() {
@@ -20,7 +21,10 @@ export default async function SalaryBox() {
 
   return (
     <>
-      <SalarySpendButton lastSalary={sumOfSalaries} />
+      <div className='flex ml-10'>
+        <SalarySpendButton lastSalary={sumOfSalaries} />
+        <HanaMonWithCard />
+      </div>
     </>
   );
 }
