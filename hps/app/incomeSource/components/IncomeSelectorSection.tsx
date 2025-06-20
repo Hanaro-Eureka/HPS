@@ -10,7 +10,7 @@ export default function IncomeSelectorSection() {
   return (
     <>
       <div className='flex flex-col h-116 mt-7'>
-        <section aria-label='소비내역' className='flex-1 overflow-y-auto'>
+        <section aria-label='수입 내역' className='flex-1 overflow-y-auto'>
           <IncomeSelectorList
             selectedIds={selectedIds}
             setSelectedIds={setSelectedIds}
