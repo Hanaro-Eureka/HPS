@@ -8,7 +8,7 @@ const tabItems = [
   { label: '시간 관리', icon: icons.time, href: '/timeLog' },
   { label: '수입 관리', icon: icons.income, href: '/income' },
   { label: '홈', icon: icons.home, href: '/' },
-  { label: '소비 관리', icon: icons.spend, href: '/spend' },
+  { label: '소비 관리', icon: icons.spend, href: '/consumption' },
   { label: '별비서', icon: icons.assistant, href: '/byulAssistant' },
 ];
 
