@@ -1,34 +1,36 @@
-'use client';
-
 import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
-import { useEffect, useState } from 'react';
+import { cardData } from '@/constants/cardData';
 import { getTaxInputs } from '@/lib/actions/getTaxInputs';
+import Card from './components/Card';
+import CheckList from './components/CheckList';
 import ResultCardGroup from './components/ResultCardGroup';
 import { calculateRefund } from './utils/calculateRefund';
 
-export default function YearEndTaxPage() {
-  const [salary, setSalary] = useState<number | null>(null);
-  const [spending, setSpending] = useState<number | null>(null);
-
-  useEffect(() => {
-    // userId는 임시로 1로 고정
-    (async () => {
-      const { salary, spending } = await getTaxInputs(1);
-      setSalary(salary);
-      setSpending(spending);
-    })();
-  }, []);
+export default async function YearEndTaxPage() {
+  const { salary, spending } = await getTaxInputs(1);
 
   if (salary === null || spending === null) {
     return <p className='text-center mt-10 text-black-font'>로딩 중...</p>;
   }
+  const creditAmt = cardData
+    .filter((card) => card.card_type === '01' || card.card_type === '03')
+    .reduce((sum, card) => sum + card.performance_amt, 0);
+
+  const checkAmt = cardData
+    .filter((card) => card.card_type === '02')
+    .reduce((sum, card) => sum + card.performance_amt, 0);
+
+  const totalAmt = creditAmt + checkAmt;
+  const creditRate = totalAmt ? Math.round((creditAmt / totalAmt) * 100) : 0;
+  const checkRate = totalAmt ? Math.round((checkAmt / totalAmt) * 100) : 0;
+  // const isGoodRate: boolean = creditAmt > checkAmt;
 
   const result = calculateRefund({
     salary,
     spending,
-    creditRate: 60, // 임시 신용카드 사용 비율
-    checkRate: 40, // 임시 체크카드 사용 비율
+    creditRate,
+    checkRate,
     irpAmount: 5000000, // IRP+연금저축 납입액은 일단 고정
   });
 
@@ -41,8 +43,8 @@ export default function YearEndTaxPage() {
         이번달 당신이 놓치고 있는 절세 혜택을 알려드릴게요
       </Text>
 
-      {/* 여기에 카드 비교 UI와 체크리스트가 보여집니다. */}
-      <section className='my-136' />
+      <Card />
+      <CheckList />
 
       <ResultCardGroup
         deduction={result.totalCardDeduction}
