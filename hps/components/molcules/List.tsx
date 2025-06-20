@@ -15,13 +15,21 @@ type Transaction = {
 type Props = {
   date: string;
   data: Transaction[];
+  selectedIds?: (string | number)[];
+  onToggle?: (id: string | number) => void;
   className?: string;
 };
 
-export default function List({ date, data, className }: Props) {
+export default function List({
+  date,
+  data,
+  selectedIds = [],
+  onToggle,
+  className,
+}: Props) {
   return (
     <div className={cn('flex flex-col', className)}>
-      <Text tag='h2' className='text-sm text-gray-time mb-1.5'>
+      <Text tag='h2' className='font-[500] text-sm text-gray-time ml-6'>
         {date}
       </Text>
 
@@ -32,6 +40,8 @@ export default function List({ date, data, className }: Props) {
           label={item.label}
           time={item.time}
           amount={item.amount}
+          isSelected={selectedIds.includes(item.id)}
+          onClick={() => onToggle?.(item.id)}
         />
       ))}
     </div>
