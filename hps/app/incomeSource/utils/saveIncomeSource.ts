@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation';
 import {
   getSalaryThisYear,
   createIncomeSources,
+  removeIncomeSources,
 } from '@/lib/actions/salary-select-actions';
 import { parseKSTDateFromDtime } from './parseKSTDate';
 
@@ -21,22 +22,42 @@ export async function saveIncomeSource(ids: (string | number)[]) {
       depositDate: parseKSTDateFromDtime(item.trans_dtime),
     }));
 
-  const existingSet = new Set(
-    existing.map(
+  const selectedKeySet = new Set(
+    selectedItems.map(
       (item) =>
         `${item.depositorName}-${item.amount}-${item.depositDate.toISOString().slice(0, 19)}`
     )
   );
 
+  const existingKeyMap = new Map(
+    existing.map((item) => [
+      `${item.depositorName}-${item.amount}-${item.depositDate.toISOString().slice(0, 19)}`,
+      item,
+    ])
+  );
+
   const toInsert = selectedItems.filter(
     (item) =>
-      !existingSet.has(
+      !existingKeyMap.has(
         `${item.depositorName}-${item.amount}-${item.depositDate.toISOString().slice(0, 19)}`
       )
   );
 
-  if (toInsert.length === 0) return redirect('/incomeList');
+  const toDelete = Array.from(existingKeyMap.entries())
+    .filter(([key]) => !selectedKeySet.has(key))
+    .map(([_, item]) => ({
+      depositorName: item.depositorName!,
+      amount: item.amount,
+      depositDate: item.depositDate,
+    }));
 
-  await createIncomeSources(userId, toInsert);
+  if (toInsert.length > 0) {
+    await createIncomeSources(userId, toInsert);
+  }
+
+  if (toDelete.length > 0) {
+    await removeIncomeSources(userId, toDelete);
+  }
+
   redirect('/incomeList');
 }

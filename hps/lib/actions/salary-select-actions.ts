@@ -40,3 +40,20 @@ export const getSalaryThisYear = async (userId: number) => {
     orderBy: { depositDate: 'desc' },
   });
 };
+
+// 수입원 삭제
+export const removeIncomeSources = async (
+  userId: number,
+  data: { depositorName: string; amount: number; depositDate: Date }[]
+) => {
+  for (const item of data) {
+    await prisma.salary.deleteMany({
+      where: {
+        userId,
+        amount: item.amount,
+        depositDate: item.depositDate,
+        depositorName: item.depositorName,
+      },
+    });
+  }
+};
