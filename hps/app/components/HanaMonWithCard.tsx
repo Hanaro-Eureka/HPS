@@ -1,11 +1,14 @@
 import Image from 'next/image';
 
-export default function HanaMonWithCard() {
+type Props = {
+  hanaMonColor: string;
+};
+export default function HanaMonWithCard({ hanaMonColor }: Props) {
   return (
     <>
       <div className='mt-5'>
         <Image
-          src={'/HanaMonWithRedCard.svg'}
+          src={`/HanaMonWith${hanaMonColor}Card.svg`}
           alt='hanaMonWithCard'
           width={168}
           height={205}
