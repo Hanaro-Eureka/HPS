@@ -2,24 +2,48 @@ export const formatDate = (dateStr: string): string =>
   `${+dateStr.slice(4, 6)}월 ${+dateStr.slice(6, 8)}일`;
 
 export const formatTime = (dateStr: string): string =>
-  `${dateStr.slice(9, 11)}:${dateStr.slice(11, 13)}`;
+  `${dateStr.slice(8, 10)}:${dateStr.slice(10, 12)}`;
 
 export const getCurrentMonth = (): number => new Date().getMonth() + 1;
 
-export const filterThisMonthData = <T extends { trans_date: string }>(
+export const filterThisMonthData = <
+  T extends Record<string, unknown>,
+  K extends keyof T & string = 'trans_dtime',
+>(
   data: T[],
-  month: number
-): T[] => data.filter((item) => +item.trans_date.slice(4, 6) === month);
+  month: number,
+  dateKey?: K
+): T[] => {
+  const key = (dateKey ?? 'trans_dtime') as keyof T;
+  return data.filter((item) => {
+    const dateValue = item[key];
+    if (typeof dateValue === 'string') {
+      return +dateValue.slice(4, 6) === month;
+    }
+    return false;
+  });
+};
 
-export const groupByDate = <T extends { trans_date: string }>(
-  data: T[]
-): Record<string, T[]> =>
-  data.reduce((acc: Record<string, T[]>, cur: T) => {
-    const key = cur.trans_date.slice(0, 8);
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(cur);
+// 날짜 기준 그룹화 함수
+export const groupByDate = <
+  T extends Record<string, unknown>,
+  K extends keyof T & string = 'trans_dtime',
+>(
+  data: T[],
+  dateKey?: K
+): Record<string, T[]> => {
+  const key = (dateKey ?? 'trans_dtime') as keyof T;
+
+  return data.reduce((acc: Record<string, T[]>, cur: T) => {
+    const dateValue = cur[key];
+    if (typeof dateValue === 'string') {
+      const groupKey = dateValue.slice(0, 8);
+      if (!acc[groupKey]) acc[groupKey] = [];
+      acc[groupKey].push(cur);
+    }
     return acc;
   }, {});
+};
 
 export const calculateSpendingStatus = (
   salary: number,
