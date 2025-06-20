@@ -6,12 +6,8 @@ import { useRouter } from 'next/navigation';
 
 type Props = {
   lastSalary: number;
-  nextPaydayCountDown: number;
 };
-export default function SalarySpendButton({
-  lastSalary,
-  nextPaydayCountDown,
-}: Props) {
+export default function SalarySpendButton({ lastSalary }: Props) {
   const router = useRouter();
   return (
     <>
@@ -25,9 +21,6 @@ export default function SalarySpendButton({
       overflow-hidden'
         >
           <div className='flex flex-col w-40'>
-            <div className='border border-hana-smallText rounded-md text-hana-smallText text-xs font-[500] leading-none py-1 px-2.5 text-center items-center'>
-              다음 월급까지 D-{nextPaydayCountDown}
-            </div>
             <div className='flex justify-center mt-2'>
               <Image
                 src={'/ic_pig.svg'}
