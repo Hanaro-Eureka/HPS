@@ -10,7 +10,7 @@ import icons from '@/constants/categoryIcons';
 import { consumptionData } from '@/constants/consumptionData';
 import Image from 'next/image';
 
-export default function SpendSelectorList({
+export default function IncomeSelectorList({
   selectedIds,
   setSelectedIds,
 }: {

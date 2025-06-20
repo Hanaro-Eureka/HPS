@@ -2,16 +2,16 @@
 
 import { useState } from 'react';
 import CompleteButton from './CompleteButton';
-import SpendSelectorList from './SpendSelectorList';
+import IncomeSelectorList from './IncomeSelectorList';
 
-export default function SpendSelectorSection() {
+export default function IncomeSelectorSection() {
   const [selectedIds, setSelectedIds] = useState<(string | number)[]>([]);
 
   return (
     <>
       <div className='flex flex-col h-116 mt-7'>
         <section aria-label='소비내역' className='flex-1 overflow-y-auto'>
-          <SpendSelectorList
+          <IncomeSelectorList
             selectedIds={selectedIds}
             setSelectedIds={setSelectedIds}
           />
