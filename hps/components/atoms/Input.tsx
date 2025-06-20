@@ -4,9 +4,11 @@ import { PropsWithChildren } from 'react';
 
 type Props = {
   name?: string; //form 사용 위한 name입니다.
-  placeholder: string;
+  placeholder?: string;
   className: string;
   type?: 'text' | 'password' | 'date';
+  defaultValue?: string;
+  autoFocus?: boolean;
 };
 
 export default function Input({
@@ -14,6 +16,8 @@ export default function Input({
   placeholder,
   type = 'text',
   className,
+  defaultValue,
+  autoFocus = false,
 }: PropsWithChildren<Props>) {
   return (
     <div className={className}>
@@ -22,6 +26,8 @@ export default function Input({
         placeholder={placeholder}
         className='w-full h-full px-2 text-black-font focus:outline-none'
         type={type}
+        defaultValue={defaultValue}
+        autoFocus={autoFocus}
       />
     </div>
   );
