@@ -6,7 +6,23 @@ export default async function SalaryCircle() {
   const start = new Date(now.getFullYear(), now.getMonth(), 1);
   const data = await getIncomeSourcesByUserId(1, start);
   const maxAmount = Math.max(...data.map((item) => item.amount));
+  const delays = [
+    'delay-[0ms]',
+    'delay-[200ms]',
+    'delay-[400ms]',
+    'delay-[600ms]',
+    'delay-[800ms]',
+    'delay-[1000ms]',
+    'delay-[1200ms]',
+  ];
 
+  const durations = [
+    'duration-[3s]',
+    'duration-[3.5s]',
+    'duration-[4s]',
+    'duration-[4.5s]',
+    'duration-[5s]',
+  ];
   const colors = [
     'bg-pink-200',
     'bg-yellow-200',
@@ -48,7 +64,10 @@ export default async function SalaryCircle() {
           className={cn(
             item.tailwindSize,
             colors[idx % colors.length],
-            'rounded-full flex items-center justify-center flex-col text-center text-sm font-semibold shadow'
+            'rounded-full flex items-center justify-center flex-col text-center text-sm font-semibold shadow',
+            'animate-float',
+            delays[idx % delays.length],
+            durations[idx % durations.length]
           )}
         >
           <span>{item.category}</span>

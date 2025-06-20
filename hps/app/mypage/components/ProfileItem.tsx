@@ -22,7 +22,12 @@ export default function ProfileItem({ label, value, onClick }: Props) {
         <Text className='text-base pr-4 text-black-font font-[400]' tag='p'>
           {value}
         </Text>
-        <Image src='/profile_change.svg' alt='수정' width={6} height={11} />
+        <Image
+          src='/svgs/ic_profile_change.svg'
+          alt='수정'
+          width={6}
+          height={11}
+        />
       </div>
       <div className='w-fit' />
     </div>
