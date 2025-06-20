@@ -1,4 +1,5 @@
 import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
+import { cn } from '@/lib/utils';
 
 export default async function SalaryCircle() {
   const now = new Date();
@@ -16,32 +17,44 @@ export default async function SalaryCircle() {
     'bg-orange-200',
   ];
 
+  const sizedData = data.map((item) => {
+    const ratio = item.amount / maxAmount;
+    const size = 80 + ratio * 100;
+
+    const tailwindSize =
+      size >= 180
+        ? 'w-44 h-44'
+        : size >= 160
+          ? 'w-40 h-40'
+          : size >= 140
+            ? 'w-36 h-36'
+            : size >= 120
+              ? 'w-32 h-32'
+              : size >= 100
+                ? 'w-28 h-28'
+                : 'w-24 h-24';
+
+    return {
+      ...item,
+      tailwindSize,
+    };
+  });
+
   return (
     <div className='flex flex-wrap gap-4 mt-6'>
-      {data.map((item, idx) => {
-        const ratio = item.amount / maxAmount;
-        const size = 80 + ratio * 100;
-
-        //     return (
-        //       <div
-        //         key={idx}
-        //         style={{ width: `${size}px`, height: `${size}px` }}
-        //         className={`${colors[idx % colors.length]} rounded-full flex items-center justify-center flex-col text-center text-xl`}
-        //       >
-        //         <div className='font-[600] text-sm'>{item.category}</div>
-        //       </div>
-        //     );
-        //   })}
-        return (
-          <div
-            key={idx}
-            style={{ width: `${size}px`, height: `${size}px` }}
-            className={`${colors[idx % colors.length]} w-${size} h-${size} rounded-full flex items-center justify-center flex-col text-center text-xl font-600`}
-          >
-            {item.category}
-          </div>
-        );
-      })}
+      {sizedData.map((item, idx) => (
+        <div
+          key={idx}
+          className={cn(
+            item.tailwindSize,
+            colors[idx % colors.length],
+            'rounded-full flex items-center justify-center flex-col text-center text-sm font-semibold shadow'
+          )}
+        >
+          <span>{item.category}</span>
+          <span className='text-xs'>{item.amount.toLocaleString()}원</span>
+        </div>
+      ))}
     </div>
   );
 }
