@@ -43,7 +43,7 @@ export default function IncomeSelectorSection({
           />
         </section>
       </div>
-      <section className='flex justify-center mt-32'>
+      <section className='flex justify-center mt-28'>
         <CompleteButton selectedIds={selectedIds} />
       </section>
     </>
