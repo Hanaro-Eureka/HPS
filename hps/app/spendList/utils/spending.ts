@@ -34,5 +34,10 @@ export const calculateSpendingStatus = (
     ? (salary / spending) * 100
     : (spending / salary) * 100;
   const remain = 100 - used;
+
+  if (remain < 10) {
+    // 너무 차이가 안 나면 그래프에서 안 보이니까
+    return { isOverSpent, used: 95, remain: 5 };
+  }
   return { isOverSpent, used, remain };
 };

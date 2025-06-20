@@ -33,7 +33,7 @@ export default function YearEndTaxPage() {
   });
 
   return (
-    <main className='max-w-md mx-auto p-6 space-y-6 rounded-4xl'>
+    <main className='max-w-md mx-auto p-6 space-y-6  bg-white'>
       <Title tag='h1' className='text-2xl font-[600] text-black-font mt-4'>
         연말 정산
       </Title>

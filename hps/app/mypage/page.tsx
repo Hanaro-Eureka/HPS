@@ -25,7 +25,10 @@ export default function MyPage() {
           <Image src='/goback.svg' alt='뒤로가기' width={10} height={18} />
         </Button>
 
-        <Title className='text-base justify-center text-black-font font-[500]'>
+        <Title
+          className='text-base justify-center text-black-font font-[500]'
+          tag={'h1'}
+        >
           {user.name}님의 정보
         </Title>
         <div />
