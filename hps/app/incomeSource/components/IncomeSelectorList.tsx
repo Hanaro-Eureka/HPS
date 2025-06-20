@@ -6,8 +6,7 @@ import {
   groupByDate,
 } from '@/app/spendList/utils/spending';
 import List from '@/components/molcules/List';
-import icons from '@/constants/categoryIcons';
-import { consumptionData } from '@/constants/consumptionData';
+import { incomeData } from '@/constants/incomeData';
 import Image from 'next/image';
 
 export default function IncomeSelectorList({
@@ -18,7 +17,11 @@ export default function IncomeSelectorList({
   setSelectedIds: React.Dispatch<React.SetStateAction<(string | number)[]>>;
 }) {
   const currentMonth = getCurrentMonth();
-  const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
+  const thisMonthData = filterThisMonthData(
+    incomeData,
+    currentMonth,
+    'trans_dtime'
+  );
 
   const toggleSelect = (id: string | number) => {
     setSelectedIds((prev) =>
@@ -26,26 +29,29 @@ export default function IncomeSelectorList({
     );
   };
 
-  const grouped = groupByDate(thisMonthData);
-
+  const grouped = groupByDate(thisMonthData, 'trans_dtime');
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
   return (
     <section className='flex flex-col gap-1'>
       {sortedDates.map((date) => {
-        const items = grouped[date].map((item) => ({
-          id: item.id,
-          label: item.merchant_name,
-          time: formatTime(item.trans_date),
-          amount: -item.trans_amt,
-          icon: (
-            <Image
-              src={icons[item.trans_category as keyof typeof icons]}
-              alt={item.trans_category}
-              className='w-9 h-9'
-            />
-          ),
-        }));
+        const items = grouped[date]
+          .sort((a, b) => Number(b.trans_dtime) - Number(a.trans_dtime))
+
+          .map((item) => ({
+            id: item.id,
+            label: item.trans_memo,
+            time: formatTime(item.trans_dtime),
+            amount: item.trans_amt,
+            icon: (
+              <Image
+                src='/svgs/ic_income.svg'
+                alt='수입 아이콘'
+                width={36}
+                height={36}
+              />
+            ),
+          }));
 
         return (
           <List

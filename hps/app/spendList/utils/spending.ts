@@ -2,20 +2,22 @@ export const formatDate = (dateStr: string): string =>
   `${+dateStr.slice(4, 6)}월 ${+dateStr.slice(6, 8)}일`;
 
 export const formatTime = (dateStr: string): string =>
-  `${dateStr.slice(9, 11)}:${dateStr.slice(11, 13)}`;
+  `${dateStr.slice(8, 10)}:${dateStr.slice(10, 12)}`;
 
 export const getCurrentMonth = (): number => new Date().getMonth() + 1;
 
-export const filterThisMonthData = <T extends { trans_date: string }>(
+export const filterThisMonthData = <T extends Record<string, any>>(
   data: T[],
-  month: number
-): T[] => data.filter((item) => +item.trans_date.slice(4, 6) === month);
+  month: number,
+  dateKey: keyof T
+): T[] => data.filter((item) => +item[dateKey]?.slice(4, 6) === month);
 
-export const groupByDate = <T extends { trans_date: string }>(
-  data: T[]
+export const groupByDate = <T extends Record<string, any>>(
+  data: T[],
+  dateKey: keyof T
 ): Record<string, T[]> =>
   data.reduce((acc: Record<string, T[]>, cur: T) => {
-    const key = cur.trans_date.slice(0, 8);
+    const key = cur[dateKey]?.slice(0, 8);
     if (!acc[key]) acc[key] = [];
     acc[key].push(cur);
     return acc;

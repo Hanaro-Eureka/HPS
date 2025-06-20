@@ -1,5 +1,5 @@
 import Button from '@/components/atoms/Button';
-import { saveUselessSpending } from '../utils/saveUselessSpending';
+import { saveIncomeSource } from '../utils/saveIncomeSource';
 
 type Props = {
   selectedIds: (string | number)[];
@@ -7,7 +7,7 @@ type Props = {
 
 export default function CompleteButton({ selectedIds }: Props) {
   const handleClick = async () => {
-    await saveUselessSpending(selectedIds);
+    await saveIncomeSource(selectedIds);
   };
 
   return (
