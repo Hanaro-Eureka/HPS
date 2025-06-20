@@ -22,7 +22,12 @@ export default function MyPage() {
           bgColor='bg-background'
           onClick={() => alert('뒤로가기!')}
         >
-          <Image src='/goback.svg' alt='뒤로가기' width={10} height={18} />
+          <Image
+            src='/svgs/ic_goback.svg'
+            alt='뒤로가기'
+            width={10}
+            height={18}
+          />
         </Button>
 
         <Title
@@ -36,7 +41,7 @@ export default function MyPage() {
 
       <div className='w-full flex justify-center mt-32 mb-10'>
         <Image
-          src='/profile.svg'
+          src='/svgs/ic_profile.svg'
           alt='Profile'
           width={90}
           height={90}
