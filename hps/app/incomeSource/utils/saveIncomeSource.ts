@@ -45,7 +45,7 @@ export async function saveIncomeSource(ids: (string | number)[]) {
 
   const toDelete = Array.from(existingKeyMap.entries())
     .filter(([key]) => !selectedKeySet.has(key))
-    .map(([_, item]) => ({
+    .map(([, item]) => ({
       depositorName: item.depositorName!,
       amount: item.amount,
       depositDate: item.depositDate,

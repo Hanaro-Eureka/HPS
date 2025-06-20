@@ -14,17 +14,6 @@ const meta: Meta<typeof SalaryBarChart> = {
         },
       },
     },
-
-    width: {
-      control: 'number',
-    },
-    height: {
-      control: 'number',
-    },
-    className: {
-      control: 'text',
-    },
-    colors: { control: 'object' },
   },
 };
 export default meta;
@@ -37,16 +26,12 @@ export const Default: Story = {
       {
         used: 2800000,
         remain: 330000,
+        name: '',
       },
     ],
-    width: 300,
-    height: 100,
-    className: 'p-5',
     colors: {
       used: '#56B8AB',
       remain: '#E97272',
-      lStroke: '',
-      rStroke: '',
     },
   },
 };
@@ -56,16 +41,12 @@ export const SpentMoreThanIncome: Story = {
       {
         used: 3330000,
         remain: 2800000,
+        name: '',
       },
     ],
-    width: 300,
-    height: 100,
-    className: 'p-5',
     colors: {
       used: '#56B8AB',
       remain: '#E97272',
-      lStroke: '',
-      rStroke: '',
     },
   },
 };
