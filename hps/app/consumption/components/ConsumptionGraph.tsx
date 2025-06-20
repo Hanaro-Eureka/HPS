@@ -14,12 +14,17 @@ type Props = {
 
 export default function ConsumptionGraph({ salary }: Props) {
   const currentMonth = getCurrentMonth();
-  const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
+  const thisMonthData = filterThisMonthData(
+    consumptionData,
+    currentMonth,
+    'trans_date'
+  );
 
   const totalSpending = thisMonthData.reduce(
     (sum, item) => sum + item.trans_amt,
-    1000000
+    0
   );
+  console.log(currentMonth);
 
   const { isOverSpent, used, remain } = calculateSpendingStatus(
     salary,
