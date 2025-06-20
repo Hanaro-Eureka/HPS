@@ -11,7 +11,7 @@ import {
 
 type Props = {
   data: {
-    name: string;
+    name?: string;
     used: number;
     remain: number;
   }[];
