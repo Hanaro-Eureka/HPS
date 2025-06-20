@@ -1,11 +1,37 @@
 'use client';
 
+import { incomeData } from '@/constants/incomeData';
 import { useState } from 'react';
+import { parseKSTDateFromDtime } from '../utils/parseKSTDate';
 import CompleteButton from './CompleteButton';
 import IncomeSelectorList from './IncomeSelectorList';
 
-export default function IncomeSelectorSection() {
-  const [selectedIds, setSelectedIds] = useState<(string | number)[]>([]);
+export default function IncomeSelectorSection({
+  existingSalary,
+}: {
+  existingSalary: {
+    depositorName: string;
+    incomeSource?: string | null;
+    amount: number;
+    depositDate: Date;
+  }[];
+}) {
+  const selectedIdsFromDB = incomeData
+    .filter((item) => {
+      const timestamp = parseKSTDateFromDtime(item.trans_dtime).getTime();
+
+      return existingSalary.some((s) => {
+        return (
+          s.depositorName === item.trans_memo &&
+          s.amount === item.trans_amt &&
+          s.depositDate.getTime() === timestamp
+        );
+      });
+    })
+    .map((item) => item.id);
+
+  const [selectedIds, setSelectedIds] =
+    useState<(string | number)[]>(selectedIdsFromDB);
 
   return (
     <>
@@ -17,7 +43,6 @@ export default function IncomeSelectorSection() {
           />
         </section>
       </div>
-
       <section className='flex justify-center mt-32'>
         <CompleteButton selectedIds={selectedIds} />
       </section>

@@ -2,26 +2,41 @@
 
 import { incomeData } from '@/constants/incomeData';
 import { redirect } from 'next/navigation';
-import { createIncomeSources } from '@/lib/actions/salary-select-actions';
+import {
+  getSalaryThisYear,
+  createIncomeSources,
+} from '@/lib/actions/salary-select-actions';
+import { parseKSTDateFromDtime } from './parseKSTDate';
 
 export async function saveIncomeSource(ids: (string | number)[]) {
   const userId = 1; // TODO: 로그인 미구현 상태, 임시 고정
+
+  const existing = await getSalaryThisYear(userId);
 
   const selectedItems = incomeData
     .filter((item) => ids.includes(item.id))
     .map((item) => ({
       amount: item.trans_amt,
       depositorName: item.trans_memo,
-      depositDate: new Date(
-        `${item.trans_dtime.slice(0, 4)}-${item.trans_dtime.slice(4, 6)}-${item.trans_dtime.slice(6, 8)}T${item.trans_dtime.slice(8, 10)}:${item.trans_dtime.slice(10, 12)}:${item.trans_dtime.slice(12, 14)}`
-      ),
+      depositDate: parseKSTDateFromDtime(item.trans_dtime),
     }));
 
-  if (selectedItems.length === 0) {
-    throw new Error('선택된 항목이 없습니다.');
-  }
+  const existingSet = new Set(
+    existing.map(
+      (item) =>
+        `${item.depositorName}-${item.amount}-${item.depositDate.toISOString().slice(0, 19)}`
+    )
+  );
 
-  await createIncomeSources(userId, selectedItems);
+  const toInsert = selectedItems.filter(
+    (item) =>
+      !existingSet.has(
+        `${item.depositorName}-${item.amount}-${item.depositDate.toISOString().slice(0, 19)}`
+      )
+  );
 
+  if (toInsert.length === 0) return redirect('/incomeList');
+
+  await createIncomeSources(userId, toInsert);
   redirect('/incomeList');
 }
