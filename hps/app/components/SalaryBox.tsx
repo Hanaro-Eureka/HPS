@@ -29,7 +29,7 @@ export default async function SalaryBox() {
           <div className='border border-hana-smallText rounded-lg text-hana-smallText text-xs font-[500] leading-none py-1 px-2.5 text-center'>
             다음 월급까지 D-{diffInDays}
           </div>
-          <Image src={'/ic_pig.svg'} alt='pig' width={97} height={123} />
+          <Image src={'/svgs/ic_pig.svg'} alt='pig' width={97} height={123} />
         </div>
         <div className='flex flex-col font-[500] w-40 pl-6'>
           <div className='font-[500] h-6 text-center'>최근 나의 월급</div>
