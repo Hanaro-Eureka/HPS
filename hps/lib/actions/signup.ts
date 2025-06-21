@@ -1,32 +1,30 @@
 'use server';
 
 import { hash } from 'bcryptjs';
-import { redirect } from 'next/navigation';
-import prisma from '../db';
+import prisma from '@/lib/db';
 import { signUpValidator } from '../validator';
-import { getUser } from './auth-actions';
 
-export async function SignUp(formData: FormData) {
-  const raw = {
-    name: formData.get('name')?.toString(),
-    id: formData.get('id')?.toString(),
-    password: formData.get('password')?.toString(),
-    birth: formData.get('birth')?.toString(),
-  };
+type Input = {
+  name: string;
+  id: string;
+  password: string;
+  birth: string;
+};
 
-  const result = signUpValidator.safeParse(raw);
+export async function handleSignUp(input: Input) {
+  const result = await signUpValidator.safeParseAsync(input);
+
   if (!result.success) {
-    throw new Error(result.error.errors[0].message);
+    const firstError = result.error.errors[0];
+    return {
+      success: false,
+      field: firstError.path[0] ?? 'form',
+      message: firstError.message,
+    };
   }
 
-  const { name, id, password, birth } = result.data;
-
+  const { name, id, birth, password } = result.data;
   const birthInt = birth.replace(/-/g, ''); // YYYYMMDD 형식으로 변환
-  const exists = !(await getUser(id));
-
-  if (exists) {
-    throw new Error('이미 등록된 아이디입니다.');
-  }
 
   const hashed = await hash(password, 10);
 
@@ -34,10 +32,10 @@ export async function SignUp(formData: FormData) {
     data: {
       name,
       loginId: id,
-      password: hashed,
       birthDate: birthInt,
+      password: hashed,
     },
   });
 
-  redirect('/login');
+  return { success: true };
 }

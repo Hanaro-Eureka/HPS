@@ -3,11 +3,38 @@
 import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import Text from '@/components/atoms/Text';
-import { SignUp } from '@/lib/actions/signup';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { handleSignUp } from '@/lib/actions/signup';
 
 export default function SignUpPage() {
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const router = useRouter();
+  async function SignUp(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    const raw = {
+      name: formData.get('name')?.toString() ?? '',
+      id: formData.get('id')?.toString() ?? '',
+      birth: formData.get('birth')?.toString() ?? '',
+      password: formData.get('password')?.toString() ?? '',
+    };
+
+    const result = await handleSignUp(raw);
+
+    if (!result.success) {
+      if (!result.field) {
+        return;
+      }
+      setErrors({ [result.field]: result?.message });
+      return;
+    }
+
+    router.push('/login');
+  }
   return (
-    <form action={SignUp}>
+    <form onSubmit={SignUp}>
       <div className='flex flex-col w-full items-center justify-start gap-10 px-8 py-20'>
         <div className='flex flex-col w-full items-center justify-center gap-8'>
           <Text className=' text-xl font-[300] text-black-font'>회원가입</Text>
@@ -24,24 +51,39 @@ export default function SignUpPage() {
             placeholder='이름'
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
           />
+          {errors.name && (
+            <Text className='text-xs text-red-500'>{errors.name}</Text>
+          )}
+
           <Input
             name='id'
             type='text'
             placeholder='아이디'
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
           />
+          {errors.id && (
+            <Text className='text-xs text-red-500'>{errors.id}</Text>
+          )}
+
           <Input
             name='password'
             type='password'
             placeholder='비밀번호'
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none text-gray-login font-[400]'
           />
+          {errors.password && (
+            <Text className='text-xs text-red-500'>{errors.password}</Text>
+          )}
+
           <Input
             name='birth'
             type='date'
             placeholder='생년월일'
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
           />
+          {errors.birth && (
+            <Text className='text-xs text-red-500'>{errors.birth}</Text>
+          )}
         </div>
         <div className='flex flex-col items-center justify-center gap-4 w-full'>
           <Button
