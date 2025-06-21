@@ -1,5 +1,10 @@
+'use client';
+
+import Button from '@/components/atoms/Button';
 import Title from '@/components/atoms/Title';
+import { signOut } from 'next-auth/react';
 import Image from 'next/image';
+import ChangePassword from './ChangePassword';
 import ProfileItem from './ProfileItem';
 
 type Props = {
@@ -26,9 +31,9 @@ export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
         />
       </div>
 
-      <div className='w-full flex flex-col'>
+      <div className='w-full flex flex-col mb-5'>
         <ProfileItem label='이름' fname='name' value={name} id={id} />
-        <ProfileItem label='아이디' fname='loginId' value={loginId} id={id} />
+        <ProfileItem label='  아이디' fname='loginId' value={loginId} id={id} />
         <ProfileItem
           label='생년월일'
           fname='birthDate'
@@ -36,8 +41,16 @@ export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
           id={id}
         />
       </div>
-      <div className='w-full flex flex-col mt-10'>로그아웃버튼넣자</div>
-      <div className='w-full flex flex-col'>비밀번호 변경도 해볼까</div>
+      <div className='pb-5'>
+        <ChangePassword />
+      </div>
+      <Button
+        bgColor='bg-hana-green'
+        className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base'
+        onClick={() => signOut({ callbackUrl: '/login' })}
+      >
+        로그아웃
+      </Button>
     </div>
   );
 }

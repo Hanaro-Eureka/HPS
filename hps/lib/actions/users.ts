@@ -1,5 +1,6 @@
 'use server';
 
+import bcrypt from 'bcryptjs';
 import prisma from '../db';
 
 export const getUserInfo = async (id: number) => {
@@ -31,3 +32,31 @@ export const updateUserField = async (formData: FormData) => {
     data: { [field]: parsedValue },
   });
 };
+
+export async function changePassword(formData: FormData) {
+  const userId = Number(formData.get('userId'));
+  const currentPassword = formData.get('currentPassword')?.toString() || '';
+  const newPassword = formData.get('newPassword')?.toString() || '';
+
+  if (!userId || !currentPassword || !newPassword) {
+    throw new Error('입력값이 부족합니다.');
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { password: true },
+  });
+
+  if (!user?.password)
+    throw new Error('사용자를 찾을 수 없거나 비밀번호가 없습니다.');
+
+  const isValid = await bcrypt.compare(currentPassword, user.password);
+  if (!isValid) throw new Error('기존 비밀번호가 일치하지 않습니다.');
+
+  const hashed = await bcrypt.hash(newPassword, 10);
+
+  await prisma.user.update({
+    where: { id: userId },
+    data: { password: hashed },
+  });
+}

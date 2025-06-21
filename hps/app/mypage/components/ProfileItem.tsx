@@ -28,15 +28,18 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
   const isName = fname === 'name';
 
   return (
-    <div className='w-full grid grid-cols-[max-content_1fr_auto] items-center pl-8 my-1.5 pt-3 pb-4'>
-      <Text className='text-base text-black-font font-[400]' tag='span'>
+    <div className='w-full flex flex-row justify-between items-center pl-8 my-1.5 pt-3 pb-4'>
+      <Text
+        className='text-base text-black-font font-[400] pr-1 shrink-0'
+        tag='span'
+      >
         {label}
       </Text>
 
       {isEdit && !isName ? (
         <form
           action={handleSubmit}
-          className='w-full pr-1 flex gap-2 items-center'
+          className=' flex flex-row justify-end items-center w-full'
         >
           <input type='hidden' name='id' value={id} />
           <input type='hidden' name='field' value={fname} />
@@ -44,11 +47,11 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
             name='value'
             defaultValue={currentValue}
             autoFocus
-            className='text-base text-black-font font-[400] border border-gray-300 rounded px-2 py-1 text-right'
+            className='w-full text-base text-black-font font-[400] border border-gray-300 rounded mr-5 text-right'
           />
           <Button
             bgColor='bg-hana-button'
-            className='text-white rounded p-1'
+            className='text-white rounded p-0.5 shrink-0'
             type='submit'
           >
             저장
