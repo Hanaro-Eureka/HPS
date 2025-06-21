@@ -1,15 +1,21 @@
-'use client';
+import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
+import BubbleAnimation from './BubbleAnimation';
 
-import { motion } from 'framer-motion';
+const floatSettings = [
+  { x: 0, y: -10, duration: 5.2, delay: 0.3 },
+  { x: 10, y: -6, duration: 4.8, delay: 0.5 },
+  { x: -12, y: 4, duration: 5.6, delay: 0.2 },
+  { x: 6, y: 10, duration: 5.1, delay: 0.6 },
+  { x: -8, y: -8, duration: 5.4, delay: 0.1 },
+  { x: 14, y: 2, duration: 5.9, delay: 0.4 },
+  { x: -6, y: 6, duration: 5.0, delay: 0.25 },
+];
 
-type Props = {
-  data: {
-    category: string;
-    amount: number;
-  }[];
-};
+export default async function SalaryCircle() {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), now.getMonth(), 1);
+  const data = await getIncomeSourcesByUserId(1, start);
 
-export default function SalaryCircle({ data }: Props) {
   const maxAmount = Math.max(...data.map((item) => item.amount));
 
   const colors = [
@@ -22,61 +28,41 @@ export default function SalaryCircle({ data }: Props) {
     'bg-orange-200',
   ];
 
+  const circleSize = [
+    'w-28 h-28',
+    'w-32 h-32',
+    'w-36 h-36',
+    'w-40 h-40',
+    'w-44 h-44',
+    'w-48 h-48',
+    'w-52 h-52',
+  ];
+
   const sizedData = data.map((item) => {
     const ratio = item.amount / maxAmount;
-    const size = 80 + ratio * 100;
-
-    const tailwindSize =
-      size >= 180
-        ? 'w-44 h-44'
-        : size >= 160
-          ? 'w-40 h-40'
-          : size >= 140
-            ? 'w-36 h-36'
-            : size >= 120
-              ? 'w-32 h-32'
-              : size >= 100
-                ? 'w-28 h-28'
-                : 'w-24 h-24';
+    const index = Math.min(
+      circleSize.length - 1,
+      Math.floor(ratio * circleSize.length)
+    );
 
     return {
       ...item,
-      tailwindSize,
+      circleSize: circleSize[index],
     };
   });
 
-  const floatSettings = [
-    { x: -13.51, y: 9.46, duration: 4.76, delay: 0.91 },
-    { x: 13.6, y: 5.5, duration: 4.18, delay: 0.15 },
-    { x: -11.7, y: -9.48, duration: 3.87, delay: 0.09 },
-    { x: 8.76, y: -6.66, duration: 5.94, delay: 0.64 },
-    { x: -3.11, y: 4.34, duration: 4.72, delay: 0.24 },
-    { x: -8.1, y: 4.7, duration: 3.97, delay: 0.25 },
-    { x: -3.92, y: 5.35, duration: 3.63, delay: 1.41 },
-  ];
-
   return (
-    <div className='relative flex flex-wrap gap-6 mt-6 justify-center'>
-      {sizedData.map((item, idx) => {
-        const anim = floatSettings[idx % floatSettings.length];
-
-        return (
-          <motion.div
-            key={idx}
-            animate={{ y: [0, anim.y, 0], x: [0, anim.x, 0] }}
-            transition={{
-              duration: anim.duration,
-              delay: anim.delay,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className={`rounded-full flex items-center justify-center flex-col text-center text-sm font-semibold shadow ${item.tailwindSize} ${colors[idx % colors.length]}`}
-          >
-            <span>{item.category}</span>
-            <span className='text-xs'>{item.amount.toLocaleString()}원</span>
-          </motion.div>
-        );
-      })}
+    <div className='flex flex-wrap justify-center'>
+      {sizedData.map((item, idx) => (
+        <BubbleAnimation
+          key={idx}
+          category={item.category}
+          amount={item.amount}
+          color={colors[idx % colors.length]}
+          size={item.circleSize}
+          anim={floatSettings[idx % floatSettings.length]}
+        />
+      ))}
     </div>
   );
 }

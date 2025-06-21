@@ -1,35 +1,19 @@
-// import SalaryCircle from '../components/SalaryCircle';
-// export default async function SummaryTestPage() {
-//   return (
-//     <div className='p-6'>
-//       <SalaryCircle></SalaryCircle>
-//     </div>
-//   );
-// }
-// import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
-// export default async function SummaryTestPage() {
-//   const now = new Date();
-//   const start = new Date(now.getFullYear(), now.getMonth(), 1);
-//   const data = await getIncomeSourcesByUserId(1, start);
-//   return (
-//     <div className='p-6'>
-//       <h1 className='text-xl font-bold mb-4'>이번 달 수입 구조</h1>
-//       {/* <SalaryBubbleChart data={data} /> */}
-//     </div>
-//   );
-// }
-import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
+import BottomTabBar from '@/components/organisms/BottomTab/BottomTabBar';
+import MainBar from '../components/MainNav';
+import SalaryBox from '../components/SalaryBox';
 import SalaryCircle from '../components/SalaryCircle';
 
 export default async function SummaryTestPage() {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), now.getMonth(), 1);
-  const data = await getIncomeSourcesByUserId(1, start);
-
   return (
-    <div className='p-6'>
-      <h1 className='text-xl font-bold mb-4'>이번 달 수입 구조</h1>
-      <SalaryCircle data={data} />
+    <div className='min-h-screen overflow-hidden bg-gradient-salary flex flex-col '>
+      <MainBar />
+      <div className='flex items-center justify-center'>
+        <SalaryBox />
+      </div>
+      <div className='flex items-center justify-center pb-24'>
+        <SalaryCircle />
+        <BottomTabBar />
+      </div>
     </div>
   );
 }
