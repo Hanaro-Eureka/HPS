@@ -1,28 +1,17 @@
-import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
-import { cn } from '@/lib/utils';
+'use client';
 
-export default async function SalaryCircle() {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), now.getMonth(), 1);
-  const data = await getIncomeSourcesByUserId(1, start);
+import { motion } from 'framer-motion';
+
+type Props = {
+  data: {
+    category: string;
+    amount: number;
+  }[];
+};
+
+export default function SalaryCircle({ data }: Props) {
   const maxAmount = Math.max(...data.map((item) => item.amount));
-  const delays = [
-    'delay-[0ms]',
-    'delay-[200ms]',
-    'delay-[400ms]',
-    'delay-[600ms]',
-    'delay-[800ms]',
-    'delay-[1000ms]',
-    'delay-[1200ms]',
-  ];
 
-  const durations = [
-    'duration-[3s]',
-    'duration-[3.5s]',
-    'duration-[4s]',
-    'duration-[4.5s]',
-    'duration-[5s]',
-  ];
   const colors = [
     'bg-pink-200',
     'bg-yellow-200',
@@ -56,24 +45,38 @@ export default async function SalaryCircle() {
     };
   });
 
+  const floatSettings = [
+    { x: -13.51, y: 9.46, duration: 4.76, delay: 0.91 },
+    { x: 13.6, y: 5.5, duration: 4.18, delay: 0.15 },
+    { x: -11.7, y: -9.48, duration: 3.87, delay: 0.09 },
+    { x: 8.76, y: -6.66, duration: 5.94, delay: 0.64 },
+    { x: -3.11, y: 4.34, duration: 4.72, delay: 0.24 },
+    { x: -8.1, y: 4.7, duration: 3.97, delay: 0.25 },
+    { x: -3.92, y: 5.35, duration: 3.63, delay: 1.41 },
+  ];
+
   return (
-    <div className='flex flex-wrap gap-4 mt-6'>
-      {sizedData.map((item, idx) => (
-        <div
-          key={idx}
-          className={cn(
-            item.tailwindSize,
-            colors[idx % colors.length],
-            'rounded-full flex items-center justify-center flex-col text-center text-sm font-semibold shadow',
-            'animate-float',
-            delays[idx % delays.length],
-            durations[idx % durations.length]
-          )}
-        >
-          <span>{item.category}</span>
-          <span className='text-xs'>{item.amount.toLocaleString()}원</span>
-        </div>
-      ))}
+    <div className='relative flex flex-wrap gap-6 mt-6 justify-center'>
+      {sizedData.map((item, idx) => {
+        const anim = floatSettings[idx % floatSettings.length];
+
+        return (
+          <motion.div
+            key={idx}
+            animate={{ y: [0, anim.y, 0], x: [0, anim.x, 0] }}
+            transition={{
+              duration: anim.duration,
+              delay: anim.delay,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className={`rounded-full flex items-center justify-center flex-col text-center text-sm font-semibold shadow ${item.tailwindSize} ${colors[idx % colors.length]}`}
+          >
+            <span>{item.category}</span>
+            <span className='text-xs'>{item.amount.toLocaleString()}원</span>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }
