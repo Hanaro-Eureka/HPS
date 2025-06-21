@@ -30,14 +30,12 @@ export default function LoginPage({ searchParams }: Props) {
     let redirectTo = callbackUrl;
     if (!callbackUrl || callbackUrl.endsWith('signin')) redirectTo = '/';
 
-    const res = await signIn('credentials', {
+    await signIn('credentials', {
       id,
       password,
       redirect: true,
       callbackUrl: redirectTo,
     });
-
-    console.log('로그인 결과:', res);
   };
 
   return (

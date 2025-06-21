@@ -16,7 +16,12 @@ export default function SpendListPage() {
           bgColor='bg-white'
           onClick={() => alert('뒤로가기!')}
         >
-          <Image src='/goback.svg' alt='뒤로가기' width={10} height={18} />
+          <Image
+            src='/svgs/ic_goback.svg'
+            alt='뒤로가기'
+            width={10}
+            height={18}
+          />
         </Button>
         <div />
       </div>

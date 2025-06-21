@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React, { ChangeEvent } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -21,7 +22,7 @@ export default function Checkbox({
   return (
     <label
       htmlFor={id}
-      className='cursor-pointer block w-6 h-6
+      className='cursor-pointer block w-7 h-7
      relative'
     >
       <input
@@ -38,7 +39,9 @@ export default function Checkbox({
           checked ? bgColor : 'bg-transparent'
         )}
       >
-        {checked && <img src='check.svg' alt='Checked' className='w-4 h-4' />}
+        {checked && (
+          <Image src='/svgs/ic_check.svg' alt='Checked' className='w-4 h-4' />
+        )}
       </div>
     </label>
   );
