@@ -65,7 +65,12 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
             {currentValue || '-'}
           </Text>
           {!isName && (
-            <Image src='/profile_change.svg' alt='수정' width={6} height={11} />
+            <Image
+              src='/svgs/ic_profile_change.svg'
+              alt='수정'
+              width={6}
+              height={11}
+            />
           )}
         </div>
       )}

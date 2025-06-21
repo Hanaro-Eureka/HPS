@@ -18,7 +18,7 @@ export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
 
       <div className='w-full flex justify-center mt-10 mb-6'>
         <Image
-          src='/profile.svg'
+          src='/svgs/ic_profile.svg'
           alt='Profile'
           width={90}
           height={90}
