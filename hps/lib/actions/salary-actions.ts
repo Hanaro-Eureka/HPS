@@ -8,6 +8,30 @@ export const getSalaryWithUserId = async (userId: number) =>
     },
   });
 
+export const getLatestSixMonthSalariesWithUserId = async (userId: number) =>
+  await prisma.$queryRaw<{ yearMonth: string; totalSalary: number }[]>`
+  SELECT
+    DATE_FORMAT(depositDate, '%Y-%m') AS yearMonth,
+    SUM(amount) AS totalSalary
+  FROM salary
+  WHERE depositDate BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 5 MONTH), '%Y-%m-01')
+                      AND NOW() and userId = ${userId}
+  GROUP BY yearMonth
+  ORDER BY yearMonth desc;
+`;
+
+export const getLastYearSixMonthSalariesWithUserId = async (userId: number) =>
+  await prisma.$queryRaw<{ yearMonth: string; totalSalary: number }[]>`
+  SELECT
+    DATE_FORMAT(depositDate, '%Y-%m') AS yearMonth,
+    SUM(amount) AS totalSalary
+  FROM salary
+  WHERE depositDate BETWEEN DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 17 MONTH)
+                      AND LAST_DAY(DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 12 MONTH)) and userId = ${userId}
+  GROUP BY yearMonth
+  ORDER BY yearMonth desc;
+`;
+
 export const getThisYearSalary = async (
   userId: number,
   startOfYear: Date,
