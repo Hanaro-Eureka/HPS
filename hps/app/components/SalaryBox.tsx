@@ -1,26 +1,18 @@
-import { getSalariesWithUserId } from '@/lib/actions/salary-actions';
+import { use } from 'react';
+import { getSumOfThisMonthSalaries } from '../utils/salary';
+// import HanaMonWithCard from './HanaMonWithCard';
 import SalarySpendButton from './SalarySpendButton';
 
-export default async function SalaryBox() {
-  const now = new Date();
-  const thisYear = now.getFullYear();
-  const thisMonth = now.getMonth() + 1;
-  const firstDayOfThisMonth = new Date(
-    `${thisYear}-${thisMonth.toString().padStart(2, '0')}-01T00:00:00`
-  );
-  const salariesOfThisMonth = await getSalariesWithUserId(
-    1,
-    firstDayOfThisMonth
-  );
+export default function SalaryBox() {
+  const sumOfSalaries = use(getSumOfThisMonthSalaries(1));
 
-  const sumOfSalaries = salariesOfThisMonth.reduce(
-    (sum, salary) => sum + salary.amount,
-    0
-  );
-
+  // TODO : 저번달 소득과 이번달 소비 총합 비교해서 하나몬스터 카드 색을 HanaMonWithCard의 Props로 넘겨주세요.
   return (
     <>
-      <SalarySpendButton lastSalary={sumOfSalaries} />
+      <div className='flex ml-10'>
+        <SalarySpendButton lastSalary={sumOfSalaries} />
+        {/* <HanaMonWithCard hanaMonColor={color}/> */}
+      </div>
     </>
   );
 }
