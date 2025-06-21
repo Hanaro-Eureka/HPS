@@ -54,3 +54,4 @@ model FixedExpense {
 
   @@index([userId], map: "userId")
 }
+

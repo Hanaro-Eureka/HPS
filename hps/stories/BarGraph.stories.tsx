@@ -21,12 +21,6 @@ const meta: Meta<typeof BarGraph> = {
     yDataKey: {
       control: 'text',
     },
-    width: {
-      control: 'number',
-    },
-    height: {
-      control: 'number',
-    },
     className: {
       control: 'text',
     },
@@ -57,8 +51,6 @@ export const Default: Story = {
     ],
     xDataKey: 'predictedNps',
     yDataKey: 'age',
-    width: 500,
-    height: 300,
     className: 'p-5',
   },
 };
