@@ -22,7 +22,7 @@ export async function SignUp(formData: FormData) {
   const { name, id, password, birth } = result.data;
 
   const birthInt = birth.replace(/-/g, ''); // YYYYMMDD 형식으로 변환
-  const exists = !getUser(id);
+  const exists = !(await getUser(id));
 
   if (exists) {
     throw new Error('이미 등록된 아이디입니다.');
