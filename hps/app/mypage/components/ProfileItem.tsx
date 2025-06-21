@@ -1,29 +1,75 @@
 'use client';
 
+import Button from '@/components/atoms/Button';
+import Input from '@/components/atoms/Input';
 import Text from '@/components/atoms/Text';
 import Image from 'next/image';
+import { useState } from 'react';
+import { updateUserField } from '@/lib/actions/users';
 
 type Props = {
+  id: number;
   label: string;
+  fname: 'name' | 'loginId' | 'birthDate';
   value: string;
-  onClick: () => void;
 };
 
-export default function ProfileItem({ label, value, onClick }: Props) {
+export default function ProfileItem({ id, label, fname, value }: Props) {
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentValue, setCurrentValue] = useState(value);
+
+  const handleSubmit = async (formData: FormData) => {
+    const newValue = formData.get('value')?.toString() ?? '';
+    await updateUserField(formData);
+    setCurrentValue(newValue);
+    setIsEdit(false);
+  };
+
+  const isName = fname === 'name';
+
   return (
     <div className='w-full grid grid-cols-[max-content_1fr_auto] items-center pl-8 my-1.5 pt-3 pb-4'>
       <Text className='text-base text-black-font font-[400]' tag='span'>
         {label}
       </Text>
-      <div
-        onClick={onClick}
-        className='flex justify-end items-center gap-1 pr-5 cursor-pointer'
-      >
-        <Text className='text-base pr-4 text-black-font font-[400]' tag='p'>
-          {value}
-        </Text>
-        <Image src='/profile_change.svg' alt='수정' width={6} height={11} />
-      </div>
+
+      {isEdit && !isName ? (
+        <form
+          action={handleSubmit}
+          className='w-full pr-1 flex gap-2 items-center'
+        >
+          <input type='hidden' name='id' value={id} />
+          <input type='hidden' name='field' value={fname} />
+          <Input
+            name='value'
+            defaultValue={currentValue}
+            autoFocus
+            className='text-base text-black-font font-[400] border border-gray-300 rounded px-2 py-1 text-right'
+          />
+          <Button
+            bgColor='bg-hana-button'
+            className='text-white rounded p-1'
+            type='submit'
+          >
+            저장
+          </Button>
+        </form>
+      ) : (
+        <div
+          onClick={() => {
+            if (!isName) setIsEdit(true);
+          }}
+          className='flex justify-end items-center gap-1 pr-5 cursor-pointer w-full'
+        >
+          <Text className='text-base pr-4 text-black-font font-[400]' tag='p'>
+            {currentValue || '-'}
+          </Text>
+          {!isName && (
+            <Image src='/profile_change.svg' alt='수정' width={6} height={11} />
+          )}
+        </div>
+      )}
+
       <div className='w-fit' />
     </div>
   );
