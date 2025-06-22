@@ -56,7 +56,8 @@ model User {
   loginId      String         @db.VarChar(60)
   password     String         @db.VarChar(60)
   createdAt    DateTime       @default(now()) @db.DateTime(0)
-  isSalaryMan  Boolean        @default(true)
+  birthDate    String         @db.VarChar(8)
+  businessCode String?        @db.VarChar(6)
   Account      Account[]
   CheckBox     CheckBox[]
   FixedExpense FixedExpense[]
