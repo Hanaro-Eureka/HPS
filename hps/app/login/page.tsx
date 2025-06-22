@@ -11,7 +11,7 @@ type Props = {
   searchParams: Promise<{ callbackUrl: string }>;
 };
 
-export default function Login({ searchParams }: Props) {
+export default function LoginPage({ searchParams }: Props) {
   const { callbackUrl } = use(searchParams);
 
   const login = async (formData: FormData) => {
