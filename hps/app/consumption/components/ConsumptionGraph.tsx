@@ -1,5 +1,3 @@
-'use client';
-
 import SalaryBarGraph from '@/components/molcules/SalaryBarGraph';
 import { consumptionData } from '@/constants/consumptionData';
 import {

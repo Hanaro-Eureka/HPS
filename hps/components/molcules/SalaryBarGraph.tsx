@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
-  Tooltip,
-} from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 
 type Props = {
   data: {
@@ -34,9 +27,7 @@ export default function SalaryBarGraph({ data, colors, height }: Props) {
         >
           <XAxis type='number' hide />
           <YAxis type='category' dataKey='name' hide />
-          <Tooltip
-            formatter={(value: number) => value.toLocaleString() + '원'}
-          />
+
           <Bar
             dataKey='used'
             stackId='a'
