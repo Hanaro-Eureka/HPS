@@ -33,7 +33,7 @@ export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
 
       <div className='w-full flex flex-col mb-5'>
         <ProfileItem label='이름' fname='name' value={name} id={id} />
-        <ProfileItem label='  아이디' fname='loginId' value={loginId} id={id} />
+        <ProfileItem label='아이디' fname='loginId' value={loginId} id={id} />
         <ProfileItem
           label='생년월일'
           fname='birthDate'

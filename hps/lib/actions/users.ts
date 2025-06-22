@@ -25,7 +25,7 @@ export const updateUserField = async (formData: FormData) => {
 
   if (!id || Number.isNaN(id)) throw new Error('유효하지 않은 사용자 ID');
 
-  const parsedValue = value === '' ? null : value;
+  const parsedValue = value?.replace(/-/g, ''); // YYYYMMDD 형식으로 변환
 
   await prisma.user.update({
     where: { id },

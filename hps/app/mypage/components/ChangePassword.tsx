@@ -21,12 +21,10 @@ export default function ChangePassword() {
 
     if (newPassword.length < 6) {
       setMessage('새 비밀번호는 6자 이상이어야 합니다!');
-      setTimeout(() => setMessage(''), 3000);
       return;
     }
     if (newPassword === currentPassword) {
       setMessage('새 비밀번호는 기존 비밀번호와 달라야 합니다!');
-      setTimeout(() => setMessage(''), 3000);
       return;
     }
 
@@ -40,8 +38,6 @@ export default function ChangePassword() {
       } else {
         setMessage('비밀번호 변경 중 알 수 없는 오류가 발생했습니다.');
       }
-    } finally {
-      setTimeout(() => setMessage(''), 3000);
     }
   };
 

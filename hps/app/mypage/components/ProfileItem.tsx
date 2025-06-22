@@ -26,6 +26,7 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
   };
 
   const isName = fname === 'name';
+  const isBirthDate = fname === 'birthDate';
 
   return (
     <div className='w-full flex flex-row justify-between items-center pl-8 my-1.5 pt-3 pb-4'>
@@ -43,12 +44,22 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
         >
           <input type='hidden' name='id' value={id} />
           <input type='hidden' name='field' value={fname} />
-          <Input
-            name='value'
-            defaultValue={currentValue}
-            autoFocus
-            className='w-full text-base text-black-font font-[400] border border-gray-300 rounded mr-5 text-right'
-          />
+          {isBirthDate ? (
+            <Input
+              type='date'
+              name='value'
+              defaultValue={currentValue}
+              autoFocus
+              className='w-full text-base text-black-font font-[400] border border-gray-300 rounded mr-5 text-right'
+            />
+          ) : (
+            <Input
+              name='value'
+              defaultValue={currentValue}
+              autoFocus
+              className='w-full text-base text-black-font font-[400] border border-gray-300 rounded mr-5 text-right'
+            />
+          )}
           <Button
             bgColor='bg-hana-button'
             className='text-white rounded p-0.5 shrink-0'
