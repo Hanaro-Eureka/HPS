@@ -52,7 +52,9 @@ export default function SignUpPage() {
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
           />
           {errors.name && (
-            <Text className='text-xs text-red-500'>{errors.name}</Text>
+            <Text className='text-xs font-[300] text-red-500'>
+              {errors.name}
+            </Text>
           )}
 
           <Input
@@ -62,7 +64,7 @@ export default function SignUpPage() {
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
           />
           {errors.id && (
-            <Text className='text-xs text-red-500'>{errors.id}</Text>
+            <Text className='text-xs font-[300] text-red-500'>{errors.id}</Text>
           )}
 
           <Input
@@ -72,7 +74,9 @@ export default function SignUpPage() {
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none text-gray-login font-[400]'
           />
           {errors.password && (
-            <Text className='text-xs text-red-500'>{errors.password}</Text>
+            <Text className='text-xs font-[300] text-red-500'>
+              {errors.password}
+            </Text>
           )}
 
           <Input
@@ -82,7 +86,9 @@ export default function SignUpPage() {
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
           />
           {errors.birth && (
-            <Text className='text-xs text-red-500'>{errors.birth}</Text>
+            <Text className='text-xs font-[300] text-red-500'>
+              {errors.birth}
+            </Text>
           )}
         </div>
         <div className='flex flex-col items-center justify-center gap-4 w-full'>
