@@ -15,7 +15,7 @@ export const getIncomeSourcesByUserId = async (
         },
       },
       _sum: { amount: true },
-      // orderBy: { _sum: { amount: 'desc' } },
+      orderBy: { _sum: { amount: 'asc' } },
     })
   ).map((item) => ({
     category: item.incomeSource ?? '기타',

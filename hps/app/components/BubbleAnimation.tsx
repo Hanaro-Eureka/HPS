@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
+//amount은 나중에 지울 예정
 type Props = {
   category: string;
   amount: number;
@@ -33,13 +34,13 @@ export default function BubbleAnimation({
         ease: 'easeInOut',
       }}
       className={cn(
-        'rounded-full flex items-center justify-center flex-col text-center text-sm font-semibold shadow',
+        'rounded-full flex items-center justify-center text-center',
         color,
         size
       )}
     >
-      <span className='text-xl'>{category}</span>
-      <span className='text-xs'>{amount.toLocaleString()}원</span>
+      <span className='text-xl font-[600]'>{category}</span>
+      {/* <span className='text-xs'>{amount.toLocaleString()}원</span> */}
     </motion.div>
   );
 }

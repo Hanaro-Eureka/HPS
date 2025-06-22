@@ -16,8 +16,6 @@ export default async function SalaryCircle() {
   const start = new Date(now.getFullYear(), now.getMonth(), 1);
   const data = await getIncomeSourcesByUserId(1, start);
 
-  const maxAmount = Math.max(...data.map((item) => item.amount));
-
   const colors = [
     'bg-pink-200',
     'bg-yellow-200',
@@ -38,12 +36,11 @@ export default async function SalaryCircle() {
     'w-52 h-52',
   ];
 
+  const maxAmount = Math.max(...data.map((item) => item.amount));
+  if (maxAmount === 0) return [];
   const sizedData = data.map((item) => {
     const ratio = item.amount / maxAmount;
-    const index = Math.min(
-      circleSize.length - 1,
-      Math.floor(ratio * circleSize.length)
-    );
+    const index = Math.floor(ratio * (circleSize.length - 1));
 
     return {
       ...item,
@@ -57,7 +54,7 @@ export default async function SalaryCircle() {
         <BubbleAnimation
           key={idx}
           category={item.category}
-          amount={item.amount}
+          amount={item.amount} //이따 지우기
           color={colors[idx % colors.length]}
           size={item.circleSize}
           anim={floatSettings[idx % floatSettings.length]}

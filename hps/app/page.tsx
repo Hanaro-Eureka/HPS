@@ -1,5 +1,6 @@
 import MainBar from './components/MainNav';
 import SalaryBox from './components/SalaryBox';
+import SalaryCircle from './components/SalaryCircle';
 
 export default function Home() {
   return (
@@ -9,6 +10,9 @@ export default function Home() {
         <MainBar />
         <div className='flex items-center justify-center'>
           <SalaryBox />
+        </div>
+        <div className='flex items-center mt-10 bottom-0'>
+          <SalaryCircle />
         </div>
       </div>
     </>

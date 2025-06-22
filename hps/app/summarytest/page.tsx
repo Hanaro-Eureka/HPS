@@ -5,15 +5,17 @@ import SalaryCircle from '../components/SalaryCircle';
 
 export default async function SummaryTestPage() {
   return (
-    <div className='min-h-screen overflow-hidden bg-gradient-salary flex flex-col '>
+    <div className='min-h-screen flex flex-col overflow-hidden bg-gradient-salary '>
       <MainBar />
       <div className='flex items-center justify-center'>
         <SalaryBox />
       </div>
-      <div className='flex items-center justify-center pb-24'>
+      {/* <div className='flex items-center justify-center mt-10 pb-16'> */}
+      {/* <div className='mt-5 flex flex-1 items-end justify-center'> */}
+      <div className='flex flex-1 items-end justify-center pt-3 pb-20'>
         <SalaryCircle />
-        <BottomTabBar />
       </div>
+      <BottomTabBar />
     </div>
   );
 }
