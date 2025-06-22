@@ -54,7 +54,6 @@ export default async function SalaryCircle() {
         <BubbleAnimation
           key={idx}
           category={item.category}
-          amount={item.amount} //이따 지우기
           color={colors[idx % colors.length]}
           size={item.circleSize}
           anim={floatSettings[idx % floatSettings.length]}
