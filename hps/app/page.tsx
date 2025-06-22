@@ -1,3 +1,4 @@
+import BottomTabBar from '@/components/organisms/BottomTab/BottomTabBar';
 import MainBar from './components/MainNav';
 import SalaryBox from './components/SalaryBox';
 import SalaryCircle from './components/SalaryCircle';
@@ -5,15 +6,15 @@ import SalaryCircle from './components/SalaryCircle';
 export default function Home() {
   return (
     <>
-      {/* <div className='min-h-screen overflow-hidden pt-12 px-6 bg-gradient-salary'> */}
-      <div className='min-h-screen overflow-hidden bg-gradient-salary '>
+      <div className='min-h-screen flex flex-col overflow-hidden bg-gradient-salary '>
         <MainBar />
         <div className='flex items-center justify-center'>
           <SalaryBox />
         </div>
-        <div className='flex items-center mt-10 bottom-0'>
+        <div className='flex flex-1 items-end justify-center pt-3 pb-20'>
           <SalaryCircle />
         </div>
+        <BottomTabBar />
       </div>
     </>
   );

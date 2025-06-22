@@ -2,7 +2,7 @@ import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
 import BubbleAnimation from './BubbleAnimation';
 
 const floatSettings = [
-  { x: 0, y: -10, duration: 5.2, delay: 0.3 },
+  { x: 0, y: 10, duration: 5.2, delay: 0.3 },
   { x: 10, y: -6, duration: 4.8, delay: 0.5 },
   { x: -12, y: 4, duration: 5.6, delay: 0.2 },
   { x: 6, y: 10, duration: 5.1, delay: 0.6 },
