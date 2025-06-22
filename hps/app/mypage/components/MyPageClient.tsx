@@ -17,7 +17,7 @@ type Props = {
 export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
   return (
     <div className='w-full flex flex-col items-center pt-10 px-5 py-5'>
-      <Title tag='h1' className='text-lg font-semibold'>
+      <Title tag='h1' className='text-lg font-[500]'>
         {name}님의 정보
       </Title>
 
@@ -31,7 +31,7 @@ export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
         />
       </div>
 
-      <div className='w-full flex flex-col mb-5'>
+      <div className='w-full flex flex-col mb-5 font-[400]'>
         <ProfileItem label='이름' fname='name' value={name} id={id} />
         <ProfileItem label='아이디' fname='loginId' value={loginId} id={id} />
         <ProfileItem
@@ -45,7 +45,7 @@ export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
         <ChangePassword />
       </div>
       <Button
-        bgColor='bg-hana-green'
+        bgColor='bg-hana-button'
         className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base'
         onClick={() => signOut({ callbackUrl: '/login' })}
       >

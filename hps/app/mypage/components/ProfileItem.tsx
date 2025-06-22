@@ -62,7 +62,7 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
           )}
           <Button
             bgColor='bg-hana-button'
-            className='text-white rounded p-0.5 shrink-0'
+            className='text-white rounded p-0.5 shrink-0 font-[400]'
             type='submit'
           >
             저장

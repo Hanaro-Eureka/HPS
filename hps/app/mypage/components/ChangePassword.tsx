@@ -70,7 +70,7 @@ export default function ChangePassword() {
             <Button
               type='submit'
               className='text-white rounded p-2 self-end'
-              bgColor='bg-hana-green'
+              bgColor='bg-hana-button'
             >
               비밀번호 변경
             </Button>
