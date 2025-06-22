@@ -3,23 +3,26 @@
 import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import Text from '@/components/atoms/Text';
-import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { handleLogin } from '@/lib/actions/login';
+import { handleSignUp } from '@/lib/actions/signup';
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
-
-  async function Login(event: React.FormEvent<HTMLFormElement>) {
+  const router = useRouter();
+  async function SignUp(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
     const raw = {
+      name: formData.get('name')?.toString() ?? '',
       id: formData.get('id')?.toString() ?? '',
+      birth: formData.get('birth')?.toString() ?? '',
       password: formData.get('password')?.toString() ?? '',
     };
 
-    const result = await handleLogin(raw);
+    const result = await handleSignUp(raw);
+
     if (!result.success) {
       if (!result.field) {
         return;
@@ -28,19 +31,13 @@ export default function LoginPage() {
       return;
     }
 
-    await signIn('credentials', {
-      id: raw.id,
-      password: raw.password,
-      redirect: true,
-      callbackUrl: '/',
-    });
+    router.push('/login');
   }
-
   return (
-    <form onSubmit={Login}>
-      <div className='flex flex-col w-full items-center justify-start gap-16 px-8 py-40'>
+    <form onSubmit={SignUp}>
+      <div className='flex flex-col w-full items-center justify-start gap-10 px-8 py-20'>
         <div className='flex flex-col w-full items-center justify-center gap-8'>
-          <Text className=' text-xl font-[300] text-black-font'>로그인</Text>
+          <Text className=' text-xl font-[300] text-black-font'>회원가입</Text>
           <Text className=' text-center text-black-font font-[500]'>
             아이디와 비밀번호를
             <br />
@@ -48,6 +45,18 @@ export default function LoginPage() {
           </Text>
         </div>
         <div className='flex flex-col gap-4 w-full'>
+          <Input
+            name='name'
+            type='text'
+            placeholder='이름'
+            className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
+          />
+          {errors.name && (
+            <Text className='text-xs font-[300] text-red-500'>
+              {errors.name}
+            </Text>
+          )}
+
           <Input
             name='id'
             type='text'
@@ -57,6 +66,7 @@ export default function LoginPage() {
           {errors.id && (
             <Text className='text-xs font-[300] text-red-500'>{errors.id}</Text>
           )}
+
           <Input
             name='password'
             type='password'
@@ -68,9 +78,16 @@ export default function LoginPage() {
               {errors.password}
             </Text>
           )}
-          {errors.idpass && (
+
+          <Input
+            name='birth'
+            type='date'
+            placeholder='생년월일'
+            className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
+          />
+          {errors.birth && (
             <Text className='text-xs font-[300] text-red-500'>
-              {errors.idpass}
+              {errors.birth}
             </Text>
           )}
         </div>
@@ -80,9 +97,8 @@ export default function LoginPage() {
             bgColor='bg-hana-button'
             className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base'
           >
-            로그인
+            회원가입
           </Button>
-          <Text className='text-sm text-[#aab0b9] font-[500]'>회원가입</Text>
         </div>
       </div>
     </form>

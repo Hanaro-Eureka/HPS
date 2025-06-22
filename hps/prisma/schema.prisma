@@ -39,6 +39,7 @@ model User {
   createdAt    DateTime       @default(now()) @db.DateTime(0)
   birthDate    String         @db.VarChar(8)
   businessCode String?        @db.VarChar(6)
+  Account      Account[]
   CheckBox     CheckBox[]
   FixedExpense FixedExpense[]
   Salary       Salary[]
