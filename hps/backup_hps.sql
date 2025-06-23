@@ -109,7 +109,7 @@ CREATE TABLE `Salary` (
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   CONSTRAINT `salary_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=332 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=343 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,14 +130,13 @@ INSERT INTO `Salary` VALUES
 (309,1,3690000,'2024-09-26 03:05:30','수고하셨어요','indiflex'),
 (310,1,2670000,'2024-01-08 07:16:12','하나은행','하나은행'),
 (311,1,3270000,'2025-05-13 13:48:46','카카오급여','카카오'),
-(312,1,2720000,'2025-01-12 14:35:12','하나은행','하나은행'),
 (313,1,3460000,'2024-07-16 10:12:25','수고하셨어요','indiflex'),
 (314,1,3900000,'2025-03-22 20:17:50','수고하셨어요','indiflex'),
 (315,1,3500000,'2024-08-11 08:15:33','(주)유튜브','유튜브'),
 (316,1,3160000,'2024-05-17 23:44:08','카카오급여','카카오'),
 (317,1,3240000,'2024-11-21 20:56:30','수고하셨어요','indiflex'),
 (318,1,2940000,'2024-04-07 07:21:39','수고하셨어요','indiflex'),
-(319,1,2880000,'2025-06-03 05:09:44','급여','크몽'),
+(319,1,2880000,'2025-06-03 05:09:44','급여','크몽몽'),
 (320,1,3260000,'2024-12-22 05:39:42','급여','크몽'),
 (321,1,2580000,'2025-01-08 13:57:37','카카오급여','카카오'),
 (322,1,2460000,'2024-08-20 09:01:14','(주)유튜브','유튜브'),
@@ -149,7 +148,13 @@ INSERT INTO `Salary` VALUES
 (328,1,2510000,'2024-07-30 21:04:56','급여','크몽'),
 (329,1,2900000,'2024-07-22 10:21:39','하나은행','하나은행'),
 (330,1,3160000,'2024-05-25 12:09:29','(주)유튜브','유튜브'),
-(331,1,3360000,'2024-03-13 05:53:06','수고하셨어요','indiflex');
+(331,1,3360000,'2024-03-13 05:53:06','수고하셨어요','indiflex'),
+(335,1,340000,'2024-06-28 13:02:06','Instagram','인스타그램'),
+(338,1,500000,'2025-06-01 07:53:25','Tiktok',NULL),
+(339,1,320000,'2025-06-25 15:53:18','(주)유트브',''),
+(340,1,340000,'2025-06-28 13:02:06','Instagram','인스타그램'),
+(341,1,50000,'2025-06-07 07:53:25','수고하셨습니다.',NULL),
+(342,1,150000,'2025-06-15 07:53:25','개미인력',NULL);
 /*!40000 ALTER TABLE `Salary` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +184,7 @@ CREATE TABLE `User` (
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
 INSERT INTO `User` VALUES
-(1,'User1','user001@example.com','$2b$12$DAwvpnEME0PRw3SDJ3nyW.igj.QoCf4oF8At1rqkk.zd30twwaZfq','2025-01-01 04:33:19','19901031','940909'),
+(1,'User1','user001@example.com','$2b$12$xhzy0RLgdOmTxBrM/HF.oe3mAcTPbiEi8/O.Bp2hViSa53WbiWuhm','2025-01-01 04:33:19','19901031','940909'),
 (2,'User2','user002@example.com','$2b$10$dummyhash002','2025-04-19 04:33:19','',NULL),
 (3,'User3','user003@example.com','$2b$10$dummyhash003','2025-03-27 04:33:19','',NULL),
 (4,'User4','user004@example.com','$2b$10$dummyhash004','2025-05-10 04:33:19','',NULL),
@@ -218,17 +223,7 @@ INSERT INTO `User` VALUES
 (37,'User47','user047@example.com','$2b$10$dummyhash047','2024-08-25 04:33:19','',NULL),
 (38,'User48','user048@example.com','$2b$10$dummyhash048','2024-09-08 04:33:19','',NULL),
 (39,'User49','user049@example.com','$2b$10$dummyhash049','2024-12-10 04:33:19','',NULL),
-(40,'User50','user050@example.com','$2b$10$dummyhash050','2025-04-15 04:33:19','',NULL),
-(41,'User41','user041@example.com','$2b$10$dummyhash041','2024-07-28 04:33:19','',NULL),
-(42,'User42','user042@example.com','$2b$10$dummyhash042','2025-03-09 04:33:19','',NULL),
-(43,'User43','user043@example.com','$2b$10$dummyhash043','2024-12-14 04:33:19','',NULL),
-(44,'User44','user044@example.com','$2b$10$dummyhash044','2024-12-04 04:33:19','',NULL),
-(45,'User45','user045@example.com','$2b$10$dummyhash045','2025-05-16 04:33:19','',NULL),
-(46,'User46','user046@example.com','$2b$10$dummyhash046','2024-06-24 04:33:19','',NULL),
-(47,'User47','user047@example.com','$2b$10$dummyhash047','2024-08-25 04:33:19','',NULL),
-(48,'User48','user048@example.com','$2b$10$dummyhash048','2024-09-08 04:33:19','',NULL),
-(49,'User49','user049@example.com','$2b$10$dummyhash049','2024-12-10 04:33:19','',NULL),
-(50,'User50','user050@example.com','$2b$10$dummyhash050','2025-04-15 04:33:19','',NULL);
+(40,'User50','user050@example.com','$2b$10$dummyhash050','2025-04-15 04:33:19','',NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,4 +240,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2025-06-20  9:19:27
+-- Dump completed on 2025-06-23 13:57:52

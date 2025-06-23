@@ -16,7 +16,11 @@ import {
 export default function SpendList() {
   const currentMonth = getCurrentMonth();
 
-  const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
+  const thisMonthData = filterThisMonthData(
+    consumptionData,
+    currentMonth,
+    'trans_date'
+  );
   const grouped = groupByDate(thisMonthData);
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 

@@ -1,40 +1,17 @@
-import Image from 'next/image';
-import { getSalaryWithUserId } from '@/lib/actions/salary-actions';
+import { use } from 'react';
+import { getSumOfThisMonthSalaries } from '../utils/salary';
+// import HanaMonWithCard from './HanaMonWithCard';
+import SalarySpendButton from './SalarySpendButton';
 
-function getNextPayday(date?: Date): Date {
-  if (!date) return new Date();
+export default function SalaryBox() {
+  const sumOfSalaries = use(getSumOfThisMonthSalaries(1));
 
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 2).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  return new Date(`${year}-${month}-${day}`);
-}
-
-export default async function SalaryBox() {
-  const lastSalary = await getSalaryWithUserId(2);
-  const nextPayday = getNextPayday(lastSalary?.depositDate);
-  const now = new Date();
-
-  const diffInMs = nextPayday.getTime() - now.getTime();
-  const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24));
-
+  // TODO : 저번달 소득과 이번달 소비 총합 비교해서 하나몬스터 카드 색을 HanaMonWithCard의 Props로 넘겨주세요.
   return (
     <>
-      <div
-        className='w-80 h-52 pt-8 bg-white rounded-3xl px-6 flex [box-shadow:var(--shadow-taxbox)]
-      overflow-hidden'
-      >
-        <div className='flex flex-col w-40'>
-          <div className='border border-hana-smallText rounded-lg text-hana-smallText text-xs font-[500] leading-none py-1 px-2.5 text-center'>
-            다음 월급까지 D-{diffInDays}
-          </div>
-          <Image src={'/svgs/ic_pig.svg'} alt='pig' width={97} height={123} />
-        </div>
-        <div className='flex flex-col font-[500] w-40 pl-6'>
-          <div className='font-[500] h-6 text-center'>최근 나의 월급</div>
-          <div className='mt-14 text-center'>{lastSalary?.amount}원</div>
-        </div>
+      <div className='flex ml-10'>
+        <SalarySpendButton lastSalary={sumOfSalaries} />
+        {/* <HanaMonWithCard hanaMonColor={color}/> */}
       </div>
     </>
   );
