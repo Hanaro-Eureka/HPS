@@ -34,10 +34,10 @@ export default async function Consumption() {
       <Title tag={'h1'} className='font-[600] text-black-font text-2xl m-4'>
         소비 관리
       </Title>
-      <section className='mt-30'>
+      <section className='mt-20'>
         <ConsumptionGraph salary={monthlySalary} />
         <ConsumptionRatio />
-        <ConsumptionRateText salaryList={allSalaryList} />{' '}
+        <ConsumptionRateText salaryList={allSalaryList} />
       </section>
     </>
   );

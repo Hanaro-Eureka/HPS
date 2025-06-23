@@ -28,15 +28,15 @@ export default function ConsumptionRateText({ salaryList }: Props) {
 
   if (rate === null) {
     return (
-      <p className='text-center text-sm font-medium text-gray-time mt-16'>
+      <p className='text-center text-sm font-medium text-gray-time mt-12'>
         지난달 수입 정보가 없습니다.
       </p>
     );
   }
 
   return (
-    <p className='text-center text-sm font-medium text-black mt-16'>
-      이번 달 지출이 지난달 수입 대비{' '}
+    <p className='text-center text-sm font-medium text-black mt-2'>
+      이번 달 지출이 지난달 수입 대비
       <span className={colorClass}>{rate}%</span> 수준이에요.
     </p>
   );

@@ -50,7 +50,7 @@ export default function ConsumptionGraph({ salary }: Props) {
       />
 
       <div
-        className={`absolute top-full text-sm text-center font-[500] ${
+        className={`absolute top-full text-sm text-center font-[400] ${
           referencePercentage > 90
             ? 'translate-x-[-100%] text-right'
             : '-translate-x-1/2'
@@ -59,21 +59,21 @@ export default function ConsumptionGraph({ salary }: Props) {
           left: `${referencePercentage}%`,
         }}
       >
-        <span className='text-gray-time'>
+        <span className='text-black'>
           {isOverSpent ? '내 수입' : '내 소비'}
         </span>
         <br />
-        <span className='whitespace-nowrap text-gray-time'>
+        <span className='whitespace-nowrap text-black'>
           {(isOverSpent ? salary : totalSpending).toLocaleString()}원
         </span>
       </div>
 
-      <div className='absolute -top-10 right-10 text-sm text-right font-[500]'>
-        <span className={isOverSpent ? 'text-spend-alert' : 'text-gray-time'}>
+      <div className='absolute -top-10 right-10 text-sm text-right font-[400]'>
+        <span className={isOverSpent ? 'text-spend-alert' : 'text-black'}>
           {isOverSpent ? '내 소비' : '내 수입'}
         </span>
         <br />
-        <span className={isOverSpent ? 'text-spend-alert' : 'text-gray-time'}>
+        <span className={isOverSpent ? 'text-spend-alert' : 'text-black'}>
           {(isOverSpent ? totalSpending : salary).toLocaleString()}원
         </span>
       </div>
