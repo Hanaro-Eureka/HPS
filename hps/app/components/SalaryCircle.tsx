@@ -53,7 +53,7 @@ export default async function SalaryCircle() {
       {sizedData.map((item, idx) => (
         <BubbleAnimation
           key={idx}
-          category={item.category}
+          category={item.category ?? ''}
           color={colors[idx % colors.length]}
           size={item.circleSize}
           anim={floatSettings[idx % floatSettings.length]}
