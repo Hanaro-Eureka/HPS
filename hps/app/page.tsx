@@ -11,7 +11,7 @@ export default function Home() {
         <div className='flex items-center justify-center'>
           <SalaryBox />
         </div>
-        <div className='flex flex-1 items-end justify-center pt-3 pb-20'>
+        <div className='flex flex-1 items-end justify-center pt-3 pb-24'>
           <SalaryCircle />
         </div>
         <BottomTabBar />

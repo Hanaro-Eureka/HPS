@@ -2,13 +2,13 @@ import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
 import BubbleAnimation from './BubbleAnimation';
 
 const floatSettings = [
-  { x: 0, y: 10, duration: 5.2, delay: 0.3 },
-  { x: 10, y: -6, duration: 4.8, delay: 0.5 },
-  { x: -12, y: 4, duration: 5.6, delay: 0.2 },
-  { x: 6, y: 10, duration: 5.1, delay: 0.6 },
-  { x: -8, y: -8, duration: 5.4, delay: 0.1 },
-  { x: 14, y: 2, duration: 5.9, delay: 0.4 },
-  { x: -6, y: 6, duration: 5.0, delay: 0.25 },
+  { x: 0, y: 24, duration: 2.0, delay: 0.1 },
+  { x: 2, y: -24, duration: 2.3, delay: 0.2 },
+  { x: -1, y: 26, duration: 2.1, delay: 0.05 },
+  { x: 1, y: -18, duration: 2.4, delay: 0.3 },
+  { x: 0, y: 30, duration: 2.2, delay: 0.15 },
+  { x: -2, y: -20, duration: 2.5, delay: 0.25 },
+  { x: 1, y: 18, duration: 2.1, delay: 0.05 },
 ];
 
 export default async function SalaryCircle() {
@@ -27,13 +27,13 @@ export default async function SalaryCircle() {
   ];
 
   const circleSize = [
+    'w-22 h-22',
     'w-28 h-28',
-    'w-32 h-32',
-    'w-36 h-36',
+    'w-34 h-34',
     'w-40 h-40',
-    'w-44 h-44',
-    'w-48 h-48',
-    'w-52 h-52',
+    'w-46 h-46',
+    // 'w-52 h-52',
+    'w-56 h-56',
   ];
 
   const maxAmount = Math.max(...data.map((item) => item.amount));
