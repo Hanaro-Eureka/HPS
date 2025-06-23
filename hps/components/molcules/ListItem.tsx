@@ -26,7 +26,7 @@ export default function ListItem({
     <div
       onClick={onClick}
       className={cn(
-        'flex items-center justify-between py-4 px-6',
+        'flex items-center justify-between py-4 px-1',
         isSelected && 'bg-black-checked',
         className
       )}

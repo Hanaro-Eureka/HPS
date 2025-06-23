@@ -2,7 +2,6 @@
 
 import Text from '@/components/atoms/Text';
 import ListItem from '@/components/molcules/ListItem';
-import icons from '@/constants/categoryIcons';
 import { consumptionData } from '@/constants/consumptionData';
 import Image from 'next/image';
 import {
@@ -10,14 +9,18 @@ import {
   formatDate,
   formatTime,
   getCurrentMonth,
-  groupByDate,
+  groupByDateInSpendList,
 } from '../utils/spending';
 
 export default function SpendList() {
   const currentMonth = getCurrentMonth();
 
-  const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
-  const grouped = groupByDate(thisMonthData);
+  const thisMonthData = filterThisMonthData(
+    consumptionData,
+    currentMonth,
+    'trans_date'
+  );
+  const grouped = groupByDateInSpendList(thisMonthData);
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
   return (
@@ -35,8 +38,10 @@ export default function SpendList() {
                   key={idx}
                   icon={
                     <Image
-                      src={icons[item.trans_category as keyof typeof icons]}
+                      src='/svgs/ic_income.svg'
                       alt={item.trans_category}
+                      width={36}
+                      height={36}
                       className='w-9 h-9'
                     />
                   }
