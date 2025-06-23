@@ -1,5 +1,6 @@
 import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
+import HeaderLayout from '@/components/templates/HeaderLayout';
 import { getSalaryByUserId } from '@/lib/actions/salary-select-actions';
 import IncomeSelectorSection from './components/IncomeSelectorSection';
 
@@ -16,15 +17,15 @@ export default async function IncomeSource() {
     }));
 
   return (
-    <>
-      <Title tag='h1' className='text-2xl font-[600] text-black-font m-4'>
+    <HeaderLayout>
+      <Title tag='h1' className='text-2xl font-[600] text-black-font mt-8 ml-6'>
         주요 수입원을 선택하세요.
       </Title>
-      <Text className='ml-4 mt-2 text-base font-[400] text-black-font'>
+      <Text className='ml-6 mt-2 text-base font-[400] text-black-font'>
         내 통장 입금 내역
       </Text>
 
       <IncomeSelectorSection existingSalary={existingSalary} />
-    </>
+    </HeaderLayout>
   );
 }
