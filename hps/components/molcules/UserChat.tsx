@@ -7,11 +7,11 @@ export default function UserChat() {
       <form className='flex flex-col gap-2.5'>
         <Input
           placeholder='구매할 물건'
-          className='w-full rounded-lg px-2 py-1.5 border-gray-100 bg-white text-xs font-[400]'
+          className='w-full rounded-lg px-2 py-1.5 border border-input-border bg-white text-xs font-[400]'
         ></Input>
         <Input
           placeholder='가격'
-          className='w-full rounded-lg px-2 py-1.5 bg-white text-xs font-[400]'
+          className='w-full rounded-lg px-2 py-1.5 border border-input-border bg-white text-xs font-[400]'
         ></Input>
       </form>
       {/* <Input
