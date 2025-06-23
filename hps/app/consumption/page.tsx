@@ -1,9 +1,11 @@
 import Title from '@/components/atoms/Title';
 import { getMonthlySalary } from '@/lib/actions/salary-actions';
 import { getStartAndEndOfMonth } from '../spendList/utils/spending';
+import ConsumStar from './components/ConsumStar';
 import ConsumptionGraph from './components/ConsumptionGraph';
 import ConsumptionRateText from './components/ConsumptionRateText';
 import ConsumptionRatio from './components/ConsumptionRatio';
+import { getConsumptionRateText } from './utils/evaluation';
 
 export default async function Consumption() {
   const userId = 1; // TODO: 실제 로그인 유저 ID로 교체
@@ -38,6 +40,7 @@ export default async function Consumption() {
         <ConsumptionGraph salary={monthlySalary} />
         <ConsumptionRatio />
         <ConsumptionRateText salaryList={allSalaryList} />
+        <ConsumStar salaryList={allSalaryList} />
       </section>
     </>
   );

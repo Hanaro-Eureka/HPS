@@ -5,6 +5,7 @@ import { getStartAndEndOfMonth } from '@/app/spendList/utils/spending';
 type RateResult = {
   rate: number | null;
   colorClass: string;
+  imagePath: string | null;
 };
 
 export function getConsumptionRateText(
@@ -28,7 +29,7 @@ export function getConsumptionRateText(
     .reduce((sum, item) => sum + item.trans_amt, 0);
 
   if (lastMonthSalary === 0) {
-    return { rate: null, colorClass: 'text-gray-time' };
+    return { rate: null, colorClass: 'text-gray-time', imagePath: null };
   }
 
   const consumptionRate = Math.round(
@@ -36,12 +37,21 @@ export function getConsumptionRateText(
   );
 
   let colorClass = '';
-  if (consumptionRate > 60) colorClass = 'text-consumption-red';
-  else if (consumptionRate >= 30) colorClass = 'text-consumption-yellow';
-  else colorClass = 'text-consumption-green';
+  let imagePath = '';
+  if (consumptionRate > 60) {
+    colorClass = 'text-consumption-red';
+    imagePath = '/hanaMonWithRedCard.svg';
+  } else if (consumptionRate >= 30) {
+    colorClass = 'text-consumption-yellow';
+    imagePath = '/hanaMonWithYellowCard.svg';
+  } else {
+    colorClass = 'text-consumption-green';
+    imagePath = '/hanaMonWithGreenCard.svg';
+  }
 
   return {
     rate: consumptionRate,
     colorClass,
+    imagePath,
   };
 }
