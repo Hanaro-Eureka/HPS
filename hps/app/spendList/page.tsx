@@ -3,7 +3,6 @@
 import Button from '@/components/atoms/Button';
 import Title from '@/components/atoms/Title';
 import Image from 'next/image';
-import SpendAnalysis from './components/SpendAnalysis';
 import SpendList from './components/SpendList';
 
 export default function SpendListPage() {
@@ -16,12 +15,7 @@ export default function SpendListPage() {
           bgColor='bg-white'
           onClick={() => alert('뒤로가기!')}
         >
-          <Image
-            src='/svgs/ic_goback.svg'
-            alt='뒤로가기'
-            width={10}
-            height={18}
-          />
+          <Image src='/goback.svg' alt='뒤로가기' width={10} height={18} />
         </Button>
         <div />
       </div>
@@ -31,7 +25,6 @@ export default function SpendListPage() {
       </Title>
 
       <SpendList />
-      <SpendAnalysis />
     </div>
   );
 }
