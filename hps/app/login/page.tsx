@@ -4,6 +4,7 @@ import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import Text from '@/components/atoms/Text';
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import { useState } from 'react';
 import { handleLogin } from '@/lib/actions/login';
 
@@ -82,7 +83,9 @@ export default function LoginPage() {
           >
             로그인
           </Button>
-          <Text className='text-sm text-[#aab0b9] font-[500]'>회원가입</Text>
+          <Link href='/signup' className='text-sm text-[#aab0b9] font-[500]'>
+            회원가입
+          </Link>
         </div>
       </div>
     </form>
