@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import Button from '../atoms/Button';
-import Input from '../atoms/Input';
 
 type Props = {
   item: string;

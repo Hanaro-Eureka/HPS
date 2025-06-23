@@ -36,6 +36,5 @@ export async function POST(req: Request) {
     messages: updatedMessages,
     // maxTokens: 100,
   });
-
   return result.toDataStreamResponse();
 }
