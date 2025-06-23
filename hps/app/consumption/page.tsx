@@ -1,3 +1,4 @@
+import Button from '@/components/atoms/Button';
 import Title from '@/components/atoms/Title';
 import { getMonthlySalary } from '@/lib/actions/salary-actions';
 import { getStartAndEndOfMonth } from '../spendList/utils/spending';
@@ -41,6 +42,8 @@ export default async function Consumption() {
         <ConsumptionRatio />
         <ConsumptionRateText salaryList={allSalaryList} />
         <ConsumStar salaryList={allSalaryList} />
+        {/* <Button className='', bgColor='', onClick,
+  children,>Qd</Button> */}
       </section>
     </>
   );
