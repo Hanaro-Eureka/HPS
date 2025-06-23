@@ -11,7 +11,6 @@ export const {
   signOut,
 } = NextAuth({
   secret: process.env.NEXTAUTH_SECRET as string,
-
   providers: [
     Credential({
       name: 'Id & Password',
