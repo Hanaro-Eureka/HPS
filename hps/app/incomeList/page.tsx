@@ -5,15 +5,16 @@ import LineGraph from './components/LineGraph';
 import { getSixMonthIncome, getThisYearMonth } from './utils/salary';
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     month?: string;
-  };
+  }>;
 };
 
 export default async function incomePage({ searchParams }: Props) {
+  const searchParams1 = await searchParams;
   const sixMonthIncomes = await getSixMonthIncome(1);
   const thisMonth = getThisYearMonth().slice(5, 7);
-  const selectedMonth = searchParams.month ?? thisMonth;
+  const selectedMonth = searchParams1.month ?? thisMonth;
 
   return (
     <>
