@@ -68,7 +68,7 @@ button:hover {
   :root {
     --hana-green: #2f9e8c;
     --hana-logo: #10ab9f;
-    --hana-smallText: #2f9e8c;
+    --hana-smallText: #27ce9f;
     --hana-chartchat: #56b8ab;
     --hana-hanaman: #e5f5f2;
     --hana-button: #019591;
@@ -248,4 +248,20 @@ button:hover {
     min-height: 100vh;
     font-family: var(--font-hana);
   }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
