@@ -66,7 +66,7 @@ export default async function Income() {
   );
 
   return (
-    <div className='flex flex-col w-full px-5 mt-5'>
+    <div className='flex flex-col w-full px-5 mt-5 bg-background'>
       <Title
         tag='h1'
         className='text-2xl font-[600] text-black-font m-4 text-center'
@@ -81,16 +81,19 @@ export default async function Income() {
       <Text className='text-xs font-[300] text-black-font mt-2.5'>
         작년 수입 데이터를 기반으로 다음 달 수입을 예측해드릴게요.
       </Text>
-
-      <ProportionalBarGraph
-        currentAmount={currentAmount}
-        predictedAmount={predictedWithGrowth}
-      />
-      <AdviceMessage
-        currentAmount={currentAmount}
-        predictedAmount={predictedWithGrowth}
-      />
-
+      <div className='w-full bg-white '>
+        <ProportionalBarGraph
+          currentAmount={currentAmount}
+          predictedAmount={predictedWithGrowth}
+        />
+      </div>
+      <div className='mt-10'></div>
+      <div className='w-full bg-white pt-2 pb-4'>
+        <AdviceMessage
+          currentAmount={currentAmount}
+          predictedAmount={predictedWithGrowth}
+        />
+      </div>
       <div className='mt-10 flex justify-center'>
         <GoToIncomeListButton />
       </div>

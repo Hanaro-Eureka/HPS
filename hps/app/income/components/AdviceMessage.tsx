@@ -22,7 +22,7 @@ export default function AdviceMessage({
   }
 
   return (
-    <div className='text-lg font-[500] justify-center mt-10'>
+    <div className='text-lg font-[500] justify-center'>
       {diff > 0 ? (
         <div className='flex flex-col items-center'>
           <Image src='/svgs/image_86.svg' alt='기뻐' width={60} height={60} />
