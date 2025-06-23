@@ -1,15 +1,15 @@
-import challenge from '@/assets/svgs/tab-icon/ic_challenge.svg';
+import assistant from '@/assets/svgs/tab-icon/ic_chat.svg';
+import time from '@/assets/svgs/tab-icon/ic_clock.svg';
 import home from '@/assets/svgs/tab-icon/ic_home.svg';
-import mycard from '@/assets/svgs/tab-icon/ic_mycard_result.svg';
-import endtax from '@/assets/svgs/tab-icon/ic_year_end.svg';
-import pension from '@/assets/svgs/tab-icon/ic_yeargold.svg';
+import spend from '@/assets/svgs/tab-icon/ic_receipt.svg';
+import income from '@/assets/svgs/tab-icon/ic_wallet.svg';
 
 const icons = {
-  mycard,
-  challenge,
+  income,
+  time,
   home,
-  pension,
-  endtax,
+  assistant,
+  spend,
 };
 
 export default icons;
