@@ -14,11 +14,11 @@ export default function AdviceMessage({
   const absDiff = Math.abs(diff);
   const diffRate = currentAmount > 0 ? diff / currentAmount : 0;
 
-  let highlightColor = 'text-hana-yellow'; // 기본 노랑
+  let highlightColor = 'text-hana-yellow';
   if (diffRate > 0.1) {
-    highlightColor = 'text-hana-green'; // 초록
+    highlightColor = 'text-hana-green';
   } else if (diffRate < -0.1) {
-    highlightColor = 'text-chart-overflow'; // 빨강
+    highlightColor = 'text-chart-overflow';
   }
 
   return (

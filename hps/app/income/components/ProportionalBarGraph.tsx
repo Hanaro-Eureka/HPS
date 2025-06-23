@@ -70,13 +70,13 @@ export default function ProportionalBarGraph({
       style={{ height: GRAPH_HEIGHT_PX + 20 }}
     >
       <Bar
-        label='이번 달 소득'
+        label='이번 달 수입'
         amount={currentAmount}
         color='#E4E8EB'
         textColor='text-gray-500'
       />
       <Bar
-        label='다음 달 예측 소득
+        label='다음 달 예측 수입
 '
         amount={predictedAmount}
         color={rightColor}
