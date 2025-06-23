@@ -1,5 +1,3 @@
-'use client';
-
 import Text from '@/components/atoms/Text';
 import ListItem from '@/components/molcules/ListItem';
 import icons from '@/constants/categoryIcons';
@@ -11,7 +9,7 @@ import {
   formatTime,
   getCurrentMonth,
   groupByDate,
-} from '../utils/spending';
+} from '../../../utils/spending';
 
 export default function SpendList() {
   const currentMonth = getCurrentMonth();
@@ -21,11 +19,12 @@ export default function SpendList() {
     currentMonth,
     'trans_date'
   );
+
   const grouped = groupByDate(thisMonthData);
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
   return (
-    <div className='flex-1 overflow-y-auto mt-6 ml-1 pr-1'>
+    <div className='flex overflow-y-auto mt-6 ml-1 pr-1'>
       <div className='flex flex-col gap-4'>
         {sortedDates.map((date) => (
           <div key={date}>

@@ -1,5 +1,3 @@
-'use client';
-
 import Text from '@/components/atoms/Text';
 import { cn } from '@/lib/utils';
 
