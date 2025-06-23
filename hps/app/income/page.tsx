@@ -1,7 +1,12 @@
 import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
 import { redirect } from 'next/navigation';
-import { getSalaryWithUserId } from '@/lib/actions/salary-actions';
+import {
+  getLastMonthSalarySum,
+  getLastYearSamePeriodSalarySum,
+  getLastYearNextMonthSalarySum,
+  getRecent3MonthsSalarySum,
+} from '@/lib/actions/salary-actions';
 import { auth } from '@/lib/auth';
 import AdviceMessage from './components/AdviceMessage';
 import GoToIncomeListButton from './components/GoIncomeListButton';
@@ -12,59 +17,15 @@ export default async function Income() {
   if (!session) redirect('/login');
 
   const userId = Number(session.user?.id);
-  const salaries = await getSalaryWithUserId(userId);
-  const now = new Date();
-
-  const formatMonthKey = (date: Date) => date.toISOString().slice(0, 7);
-  const getRecentMonths = (base: Date) =>
-    Array.from({ length: 3 }, (_, i) =>
-      formatMonthKey(
-        new Date(base.getFullYear(), base.getMonth() - 3 + i + 1, 1)
-      )
-    );
-
-  const recentMonthKeys = getRecentMonths(now);
-  const lastYearMonthKeys = recentMonthKeys.map((key) => {
-    const [year, month] = key.split('-');
-    return `${Number(year) - 1}-${month}`;
-  });
-
-  const recentSum = recentMonthKeys.reduce((sum, key) => {
-    const salary = salaries.find((s) =>
-      s.depositDate.toISOString().startsWith(key)
-    );
-    return sum + (salary?.amount ?? 0);
-  }, 0);
-
-  const lastYearSum = lastYearMonthKeys.reduce((sum, key) => {
-    const salary = salaries.find((s) =>
-      s.depositDate.toISOString().startsWith(key)
-    );
-    return sum + (salary?.amount ?? 0);
-  }, 0);
-
-  const growthRate =
-    lastYearSum > 0 ? (recentSum - lastYearSum) / lastYearSum : 0;
-
-  const currentMonthKey = formatMonthKey(now);
-  const currentAmount =
-    salaries.find((s) =>
-      s.depositDate.toISOString().startsWith(currentMonthKey)
-    )?.amount ?? 0;
-
-  const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-  const targetMonthKey = formatMonthKey(
-    new Date(nextMonth.getFullYear() - 1, nextMonth.getMonth(), 1)
-  );
-
-  const targetLastYearAmount =
-    salaries.find((s) => s.depositDate.toISOString().startsWith(targetMonthKey))
-      ?.amount ?? 0;
-
-  const predictedWithGrowth = Math.round(
-    targetLastYearAmount * (1 + growthRate)
-  );
-
+  const [lastMonthSum, lastYearMonthSum, recent3MonthsSum, lastYear3MonthsSum] =
+    await Promise.all([
+      getLastMonthSalarySum(userId),
+      getLastYearNextMonthSalarySum(userId),
+      getRecent3MonthsSalarySum(userId),
+      getLastYearSamePeriodSalarySum(userId),
+    ]);
+  const growthRate = recent3MonthsSum / lastYear3MonthsSum;
+  const predictedWithGrowth = lastYearMonthSum * growthRate;
   return (
     <div className='flex flex-col w-full mt-5 bg-background'>
       <Title
@@ -83,14 +44,14 @@ export default async function Income() {
       </Text>
       <div className='w-full bg-white '>
         <ProportionalBarGraph
-          currentAmount={currentAmount}
+          currentAmount={lastMonthSum}
           predictedAmount={predictedWithGrowth}
         />
       </div>
       <div className='mt-10'></div>
       <div className='w-full bg-white pt-2 pb-4'>
         <AdviceMessage
-          currentAmount={currentAmount}
+          currentAmount={lastMonthSum}
           predictedAmount={predictedWithGrowth}
         />
       </div>
