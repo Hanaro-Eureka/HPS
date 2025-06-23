@@ -26,8 +26,12 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
       await updateUserField(formData);
       setCurrentValue(newValue);
       setIsEdit(false);
-    } catch (error: any) {
-      setErrorMessage(error.message || '업데이트에 실패했습니다.');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage('업데이트에 실패했습니다.');
+      }
     }
   };
 

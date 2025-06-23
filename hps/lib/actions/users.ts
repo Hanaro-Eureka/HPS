@@ -2,6 +2,7 @@
 
 import bcrypt from 'bcryptjs';
 import prisma from '../db';
+import { Prisma } from '../generated/prisma';
 
 export const getUserInfo = async (id: number) => {
   const user = await prisma.user.findFirst({
@@ -45,9 +46,12 @@ export const updateUserField = async (formData: FormData) => {
       where: { id },
       data: { [field]: parsedValue },
     });
-  } catch (err: any) {
-    //prisma 중복 제약 위반 -> P2002
-    if (err.code === 'P2002' && err.meta?.target?.includes('loginId')) {
+  } catch (err: unknown) {
+    if (
+      err instanceof Prisma.PrismaClientKnownRequestError &&
+      err.code === 'P2002' &&
+      (err.meta?.target as string[])?.includes('loginId')
+    ) {
       throw new Error('중복된 ID입니다.');
     }
 
