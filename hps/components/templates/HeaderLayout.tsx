@@ -14,7 +14,6 @@ const goBackPaths = [
   '/spendList',
   '/chat',
   '/mypage',
-  '/timeLog',
 ];
 
 type Props = {
