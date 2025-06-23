@@ -11,8 +11,8 @@ type Props = {
 
 export default async function incomePage({ searchParams }: Props) {
   const sixMonthIncomes = await getSixMonthIncome(1);
-  const thisYearMonth = getThisYearMonth();
-  const selectedMonth = searchParams.month ?? thisYearMonth;
+  const thisMonth = getThisYearMonth().slice(5, 7);
+  const selectedMonth = searchParams.month ?? thisMonth;
 
   return (
     <>
