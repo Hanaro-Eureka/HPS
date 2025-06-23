@@ -2,48 +2,63 @@ import SalaryBarChart from '@/components/molcules/SalaryBarGraph';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta: Meta<typeof SalaryBarChart> = {
-  title: 'SalaryBarChart',
+  title: 'Molecules/SalaryBarChart',
   component: SalaryBarChart,
   tags: ['autodocs'],
   argTypes: {
     data: {
-      description: '급여 대비 소비',
+      description: '급여 대비 소비 데이터',
       table: {
         type: {
-          summary: 'Array<{ moreSpent : number; leastSpent : number; }>',
+          summary: 'Array<{ name: string; used: number; remain: number; }>',
+        },
+      },
+    },
+    height: {
+      control: { type: 'number' },
+      defaultValue: 40,
+    },
+    colors: {
+      description: '사용된 금액과 남은 금액의 색상',
+      table: {
+        type: {
+          summary: '{ used: string; remain: string }',
         },
       },
     },
   },
 };
-export default meta;
 
+export default meta;
 type Story = StoryObj<typeof SalaryBarChart>;
 
 export const Default: Story = {
   args: {
     data: [
       {
+        name: '이번 달',
         used: 2800000,
         remain: 330000,
-        name: '',
       },
     ],
+    height: 40,
     colors: {
       used: '#56B8AB',
       remain: '#E97272',
     },
   },
 };
+
 export const SpentMoreThanIncome: Story = {
   args: {
     data: [
       {
+        name: '이번 달',
         used: 3330000,
         remain: 2800000,
-        name: '',
       },
     ],
+    height: 40,
     colors: {
       used: '#56B8AB',
       remain: '#E97272',

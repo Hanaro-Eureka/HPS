@@ -68,14 +68,14 @@ button:hover {
   :root {
     --hana-green: #2f9e8c;
     --hana-logo: #10ab9f;
-    --hana-smallText: #2f9e8c;
+    --hana-smallText: #27ce9f;
     --hana-chartchat: #56b8ab;
     --hana-hanaman: #e5f5f2;
     --hana-button: #019591;
     --gray-time: #909090;
     --gray-login: #aab0b9;
     --gray-font: #838383;
-    --gray-hanamanText: #909090;
+    --gray-spendText: #909090;
     --chart-first: #f9cc52;
     --chart-second: #feb8b3;
     --chart-third: #62cfe5;
@@ -89,6 +89,9 @@ button:hover {
     --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
     --shadow-salarybox: 0 0 4 0 rgba(0, 0, 0, 0.25);
     --spend-alert: #d83e3e;
+    --consumption-red: #e93c2b;
+    --consumption-yellow: #ffdd3b;
+    --consumption-green: #5bcf46;
   }
 
   @theme inline {
@@ -114,6 +117,9 @@ button:hover {
     --color-button-gray: var(--button-gray);
     --color-shadow-default: var(--shadow-taxbox);
     --color-spend-alert: var(--spend-alert);
+    --color-consumption-red: var(--consumption-red);
+    --color-consumption-yellow: var(--consumption-yellow);
+    --color-consumption-green: var(--consumption-green);
   }
 }
 
@@ -240,4 +246,20 @@ button:hover {
     min-height: 100vh;
     font-family: var(--font-hana);
   }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
