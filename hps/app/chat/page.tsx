@@ -26,8 +26,7 @@ export default function Chat() {
     e.preventDefault();
     setIsSubmitted(true);
 
-    const content =
-      '내가 이번달 소득은 300만원이고 다음달엔 500만원이야 80만원짜리 신발을 사야하는데 언제사는게 좋을지 알려줘. "이번 달에 옷을 사면 소득 대비 부담이 커서 생활비, 저축 여유가 줄어요. 다음 달에 사면 부담이 훨씬 적고 420 만 원이 남아 여유 있게 관리 가능합니다." 이런 형식으로 답변해';
+    const content = `${price}원 짜리 ${item}`;
     await append({ role: 'user', content });
 
     setItem('');
