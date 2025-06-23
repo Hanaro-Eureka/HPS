@@ -48,7 +48,7 @@ export async function POST(req: Request) {
     {
       ...lastUserMessage,
       // content: `${lastUserMessage.content}.`,
-      content: `내 이번달 소득은 ${lastMonthSum.toFixed(1)}원 이고 다음달엔 ${nextmonthpay.toFixed(1)}원 이야 ${lastUserMessage.content} 을 사고싶은데 언제사는게 좋을지 알려줘. "이번 달에 옷을 사면 소득 대비 부담이 커서 생활비, 저축 여유가 줄어요. 다음 달에 사면 부담이 훨씬 적고 420 만 원이 남아 여유 있게 관리 가능합니다." 이런 형식으로 답변해`, // 프롬프트 수정
+      content: `이번달 소득은 ${lastMonthSum.toFixed(1)}원 이고 다음달엔 ${nextmonthpay.toFixed(1)}원 이야 ${lastUserMessage.content} 을 사고싶은데 언제사는게 좋을지 알려줘. "이번 달에 옷을 사면 소득 대비 부담이 커서 생활비, 저축 여유가 줄어요. 다음 달에 사면 부담이 훨씬 적고 420 만 원이 남아 여유 있게 관리 가능합니다." 이런 형식으로 답변해`, // 프롬프트 수정
     },
   ];
   console.log('Updated messages:', updatedMessages);
