@@ -71,6 +71,7 @@ button:hover {
     --hana-smallText: #2f9e8c;
     --hana-chartchat: #56b8ab;
     --hana-hanaman: #e5f5f2;
+    --hana-ai: #eeeeee;
     --hana-button: #019591;
     --gray-time: #909090;
     --gray-login: #aab0b9;
@@ -97,6 +98,7 @@ button:hover {
     --color-hana-logo: var(--hana-logo);
     --color-hana-smallText: var(--hana-smallText);
     --color-hana-chartchat: var(--hana-chartchat);
+    --color-hana-ai: var(--hana-ai);
     --color-hana-hanaman: var(--hana-hanaman);
     --color-hana-button: var(--hana-button);
     --color-gray-time: var(--gray-time);
