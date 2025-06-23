@@ -66,7 +66,7 @@ export default async function Income() {
   );
 
   return (
-    <div className='flex flex-col w-full px-5 mt-5 bg-background'>
+    <div className='flex flex-col w-full mt-5 bg-background'>
       <Title
         tag='h1'
         className='text-2xl font-[600] text-black-font m-4 text-center'
@@ -78,7 +78,7 @@ export default async function Income() {
         다음 달 수입은 얼마나 될까?
       </Text>
 
-      <Text className='text-xs font-[300] text-black-font mt-2.5'>
+      <Text className='text-xs font-[300] text-black-font py-2.5'>
         작년 수입 데이터를 기반으로 다음 달 수입을 예측해드릴게요.
       </Text>
       <div className='w-full bg-white '>

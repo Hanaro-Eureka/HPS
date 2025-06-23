@@ -66,7 +66,7 @@ export default function ProportionalBarGraph({
 
   return (
     <div
-      className='flex justify-center gap-8 items-end mt-10'
+      className='flex justify-center gap-8 items-end mt-7'
       style={{ height: GRAPH_HEIGHT_PX + 20 }}
     >
       <Bar
