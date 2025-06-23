@@ -6,7 +6,7 @@ import SalaryCircle from './components/SalaryCircle';
 export default function Home() {
   return (
     <>
-      <div className='min-h-screen flex flex-col overflow-hidden bg-gradient-salary '>
+      <div className='min-h-screen flex flex-col'>
         <MainBar />
         <div className='flex items-center justify-center'>
           <SalaryBox />
