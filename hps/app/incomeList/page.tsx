@@ -1,3 +1,4 @@
+import GoToIncomeButton from './components/GoToIncomeButton';
 import IncomeList from './components/IncomeList';
 import IncomeListMonthBar from './components/IncomeListMonthBar';
 import LineGraph from './components/LineGraph';
@@ -31,6 +32,9 @@ export default async function incomePage({ searchParams }: Props) {
           />
         </div>
         <IncomeList month={selectedMonth} />
+      </div>
+      <div className='flex justify-center mt-5 mb-10'>
+        <GoToIncomeButton />
       </div>
     </>
   );
