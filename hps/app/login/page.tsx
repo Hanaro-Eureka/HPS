@@ -4,42 +4,40 @@ import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import Text from '@/components/atoms/Text';
 import { signIn } from 'next-auth/react';
-import { use } from 'react';
-import { loginValidator } from '@/lib/validator';
+import { useState } from 'react';
+import { handleLogin } from '@/lib/actions/login';
 
-type Props = {
-  searchParams: Promise<{ callbackUrl: string }>;
-};
+export default function LoginPage() {
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-export default function LoginPage({ searchParams }: Props) {
-  const { callbackUrl } = use(searchParams);
+  async function Login(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
 
-  const login = async (formData: FormData) => {
-    const id = formData.get('id') as string;
-    const password = formData.get('password') as string;
+    const raw = {
+      id: formData.get('id')?.toString() ?? '',
+      password: formData.get('password')?.toString() ?? '',
+    };
 
-    const validator = loginValidator.safeParse({
-      id,
-      password,
-    });
-    if (!validator.success) {
-      console.log('loginError');
+    const result = await handleLogin(raw);
+    if (!result.success) {
+      if (!result.field) {
+        return;
+      }
+      setErrors({ [result.field]: result?.message });
       return;
     }
 
-    let redirectTo = callbackUrl;
-    if (!callbackUrl || callbackUrl.endsWith('signin')) redirectTo = '/';
-
     await signIn('credentials', {
-      id,
-      password,
+      id: raw.id,
+      password: raw.password,
       redirect: true,
-      callbackUrl: redirectTo,
+      callbackUrl: '/',
     });
-  };
+  }
 
   return (
-    <form action={login}>
+    <form onSubmit={Login}>
       <div className='flex flex-col w-full items-center justify-start gap-16 px-8 py-40'>
         <div className='flex flex-col w-full items-center justify-center gap-8'>
           <Text className=' text-xl font-[300] text-black-font'>로그인</Text>
@@ -56,12 +54,25 @@ export default function LoginPage({ searchParams }: Props) {
             placeholder='아이디'
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none font-[400] text-gray-login'
           />
+          {errors.id && (
+            <Text className='text-xs font-[300] text-red-500'>{errors.id}</Text>
+          )}
           <Input
             name='password'
             type='password'
             placeholder='비밀번호'
             className='w-full h-14 rounded-lg border border-[#dddce1] px-4 focus:outline-none text-gray-login font-[400]'
           />
+          {errors.password && (
+            <Text className='text-xs font-[300] text-red-500'>
+              {errors.password}
+            </Text>
+          )}
+          {errors.idpass && (
+            <Text className='text-xs font-[300] text-red-500'>
+              {errors.idpass}
+            </Text>
+          )}
         </div>
         <div className='flex flex-col items-center justify-center gap-4 w-full'>
           <Button
