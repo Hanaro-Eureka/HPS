@@ -74,11 +74,11 @@ export default async function Income() {
         수입 관리
       </Title>
 
-      <Text className='text-base font-[500] text-black-font mt-8'>
+      <Text className='text-base font-[500] text-black-font mt-8 px-5'>
         다음 달 수입은 얼마나 될까?
       </Text>
 
-      <Text className='text-xs font-[300] text-black-font py-2.5'>
+      <Text className='text-xs font-[300] text-black-font py-2.5 px-5'>
         작년 수입 데이터를 기반으로 다음 달 수입을 예측해드릴게요.
       </Text>
       <div className='w-full bg-white '>
