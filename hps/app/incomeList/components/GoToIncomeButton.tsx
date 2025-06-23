@@ -9,7 +9,7 @@ export default function GoToIncomeButton() {
   return (
     <Button
       aria-label='수입관리 페이지 가기'
-      className='text-base font-[500] px-9 py-1 rounded-full'
+      className='text-base font-[500] px-9 py-3 rounded-2xl'
       bgColor='bg-button-lightgray'
       onClick={() => router.push('/income')}
     >
