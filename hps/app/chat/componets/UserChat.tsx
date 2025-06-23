@@ -3,7 +3,7 @@ import Image from 'next/image';
 type Props = {
   item: string;
   price: string;
-  isSubmitted?: boolean; // ✅ 새 prop
+  isSubmitted?: boolean;
   onChangeItem: (value: string) => void;
   onChangePrice: (value: string) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;

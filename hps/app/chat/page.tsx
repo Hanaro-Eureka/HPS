@@ -2,6 +2,7 @@
 
 import StarChat from '@/app/chat/componets/StarChat';
 import UserChat from '@/app/chat/componets/UserChat';
+import Text from '@/components/atoms/Text';
 import { useChat } from '@ai-sdk/react';
 import { useState } from 'react';
 
@@ -37,6 +38,7 @@ export default function Chat() {
 
   return (
     <div className='flex flex-col w-full max-w-md py-30 mx-auto gap-6'>
+      <div>{/* <Text className='text-2xl font-[600]'>didi</Text> */}</div>
       <div className='flex flex-col gap-6 mb-4 pl-4'>
         {messages
           .filter((message) => message.role !== 'user')
