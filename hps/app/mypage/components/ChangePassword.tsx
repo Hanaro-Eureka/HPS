@@ -44,11 +44,7 @@ export default function ChangePassword() {
   return (
     <div className='w-full max-w-sm mt-3'>
       {isEdit ? (
-        <form
-          action={handleSubmit}
-          onSubmit={() => {}}
-          className='flex flex-col gap-2'
-        >
+        <form action={handleSubmit} className='flex flex-col gap-2'>
           <input type='hidden' name='userId' value={userId} />
           <div className='flex flex-row'>
             <div className='flex flex-col gap-2 px-3'>
