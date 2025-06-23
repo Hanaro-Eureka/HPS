@@ -12,21 +12,13 @@ type Props = {
 
 export default function Button({
   className,
-  type,
   bgColor,
   onClick,
   children,
+  type = 'button',
 }: PropsWithChildren<Props>) {
   return (
-    <button
-      type={type}
-      className={cn(
-        `${bgColor}
-         `,
-        className
-      )}
-      onClick={onClick}
-    >
+    <button className={cn(bgColor, className)} onClick={onClick} type={type}>
       {children}
     </button>
   );
