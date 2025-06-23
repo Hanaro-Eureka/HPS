@@ -96,6 +96,8 @@ button:hover {
     --consumption-red: #e93c2b;
     --consumption-yellow: #ffdd3b;
     --consumption-green: #5bcf46;
+    --income-plus: #ee4266;
+    --income-minus: #2195e8;
   }
 
   @theme inline {
@@ -128,6 +130,8 @@ button:hover {
     --color-consumption-red: var(--consumption-red);
     --color-consumption-yellow: var(--consumption-yellow);
     --color-consumption-green: var(--consumption-green);
+    --color-income-plus: var(--income-plus);
+    --color-income-minus: var(--income-minus);
   }
 }
 
