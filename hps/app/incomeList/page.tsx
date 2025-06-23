@@ -1,26 +1,24 @@
-import LineGraph from '@/app/incomeList/components/LineGraph';
-import Image from 'next/image';
-import { getSixMonthIncome } from './utils/salary';
+import IncomeList from './components/IncomeList';
+import IncomeListMonthBar from './components/IncomeListMonthBar';
+import LineGraph from './components/LineGraph';
+import { getSixMonthIncome, getThisYearMonth } from './utils/salary';
 
-export default async function incomePage() {
+type Props = {
+  searchParams: {
+    month?: string;
+  };
+};
+
+export default async function incomePage({ searchParams }: Props) {
   const sixMonthIncomes = await getSixMonthIncome(1);
-  console.log(sixMonthIncomes);
+  const thisYearMonth = getThisYearMonth();
+  const selectedMonth = searchParams.month ?? thisYearMonth;
+
   return (
     <>
       <div className='mt-8'>
-        <div className='flex'>
-          <div className='w-24 h-8'></div>
-          <div className='flex items-center justify-center'>
-            <span className='mr-2 text-2xl font-[600]'>수입 내역</span>
-            <Image
-              src='/svgs/ic_cogWheel.svg'
-              alt='주요 수입원 선택 페이지로 이동'
-              width={20}
-              height={20}
-            />
-          </div>
-        </div>
-        <div className='border p-1 rounded-3xl [box-shadow:var(--shadow-taxbox)] mt-10'>
+        <IncomeListMonthBar />
+        <div className='border p-1 rounded-3xl [box-shadow:var(--shadow-taxbox)] mt-5 mb-5'>
           <LineGraph
             data={sixMonthIncomes}
             xDataKey='month'
@@ -32,6 +30,7 @@ export default async function incomePage() {
             }}
           />
         </div>
+        <IncomeList month={selectedMonth} />
       </div>
     </>
   );

@@ -79,3 +79,38 @@ export const getSixMonthIncome = async (userId: number) => {
 
   return arr;
 };
+
+export const groupByDate = <
+  T extends Record<string, unknown>,
+  K extends keyof T & string = 'trans_dtime',
+>(
+  data: T[],
+  dateKey?: K
+): Record<string, T[]> => {
+  const key = (dateKey ?? 'trans_dtime') as keyof T;
+
+  return data.reduce((acc: Record<string, T[]>, cur: T) => {
+    const dateValue = cur[key];
+
+    if (typeof dateValue === 'object' && dateValue !== null) {
+      const date = new Date(dateValue.toString());
+      const groupKey = `${date.toISOString()}`;
+      if (!acc[groupKey]) acc[groupKey] = [];
+      acc[groupKey].push(cur);
+    }
+    return acc;
+  }, {});
+};
+export const formatDate = (dateStr: string): string => {
+  return `${+dateStr.slice(5, 7)}월 ${+dateStr.slice(8, 10)}일`;
+};
+export const formatTime = (dateStr: string): string =>
+  `${dateStr.slice(11, 13)}:${dateStr.slice(14, 16)}`;
+
+export const getThisYearMonth = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+
+  return `${year}-${month.toString().padStart(2, '0')}`;
+};

@@ -1,3 +1,6 @@
+'use server';
+
+import { startOfMonth, endOfMonth } from 'date-fns';
 import prisma from '../db';
 
 export const getSalaryWithUserId = async (userId: number) =>
@@ -61,3 +64,30 @@ export const getMonthlySalary = async (
       },
     },
   });
+export const getMonthlyIncomeWithUserId = async (
+  userId: number,
+  yearMonth: string
+) => {
+  const date = new Date(`${yearMonth}-01T00:00:00Z`);
+  const salaryList = await prisma.salary.findMany({
+    where: {
+      userId,
+      depositDate: {
+        gte: startOfMonth(date),
+        lte: endOfMonth(date),
+      },
+    },
+  });
+
+  return salaryList;
+};
+
+export const updateIncome = async (formdate: FormData) => {
+  const id = Number(formdate.get('id'));
+  const incomeSource = formdate.get('value')?.toString();
+
+  await prisma.salary.update({
+    where: { id },
+    data: { incomeSource: incomeSource },
+  });
+};
