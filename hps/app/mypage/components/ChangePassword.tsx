@@ -52,23 +52,23 @@ export default function ChangePassword() {
                 name='currentPassword'
                 placeholder='*기존 비밀번호'
                 type='password'
-                className='border border-gray-300 rounded h-10'
+                className='text-base text-black-font font-[400] border border-gray-300 rounded'
                 autoFocus
               />
               <Input
                 name='newPassword'
                 placeholder='*새 비밀번호 (6자 이상)'
                 type='password'
-                className='border border-gray-300 rounded h-10'
+                className='text-base text-black-font font-[400] border border-gray-300 rounded'
               />
             </div>
 
             <Button
               type='submit'
-              className='text-white rounded p-2 self-end'
+              className='text-white rounded p-5'
               bgColor='bg-hana-button'
             >
-              비밀번호 변경
+              변경
             </Button>
           </div>
         </form>
