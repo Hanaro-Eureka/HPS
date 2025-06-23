@@ -2,7 +2,6 @@
 
 import StarChat from '@/app/chat/componets/StarChat';
 import UserChat from '@/app/chat/componets/UserChat';
-import Text from '@/components/atoms/Text';
 import { useChat } from '@ai-sdk/react';
 import { useState } from 'react';
 
