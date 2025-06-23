@@ -15,6 +15,7 @@ type Props = {
   label: string;
   time: string;
   amount: number;
+  description?: React.ReactNode; //수입 증감량 안내
   onClick?: () => void;
   isSelected?: boolean;
   className?: string;
@@ -26,6 +27,7 @@ export default function ListItem({
   label,
   time,
   amount,
+  description,
   onClick,
   isSelected = false,
   className,
@@ -58,16 +60,14 @@ export default function ListItem({
           {pathName === '/incomeList' ? (
             <div>
               {isEdited ? (
-                <>
-                  <form action={handleSubmit}>
-                    <input type='hidden' name='id' value={id} />
-                    <Input
-                      placeholder={newValue}
-                      className='border-1 w-36'
-                      name='value'
-                    ></Input>
-                  </form>
-                </>
+                <form action={handleSubmit}>
+                  <input type='hidden' name='id' value={id} />
+                  <Input
+                    placeholder={newValue}
+                    className='border-1 w-36'
+                    name='value'
+                  />
+                </form>
               ) : (
                 <div className='flex'>
                   <Text
@@ -104,13 +104,18 @@ export default function ListItem({
         </div>
       </div>
 
-      <div className='flex'>
+      <div className='flex flex-col'>
         <Text
           tag='span'
           className='text-right text-base text-hana-green font-[500]'
         >
           {amount.toLocaleString()}원
         </Text>
+        {description && (
+          <Text tag='span' className='text-xs text-gray-time font-[400]'>
+            지난 달보다 {description}원
+          </Text>
+        )}
       </div>
     </div>
   );

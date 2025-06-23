@@ -11,6 +11,7 @@ type Transaction = {
   time: string;
   amount: number;
   icon: React.ReactNode;
+  description?: React.ReactNode;
 };
 
 type Props = {
@@ -44,8 +45,8 @@ export default function List({
               label={item.label}
               time={item.time}
               amount={item.amount}
+              description={item.description}
               isSelected={selectedIds.includes(item.id)}
-              // onClick={() => router.push('/incomeSource')}
             />
           );
         }
@@ -57,6 +58,7 @@ export default function List({
             label={item.label}
             time={item.time}
             amount={item.amount}
+            description={item.description}
             isSelected={selectedIds.includes(item.id)}
             onClick={() => onToggle?.(item.id)}
           />

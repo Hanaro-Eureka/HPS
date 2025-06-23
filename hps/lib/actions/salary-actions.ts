@@ -94,3 +94,55 @@ export const updateIncome = async (formdate: FormData) => {
     data: { incomeSource: incomeSource },
   });
 };
+
+export const getSalaryChangeFromLastMonth = async (
+  userId: number,
+  yearMonth: string
+) => {
+  const [year, month] = yearMonth.split('-').map(Number);
+  const thisMonthStart = new Date(year, month - 1, 1);
+  const thisMonthEnd = new Date(year, month, 0, 23, 59, 59, 999);
+
+  const lastMonthStart = new Date(year, month - 2, 1);
+  const lastMonthEnd = new Date(year, month - 1, 0, 23, 59, 59, 999);
+
+  const [thisMonthData, lastMonthData] = await Promise.all([
+    prisma.salary.findMany({
+      where: {
+        userId,
+        depositDate: { gte: thisMonthStart, lte: thisMonthEnd },
+      },
+    }),
+    prisma.salary.findMany({
+      where: {
+        userId,
+        depositDate: { gte: lastMonthStart, lte: lastMonthEnd },
+      },
+    }),
+  ]);
+
+  const sumBySource = (data: typeof thisMonthData) =>
+    data.reduce<Record<string, number>>((acc, cur) => {
+      const source = cur.incomeSource ?? cur.depositorName ?? '기타';
+      acc[source] = (acc[source] || 0) + cur.amount;
+      return acc;
+    }, {});
+
+  const thisSum = sumBySource(thisMonthData);
+  const lastSum = sumBySource(lastMonthData);
+
+  const result: Record<
+    string,
+    { thisMonth: number; lastMonth: number; diff: number }
+  > = {};
+
+  Object.keys(thisSum).forEach((source) => {
+    result[source] = {
+      thisMonth: thisSum[source],
+      lastMonth: lastSum[source] ?? 0,
+      diff: thisSum[source] - (lastSum[source] ?? 0),
+    };
+  });
+
+  return result;
+};
