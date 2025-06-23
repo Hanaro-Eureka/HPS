@@ -76,7 +76,7 @@ button:hover {
     --gray-time: #909090;
     --gray-login: #aab0b9;
     --gray-font: #838383;
-    --gray-hanamanText: #909090;
+    --gray-spendText: #909090;
     --chart-first: #f9cc52;
     --chart-second: #feb8b3;
     --chart-third: #62cfe5;
@@ -90,6 +90,9 @@ button:hover {
     --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
     --shadow-salarybox: 0 0 4 0 rgba(0, 0, 0, 0.25);
     --spend-alert: #d83e3e;
+    --consumption-red: #e93c2b;
+    --consumption-yellow: #ffdd3b;
+    --consumption-green: #5bcf46;
   }
 
   @theme inline {
@@ -116,6 +119,9 @@ button:hover {
     --color-button-gray: var(--button-gray);
     --color-shadow-default: var(--shadow-taxbox);
     --color-spend-alert: var(--spend-alert);
+    --color-consumption-red: var(--consumption-red);
+    --color-consumption-yellow: var(--consumption-yellow);
+    --color-consumption-green: var(--consumption-green);
   }
 }
 

@@ -1,3 +1,4 @@
+import BottomTabBar from '@/components/organisms/BottomTab/BottomTabBar';
 import MainBar from './components/MainNav';
 import SalaryBox from './components/SalaryBox';
 
@@ -9,6 +10,7 @@ export default function Home() {
         <div className='flex items-center justify-center'>
           <SalaryBox />
         </div>
+        <BottomTabBar />
       </div>
     </>
   );

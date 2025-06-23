@@ -1,10 +1,38 @@
+import bcrypt from 'bcryptjs';
 import { z } from 'zod';
-import { getUser } from './actions/auth-actions';
+import { getUser, getUserPassword } from './actions/auth-actions';
 
-export const loginValidator = z.object({
-  id: z.string().min(1),
-  password: z.string().min(6),
-});
+export const loginValidator = z
+  .object({
+    id: z.string().min(1, '아이디를 입력해주세요.'),
+    password: z.string().min(6, '비밀번호는 6자 이상이어야 합니다.'),
+  })
+  .superRefine(async ({ id }, ctx) => {
+    const user = await getUser(id);
+    if (!user) {
+      ctx.addIssue({
+        code: 'custom',
+        message: '아이디 또는 비밀번호가 일치하지 않습니다.',
+        path: ['idpass'],
+        fatal: true,
+      });
+      return z.NEVER;
+    }
+  })
+  .superRefine(async ({ id, password }, ctx) => {
+    const userPass = await getUserPassword(id);
+    const isValid =
+      userPass && (await bcrypt.compare(password, userPass.password));
+    if (!isValid) {
+      ctx.addIssue({
+        code: 'custom',
+        message: '아이디 또는 비밀번호가 일치하지 않습니다.',
+        path: ['idpass'],
+        fatal: true,
+      });
+      return z.NEVER;
+    }
+  });
 
 export const signUpValidator = z
   .object({
