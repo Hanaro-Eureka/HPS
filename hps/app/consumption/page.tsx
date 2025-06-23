@@ -1,4 +1,3 @@
-import Button from '@/components/atoms/Button';
 import Title from '@/components/atoms/Title';
 import { getMonthlySalary } from '@/lib/actions/salary-actions';
 import { getStartAndEndOfMonth } from '../spendList/utils/spending';
@@ -6,7 +5,7 @@ import ConsumStar from './components/ConsumStar';
 import ConsumptionGraph from './components/ConsumptionGraph';
 import ConsumptionRateText from './components/ConsumptionRateText';
 import ConsumptionRatio from './components/ConsumptionRatio';
-import { getConsumptionRateText } from './utils/evaluation';
+import GoSpendButton from './components/GoSpendButton';
 
 export default async function Consumption() {
   const userId = 1; // TODO: 실제 로그인 유저 ID로 교체
@@ -42,8 +41,10 @@ export default async function Consumption() {
         <ConsumptionRatio />
         <ConsumptionRateText salaryList={allSalaryList} />
         <ConsumStar salaryList={allSalaryList} />
-        {/* <Button className='', bgColor='', onClick,
-  children,>Qd</Button> */}
+
+        <div className='mt-10 flex justify-center'>
+          <GoSpendButton />
+        </div>
       </section>
     </>
   );

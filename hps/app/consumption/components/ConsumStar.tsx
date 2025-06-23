@@ -28,11 +28,23 @@ export default function ConsumStar({ salaryList }: Props) {
   }, [salaryList]);
 
   return (
-    <div className='flex items-center justify-center'>
-      <div className='relative'>
-        <Image src='/svgs/ic_chat.svg' alt='채팅' width={198} height={146} />
-        <p className='absolute inset-0 flex items-center justify-center text-black font-medium text-lg'>
-          {textMess}
+    <div className='flex relative items-center justify-center'>
+      <div className='flex relative'>
+        <Image
+          src='/svgs/ic_chat.svg'
+          alt='채팅'
+          width={200}
+          height={150}
+          className='object-contain'
+          priority
+        />
+        <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-39 h-14 pr-4 flex flex-col items-center justify-center text-black font-medium text-base text-center leading-snug'>
+          {textMess?.split('\n').map((line, idx) => (
+            <span key={idx}>
+              {line}
+              <br />
+            </span>
+          ))}
         </p>
       </div>
       {imagePath && (
