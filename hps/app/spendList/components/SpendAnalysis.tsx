@@ -9,7 +9,11 @@ import {
 
 export default function SpendAnalysis() {
   const currentMonth = getCurrentMonth();
-  const thisMonthData = filterThisMonthData(consumptionData, currentMonth);
+  const thisMonthData = filterThisMonthData(
+    consumptionData,
+    currentMonth,
+    'trans_date'
+  );
   const salary = 2800000;
   const totalSpending = thisMonthData.reduce(
     (sum, item) => sum + item.trans_amt,
