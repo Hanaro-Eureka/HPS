@@ -27,7 +27,7 @@ export default function AdviceMessage({
         <div className='flex flex-col items-center'>
           <Image src='/svgs/image_86.svg' alt='기뻐' width={60} height={60} />
           <Text className='text-black-font mt-1'>
-            다음 달 수입이 이번 달보다
+            다음 달 수입이 최근 6개월 평균 수입보다
           </Text>
           <Text className='text-black-font'>
             <span className={highlightColor}>
@@ -41,7 +41,7 @@ export default function AdviceMessage({
         <div className='flex flex-col items-center'>
           <Image src='/svgs/image_88.svg' alt='슬퍼' width={50} height={50} />
           <Text className='text-black-font mt-1'>
-            다음 달 수입이 이번 달보다
+            다음 달 수입이 최근 6개월 평균 수입보다
           </Text>
           <Text className='text-black-font'>
             <span className={highlightColor}>
