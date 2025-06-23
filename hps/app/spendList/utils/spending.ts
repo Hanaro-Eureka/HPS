@@ -6,6 +6,12 @@ export const formatTime = (dateStr: string): string =>
 
 export const getCurrentMonth = (): number => new Date().getMonth() + 1;
 
+export function getStartAndEndOfMonth(date: Date) {
+  const start = new Date(date.getFullYear(), date.getMonth(), 1);
+  const end = new Date(date.getFullYear(), date.getMonth() + 1, 0, 23, 59, 59);
+  return { start, end };
+}
+
 export const filterThisMonthData = <
   T extends Record<string, unknown>,
   K extends keyof T & string = 'trans_dtime',
