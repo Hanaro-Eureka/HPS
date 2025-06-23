@@ -1,12 +1,14 @@
 'use client';
 
-import StarChat from '@/components/molcules/StarChat';
-import UserChat from '@/components/molcules/UserChat';
+import StarChat from '@/app/chat/componets/StarChat';
+import UserChat from '@/app/chat/componets/UserChat';
 import { useChat } from '@ai-sdk/react';
 import { useState } from 'react';
 
 export default function Chat() {
-  const { messages, append, isLoading } = useChat({
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const { messages, append } = useChat({
     sendExtraMessageFields: true,
     initialMessages: [
       {
@@ -22,6 +24,7 @@ export default function Chat() {
 
   const handleCustomSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitted(true);
 
     const content =
       '내가 이번달 소득은 300만원이고 다음달엔 500만원이야 80만원짜리 신발을 사야하는데 언제사는게 좋을지 알려줘. "이번 달에 옷을 사면 소득 대비 부담이 커서 생활비, 저축 여유가 줄어요. 다음 달에 사면 부담이 훨씬 적고 420 만 원이 남아 여유 있게 관리 가능합니다." 이런 형식으로 답변해';
@@ -29,6 +32,7 @@ export default function Chat() {
 
     setItem('');
     setPrice('');
+    setIsSubmitted(false);
   };
 
   return (
@@ -43,7 +47,7 @@ export default function Chat() {
                 <UserChat
                   item={item}
                   price={price}
-                  isLoading={isLoading}
+                  isSubmitted={isSubmitted}
                   onSubmit={handleCustomSubmit}
                   onChangeItem={(value) => setItem(value)}
                   onChangePrice={(value) => setPrice(value)}

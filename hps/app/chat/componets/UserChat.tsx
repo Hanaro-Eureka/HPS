@@ -3,7 +3,7 @@ import Image from 'next/image';
 type Props = {
   item: string;
   price: string;
-  isLoading?: boolean;
+  isSubmitted?: boolean; // ✅ 새 prop
   onChangeItem: (value: string) => void;
   onChangePrice: (value: string) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -12,7 +12,7 @@ type Props = {
 export default function UserChat({
   item,
   price,
-  isLoading,
+  isSubmitted,
   onChangeItem,
   onChangePrice,
   onSubmit,
@@ -26,23 +26,25 @@ export default function UserChat({
           className='w-full rounded-lg px-1.5 py-1.5 border border-input-border bg-white text-xs font-[400]'
           value={item}
           onChange={(e) => onChangeItem(e.target.value)}
-        ></input>
+        />
         <input
           placeholder='가격'
           className='w-full rounded-lg px-1.5 py-1.5 border border-input-border bg-white text-xs font-[400]'
           value={price}
           onChange={(e) => onChangePrice(e.target.value)}
-        ></input>
-        <div className='flex justify-end'>
-          <button type='submit' disabled={isLoading}>
-            <Image
-              src='/svgs/ic_sending.svg'
-              alt='전송'
-              width={24}
-              height={24}
-            />
-          </button>
-        </div>
+        />
+        {!isSubmitted && ( // ✅ 전송 중이면 버튼 숨김
+          <div className='flex justify-end'>
+            <button type='submit'>
+              <Image
+                src='/svgs/ic_sending.svg'
+                alt='전송'
+                width={24}
+                height={24}
+              />
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );

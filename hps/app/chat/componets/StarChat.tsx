@@ -1,8 +1,6 @@
 import Image from 'next/image';
 
 export default function StarChat({ text }: { text: string }) {
-  console.log('🌟 StarChat text:', text);
-
   return (
     <div className='flex gap-4 items-end'>
       <div className='flex items-center'>
