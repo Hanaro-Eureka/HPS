@@ -15,9 +15,9 @@ export default function AdviceMessage({
   const diffRate = currentAmount > 0 ? diff / currentAmount : 0;
 
   let highlightColor = 'text-hana-yellow';
-  if (diffRate > 0.1) {
+  if (diffRate > 0.05) {
     highlightColor = 'text-hana-green';
-  } else if (diffRate < -0.1) {
+  } else if (diffRate < -0.05) {
     highlightColor = 'text-chart-overflow';
   }
 

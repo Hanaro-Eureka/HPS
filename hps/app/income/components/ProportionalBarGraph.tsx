@@ -58,9 +58,9 @@ export default function ProportionalBarGraph({
     currentAmount > 0 ? (predictedAmount - currentAmount) / currentAmount : 0;
 
   let rightColor = '#FFDD3A';
-  if (diffRate > 0.1) {
+  if (diffRate > 0.05) {
     rightColor = '#2F9E8C';
-  } else if (diffRate < -0.1) {
+  } else if (diffRate < -0.05) {
     rightColor = '#E97272';
   }
 
