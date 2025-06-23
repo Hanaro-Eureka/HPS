@@ -1,4 +1,4 @@
-import Title from '@/components/atoms/Title';
+import HeaderLayout from '@/components/templates/HeaderLayout';
 import { getMonthlySalary } from '@/lib/actions/salary-actions';
 import { getStartAndEndOfMonth } from '../spendList/utils/spending';
 import ConsumptionGraph from './components/ConsumptionGraph';
@@ -30,15 +30,12 @@ export default async function Consumption() {
   const allSalaryList = [...thisMonthSalaryList, ...lastMonthSalaryList];
 
   return (
-    <>
-      <Title tag={'h1'} className='font-[600] text-black-font text-2xl m-4'>
-        소비 관리
-      </Title>
+    <HeaderLayout title='소비 관리'>
       <section className='mt-20'>
         <ConsumptionGraph salary={monthlySalary} />
         <ConsumptionRatio />
         <ConsumptionRateText salaryList={allSalaryList} />
       </section>
-    </>
+    </HeaderLayout>
   );
 }
