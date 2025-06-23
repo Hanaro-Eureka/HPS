@@ -19,12 +19,16 @@ export const {
         password: { label: '패스워드', type: 'password' },
       },
       async authorize(credentials) {
-        const result = loginValidator.safeParse(credentials);
+        const result = await loginValidator.safeParseAsync(credentials);
         if (!result.success) {
           return null;
         }
 
-        const { id: loginId, password } = result.data;
+        const data = result.data;
+        if (!data) {
+          return null;
+        }
+        const { id: loginId, password } = data;
 
         const userpass = await getUserPassword(loginId);
 
