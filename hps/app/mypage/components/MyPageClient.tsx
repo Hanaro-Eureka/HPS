@@ -16,8 +16,8 @@ type Props = {
 
 export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
   return (
-    <div className='w-full flex flex-col items-center pt-10 px-5 py-5'>
-      <Title tag='h1' className='text-lg font-[500]'>
+    <div className='w-full flex flex-col items-center text-black-font pt-10 px-5 py-5'>
+      <Title tag='h1' className='text-lg font-[500] '>
         {name}님의 정보
       </Title>
 
