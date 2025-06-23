@@ -23,7 +23,7 @@ model Salary {
 model User {
   id           Int            @id @default(autoincrement()) @db.UnsignedInt
   name         String         @db.VarChar(31)
-  loginId      String         @db.VarChar(60)
+  loginId      String         @unique(map: "loginId_UNIQUE") @db.VarChar(60)
   password     String         @db.VarChar(60)
   createdAt    DateTime       @default(now()) @db.DateTime(0)
   birthDate    String         @db.VarChar(8)
