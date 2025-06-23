@@ -71,6 +71,7 @@ button:hover {
     --hana-smallText: #27ce9f;
     --hana-chartchat: #56b8ab;
     --hana-hanaman: #e5f5f2;
+    --hana-ai: #eeeeee;
     --hana-button: #019591;
     --gray-time: #909090;
     --gray-login: #aab0b9;
@@ -79,6 +80,7 @@ button:hover {
     --chart-first: #f9cc52;
     --chart-second: #feb8b3;
     --chart-third: #62cfe5;
+    --input-border: #dddce1;
     --chart-overflow: #e97272;
     --black-font: #212121;
     --black-modal: #565959;
@@ -100,8 +102,10 @@ button:hover {
     --color-hana-logo: var(--hana-logo);
     --color-hana-smallText: var(--hana-smallText);
     --color-hana-chartchat: var(--hana-chartchat);
+    --color-hana-ai: var(--hana-ai);
     --color-hana-hanaman: var(--hana-hanaman);
     --color-hana-button: var(--hana-button);
+    --color-input-border: var(--input-border);
     --color-gray-time: var(--gray-time);
     --color-gray-login: var(--gray-login);
     --color-gray-font: var(--gray-font);
