@@ -1,7 +1,6 @@
 'use client';
 
 import Button from '@/components/atoms/Button';
-import Title from '@/components/atoms/Title';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
