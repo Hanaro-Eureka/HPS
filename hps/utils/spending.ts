@@ -84,3 +84,13 @@ export const calculateSpendingStatus = (
   }
   return { isOverSpent, used, remain };
 };
+
+export const groupByDateInSpendList = <T extends { trans_date: string }>(
+  data: T[]
+): Record<string, T[]> =>
+  data.reduce((acc: Record<string, T[]>, cur: T) => {
+    const key = cur.trans_date.slice(0, 8);
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(cur);
+    return acc;
+  }, {});

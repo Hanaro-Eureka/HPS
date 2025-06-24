@@ -22,7 +22,7 @@ export default function ConsumptionGraph({ salary }: Props) {
     (sum, item) => sum + item.trans_amt,
     0
   );
-  console.log(currentMonth);
+  // console.log(currentMonth);
 
   const { isOverSpent, used, remain } = calculateSpendingStatus(
     salary,

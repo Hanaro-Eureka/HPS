@@ -1,9 +1,11 @@
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { getMonthlySalary } from '@/lib/actions/salary-actions';
-import { getStartAndEndOfMonth } from '../../utils/spending';
+import { getStartAndEndOfMonth } from '../spendList/utils/spending';
+import ConsumStar from './components/ConsumStar';
 import ConsumptionGraph from './components/ConsumptionGraph';
 import ConsumptionRateText from './components/ConsumptionRateText';
 import ConsumptionRatio from './components/ConsumptionRatio';
+import GoSpendButton from './components/GoSpendButton';
 
 export default async function Consumption() {
   const userId = 1; // TODO: 실제 로그인 유저 ID로 교체
@@ -35,6 +37,11 @@ export default async function Consumption() {
         <ConsumptionGraph salary={monthlySalary} />
         <ConsumptionRatio />
         <ConsumptionRateText salaryList={allSalaryList} />
+        <ConsumStar salaryList={allSalaryList} />
+
+        <div className='mt-10 flex justify-center'>
+          <GoSpendButton />
+        </div>
       </section>
     </HeaderLayout>
   );
