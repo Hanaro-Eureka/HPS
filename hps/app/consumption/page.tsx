@@ -1,6 +1,6 @@
 import HeaderLayout from '@/components/templates/HeaderLayout';
+import { getStartAndEndOfMonth } from '@/utils/spending';
 import { getMonthlySalary } from '@/lib/actions/salary-actions';
-import { getStartAndEndOfMonth } from '../spendList/utils/spending';
 import ConsumStar from './components/ConsumStar';
 import ConsumptionGraph from './components/ConsumptionGraph';
 import ConsumptionRateText from './components/ConsumptionRateText';
