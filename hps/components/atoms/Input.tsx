@@ -9,7 +9,6 @@ type Props = {
   type?: 'text' | 'password' | 'date';
   defaultValue?: string;
   autoFocus?: boolean;
-  as?: 'input' | 'select';
   children?: ReactNode;
 };
 
@@ -20,30 +19,18 @@ export default function Input({
   className,
   defaultValue,
   autoFocus = false,
-  as = 'input',
   children,
 }: PropsWithChildren<Props>) {
   return (
     <div className={className}>
-      {as === 'select' ? (
-        <select
-          name={name}
-          defaultValue={defaultValue}
-          autoFocus={autoFocus}
-          className='w-full h-full px-2 text-black-font focus:outline-none'
-        >
-          {children}
-        </select>
-      ) : (
-        <input
-          name={name}
-          placeholder={placeholder}
-          className='w-full h-full px-2 text-black-font focus:outline-none'
-          type={type}
-          defaultValue={defaultValue}
-          autoFocus={autoFocus}
-        />
-      )}
+      <input
+        name={name}
+        placeholder={placeholder}
+        className='w-full h-full px-2 text-black-font focus:outline-none'
+        type={type}
+        defaultValue={defaultValue}
+        autoFocus={autoFocus}
+      />
     </div>
   );
 }
