@@ -24,7 +24,7 @@ export default function SpendList() {
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
   return (
-    <div className='flex flex-col overflow-y-auto w-full h-[calc(100vh-160px)] py-15'>
+    <div className='flex flex-col overflow-y-auto w-full h-[calc(100vh-300px)]'>
       <div className='flex flex-col gap-4'>
         {sortedDates.map((date) => (
           <div key={date}>
