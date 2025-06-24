@@ -34,7 +34,7 @@ export default function ChangePassword() {
       setIsEdit(false);
     } catch (err) {
       if (err instanceof Error) {
-        setMessage(err.message); // <- 서버에서 던진 에러 메시지 사용
+        setMessage(err.message);
       } else {
         setMessage('비밀번호 변경 중 알 수 없는 오류가 발생했습니다.');
       }

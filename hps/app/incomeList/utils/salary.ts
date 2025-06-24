@@ -45,7 +45,6 @@ export const getSixMonthIncome = async (userId: number) => {
   );
 
   // 올해 6개월동안 소득이 있던 달의 총 소득
-  // [288000, 300000]
   const thisTotalIncome = thisSixMonthIncome.map(
     ({ totalSalary }) => totalSalary
   );
