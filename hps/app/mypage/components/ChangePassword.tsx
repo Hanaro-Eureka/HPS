@@ -2,18 +2,18 @@
 
 import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
-import { useSession } from 'next-auth/react';
+import Text from '@/components/atoms/Text';
 import Image from 'next/image';
 import { useState } from 'react';
 import { changePassword } from '@/lib/actions/users';
 
-export default function ChangePassword() {
+type Props = {
+  userId: number;
+};
+
+export default function ChangePassword({ userId }: Props) {
   const [isEdit, setIsEdit] = useState(false);
   const [message, setMessage] = useState('');
-  const { data: session } = useSession();
-
-  const userId = session?.user?.id;
-  if (!userId) return null;
 
   const handleSubmit = async (formData: FormData) => {
     const newPassword = formData.get('newPassword')?.toString() || '';
@@ -42,66 +42,76 @@ export default function ChangePassword() {
   };
 
   return (
-    <div className='w-full max-w-sm mt-3'>
-      {isEdit ? (
-        <form action={handleSubmit} className='flex flex-col gap-2'>
-          <input type='hidden' name='userId' value={userId} />
-          <div className='flex flex-row'>
-            <div className='flex flex-col gap-2 px-3'>
+    <div className='w-full flex flex-col px-7 py-3'>
+      <div className='flex justify-between items-center gap-4'>
+        <Text
+          className='text-base text-black-font font-[400] shrink-0 pt-2'
+          tag='span'
+        >
+          비밀번호
+        </Text>
+
+        {isEdit ? (
+          <form action={handleSubmit} className='flex flex-col gap-2 w-full'>
+            <input type='hidden' name='userId' value={userId} />
+
+            <div className='flex gap-4 w-full h-6.5'>
               <Input
                 name='currentPassword'
-                placeholder='*기존 비밀번호'
+                placeholder='기존 비밀번호'
                 type='password'
-                className='text-base text-black-font font-[400] border border-gray-300 rounded'
+                className='text-base w-full text-black-font font-[400] border border-gray-300 rounded'
                 autoFocus
               />
-              <Input
-                name='newPassword'
-                placeholder='*새 비밀번호 (6자 이상)'
-                type='password'
-                className='text-base text-black-font font-[400] border border-gray-300 rounded'
-              />
-            </div>
-            <div className='flex flex-col gap-2 px-3'>
               <Button
                 type='reset'
-                className='text-base text-white rounded font-[400] px-5 border border-hana-buttom'
-                bgColor='bg-hana-button'
+                className='font-[400] text-white rounded px-1 min-w-[36.9px]'
+                bgColor='bg-gray-login'
                 onClick={() => setIsEdit(false)}
               >
                 취소
               </Button>
+            </div>
+
+            <div className='flex gap-4 w-full h-6.5'>
+              <Input
+                name='newPassword'
+                placeholder='새로운 비밀번호'
+                type='password'
+                className='text-base w-full text-black-font font-[400] border border-gray-300 rounded'
+              />
               <Button
                 type='submit'
-                className='text-base text-white rounded font-[400] px-5 border border-hana-button'
+                className='font-[400] text-white rounded px-1 min-w-[36.9px]'
                 bgColor='bg-hana-button'
               >
                 변경
               </Button>
             </div>
+          </form>
+        ) : (
+          <div
+            className='flex justify-end items-center cursor-pointer w-full'
+            onClick={() => setIsEdit(true)}
+          >
+            <Text className='text-base text-black-font font-[400]' tag='p'>
+              ******
+            </Text>
+            <Image
+              src='/svgs/ic_profile_change.svg'
+              alt='수정'
+              width={6}
+              height={11}
+              className='ml-3'
+            />
           </div>
-        </form>
-      ) : (
-        <div
-          className='flex items-center gap-1 cursor-pointer'
-          onClick={() => setIsEdit(true)}
-        >
-          <span className='text-sm text-black-font font-medium'>
-            비밀번호 변경
-          </span>
-          <Image
-            src='/svgs/ic_profile_change.svg'
-            alt='수정'
-            width={6}
-            height={11}
-          />
-        </div>
-      )}
+        )}
+      </div>
 
       {message && (
-        <div className='text-sm text-center text-hana-green font-medium my-2'>
+        <Text className='text-xs text-center text-hana-green font-[400] mt-2'>
           {message}
-        </div>
+        </Text>
       )}
     </div>
   );
