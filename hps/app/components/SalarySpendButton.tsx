@@ -13,7 +13,7 @@ export default function SalarySpendButton({ lastSalary }: Props) {
     <>
       <Button
         bgColor='bg-white'
-        onClick={() => router.push('/spendList')}
+        onClick={() => router.push('/incomeSource')}
         className='rounded-3xl w-44 h-32 [box-shadow:var(--shadow-taxbox)]
       overflow-hidden mt-16'
       >
