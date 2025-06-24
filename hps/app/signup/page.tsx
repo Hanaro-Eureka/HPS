@@ -6,8 +6,11 @@ import Text from '@/components/atoms/Text';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { handleSignUp } from '@/lib/actions/signup';
+import SelectBusiness from './components/SelectBusiness';
 
 export default function SignUpPage() {
+  const [selectedBusinessCode, setSelectedBusinessCode] = useState('');
+
   const [errors, setErrors] = useState<Record<string, string>>({});
   const router = useRouter();
   async function SignUp(event: React.FormEvent<HTMLFormElement>) {
@@ -19,9 +22,15 @@ export default function SignUpPage() {
       id: formData.get('id')?.toString() ?? '',
       birth: formData.get('birth')?.toString() ?? '',
       password: formData.get('password')?.toString() ?? '',
+      businessCode: selectedBusinessCode,
     };
 
     const result = await handleSignUp(raw);
+
+    if (!selectedBusinessCode) {
+      setErrors({ businessCode: '업종을 선택해주세요.' });
+      return;
+    }
 
     if (!result.success) {
       if (!result.field) {
@@ -37,11 +46,9 @@ export default function SignUpPage() {
     <form onSubmit={SignUp}>
       <div className='flex flex-col w-full items-center justify-start gap-10 px-8 py-20'>
         <div className='flex flex-col w-full items-center justify-center gap-8'>
-          <Text className=' text-xl font-[300] text-black-font'>회원가입</Text>
-          <Text className=' text-center text-black-font font-[500]'>
-            아이디와 비밀번호를
-            <br />
-            입력해 주세요
+          <Text className='text-xl font-[300] text-black-font'>회원가입</Text>
+          <Text className='text-center text-black-font font-[500]'>
+            정보를 입력해 주세요
           </Text>
         </div>
         <div className='flex flex-col gap-4 w-full'>
@@ -90,8 +97,15 @@ export default function SignUpPage() {
               {errors.birth}
             </Text>
           )}
+
+          <SelectBusiness
+            value={selectedBusinessCode}
+            onChange={setSelectedBusinessCode}
+            error={errors.businessCode}
+          />
         </div>
-        <div className='flex flex-col items-center justify-center gap-4 w-full'>
+
+        <div className='flex flex-col items-center justify-center gap-4 w-full mt-24'>
           <Button
             type='submit'
             bgColor='bg-hana-button'
