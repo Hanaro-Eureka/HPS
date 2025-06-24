@@ -10,7 +10,7 @@ import {
   formatDate,
   formatTime,
   getCurrentMonth,
-  groupByDate,
+  groupByDateInSpendList,
 } from '../utils/spending';
 
 export default function SpendList() {
@@ -21,7 +21,7 @@ export default function SpendList() {
     currentMonth,
     'trans_date'
   );
-  const grouped = groupByDate(thisMonthData);
+  const grouped = groupByDateInSpendList(thisMonthData);
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
   return (
