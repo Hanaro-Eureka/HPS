@@ -21,7 +21,7 @@ export default async function incomePage({ searchParams }: Props) {
     <HeaderLayout>
       <div className='mt-8'>
         <IncomeListMonthBar />
-        <div className='border p-1 rounded-3xl [box-shadow:var(--shadow-taxbox)] mt-5 mb-5'>
+        <div className='border p-1 rounded-3xl [box-shadow:var(--shadow-taxbox)] mt-9 mb-15 mx-6'>
           <LineGraph
             data={sixMonthIncomes}
             xDataKey='month'
