@@ -1,11 +1,11 @@
 import Text from '@/components/atoms/Text';
-import Title from '@/components/atoms/Title';
+import HeaderLayout from '@/components/templates/HeaderLayout';
 import { redirect } from 'next/navigation';
 import {
-  getLastMonthSalarySum,
   getLastYearSamePeriodSalarySum,
   getLastYearNextMonthSalarySum,
   getRecent3MonthsSalarySum,
+  getRecent6MonthsSalarySum,
 } from '@/lib/actions/salary-actions';
 import { auth } from '@/lib/auth';
 import AdviceMessage from './components/AdviceMessage';
@@ -17,47 +17,46 @@ export default async function Income() {
   if (!session) redirect('/login');
 
   const userId = Number(session.user?.id);
-  const [lastMonthSum, lastYearMonthSum, recent3MonthsSum, lastYear3MonthsSum] =
-    await Promise.all([
-      getLastMonthSalarySum(userId),
-      getLastYearNextMonthSalarySum(userId),
-      getRecent3MonthsSalarySum(userId),
-      getLastYearSamePeriodSalarySum(userId),
-    ]);
+  const [
+    lastYearMonthSum,
+    recent3MonthsSum,
+    lastYear3MonthsSum,
+    recent6MonthsSum,
+  ] = await Promise.all([
+    getLastYearNextMonthSalarySum(userId),
+    getRecent3MonthsSalarySum(userId),
+    getLastYearSamePeriodSalarySum(userId),
+    getRecent6MonthsSalarySum(userId),
+  ]);
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;
   const predictedWithGrowth = lastYearMonthSum * growthRate;
   return (
-    <div className='flex flex-col w-full mt-5 bg-background'>
-      <Title
-        tag='h1'
-        className='text-2xl font-[600] text-black-font m-4 text-center'
-      >
-        수입 관리
-      </Title>
+    <HeaderLayout title='수입 관리'>
+      <div className='flex flex-col w-full'>
+        <Text className='text-xl font-[500] text-black-font mt-6 ml-6'>
+          다음 달 수입은 얼마나 될까?
+        </Text>
 
-      <Text className='text-base font-[500] text-black-font mt-8 px-5'>
-        다음 달 수입은 얼마나 될까?
-      </Text>
-
-      <Text className='text-xs font-[300] text-black-font py-2.5 px-5'>
-        작년 수입 데이터를 기반으로 다음 달 수입을 예측해드릴게요.
-      </Text>
-      <div className='w-full bg-white '>
-        <ProportionalBarGraph
-          currentAmount={lastMonthSum}
-          predictedAmount={predictedWithGrowth}
-        />
+        <Text className='text-xs font-[300] text-black-font py-2.5 px-6'>
+          작년 수입을 기반으로 다음 달 수입을 예측해 드릴게요.
+        </Text>
+        <div className='bg-white mt-8'>
+          <ProportionalBarGraph
+            currentAmount={recent6MonthsSum / 6}
+            predictedAmount={predictedWithGrowth}
+          />
+        </div>
+        <div className='mt-8'></div>
+        <div className='w-full bg-white p-6'>
+          <AdviceMessage
+            currentAmount={recent6MonthsSum / 6}
+            predictedAmount={predictedWithGrowth}
+          />
+        </div>
+        <div className='mt-8 flex justify-center'>
+          <GoToIncomeListButton />
+        </div>
       </div>
-      <div className='mt-10'></div>
-      <div className='w-full bg-white pt-2 pb-4'>
-        <AdviceMessage
-          currentAmount={lastMonthSum}
-          predictedAmount={predictedWithGrowth}
-        />
-      </div>
-      <div className='mt-10 flex justify-center'>
-        <GoToIncomeListButton />
-      </div>
-    </div>
+    </HeaderLayout>
   );
 }

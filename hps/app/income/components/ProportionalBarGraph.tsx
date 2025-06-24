@@ -1,5 +1,3 @@
-import React from 'react';
-
 type Props = {
   currentAmount: number;
   predictedAmount: number;
@@ -31,19 +29,22 @@ function Bar({
   const textColorClass = textColor.startsWith('#') ? '' : textColor;
 
   return (
-    <div className='flex flex-col items-center'>
-      <span className={`text-sm mb-2 ${textColorClass}`} style={textColorStyle}>
+    <div className='flex flex-col items-center w-18'>
+      <span
+        className={`text-base font-[500] mb-2 ${textColorClass}`}
+        style={textColorStyle}
+      >
         {Math.floor(amount / 10_000).toLocaleString()}만원
       </span>
       <div
-        className='w-12 rounded-2xl'
+        className='w-14 rounded-2xl'
         style={{
           height: proportionalHeight,
           backgroundColor: color,
           transition: 'height 0.3s ease',
         }}
       />
-      <span className='text-sm mt-2 text-center whitespace-pre-line'>
+      <span className='text-sm mt-2 text-center whitespace-pre-line text-black-font'>
         {label}
       </span>
     </div>
@@ -59,29 +60,29 @@ export default function ProportionalBarGraph({
 
   let rightColor = '#FFDD3A';
   if (diffRate > 0.05) {
-    rightColor = '#2F9E8C';
+    rightColor = '#2F9E8C'; // 수입 상승
   } else if (diffRate < -0.05) {
-    rightColor = '#E97272';
+    rightColor = '#E97272'; // 수입 하락
   }
 
   return (
-    <div
-      className='flex justify-center gap-8 items-end mt-7'
-      style={{ height: GRAPH_HEIGHT_PX + 20 }}
-    >
-      <Bar
-        label='이번 달 수입'
-        amount={currentAmount}
-        color='#E4E8EB'
-        textColor='text-gray-500'
-      />
-      <Bar
-        label='다음 달 예측 수입
-'
-        amount={predictedAmount}
-        color={rightColor}
-        textColor={rightColor}
-      />
+    <div className='flex justify-center gap-8 items-end w-full mt-10 mb-15'>
+      <div className='flex justify-center'>
+        <Bar
+          label={'평균\n수입'}
+          amount={currentAmount}
+          color='#E4E8EB'
+          textColor='text-gray-400'
+        />
+      </div>
+      <div className='flex justify-center'>
+        <Bar
+          label={'다음 달\n예측 수입'}
+          amount={predictedAmount}
+          color={rightColor}
+          textColor={rightColor}
+        />
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import SalaryCircle from './components/SalaryCircle';
 export default function Home() {
   return (
     <>
-      <div className='min-h-screen flex flex-col overflow-hidden '>
+      <div className='min-h-screen flex flex-col m-7'>
         <MainBar />
         <div className='flex items-center justify-center'>
           <SalaryBox />
@@ -14,8 +14,8 @@ export default function Home() {
         <div className='flex flex-1 items-end justify-center pt-3 pb-24'>
           <SalaryCircle />
         </div>
-        <BottomTabBar />
       </div>
+      <BottomTabBar />
     </>
   );
 }

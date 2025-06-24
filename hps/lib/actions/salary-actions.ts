@@ -238,6 +238,7 @@ export const getLastYearNextMonthSalarySum = async (userId: number) => {
 
   return salaries.reduce((sum, s) => sum + s.amount, 0);
 };
+// 직전 1개월,2개월,3개월 수입 합! (지금이 6월 n일이라면 3,4,5월 입금 합)
 export const getRecent6MonthsSalarySum = async (userId: number) => {
   const now = new Date();
   const start = new Date(now.getFullYear(), now.getMonth() - 6, 1); // 3개월 전 1일 (3월 1일)

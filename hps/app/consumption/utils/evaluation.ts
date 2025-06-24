@@ -1,6 +1,6 @@
 'use client';
 
-import { getStartAndEndOfMonth } from '@/app/spendList/utils/spending';
+import { getStartAndEndOfMonth } from '@/utils/spending';
 
 type RateResult = {
   rate: number | null;

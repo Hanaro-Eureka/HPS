@@ -14,6 +14,11 @@ export default function AdviceMessage({
   const absDiff = Math.abs(diff);
   const diffRate = currentAmount > 0 ? diff / currentAmount : 0;
 
+  // 현재 기준 다음 달 계산
+  const now = new Date();
+  const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  const nextMonthLabel = `${nextMonth.getMonth() + 1}월`;
+
   let highlightColor = 'text-hana-yellow';
   if (diffRate > 0.05) {
     highlightColor = 'text-hana-green';
@@ -27,12 +32,12 @@ export default function AdviceMessage({
         <div className='flex flex-col items-center'>
           <Image src='/svgs/image_86.svg' alt='기뻐' width={60} height={60} />
           <Text className='text-black-font mt-1'>
-            다음 달 수입이 이번 달보다
+            {nextMonthLabel} 수입이 최근 6개월 평균 수입보다
           </Text>
           <Text className='text-black-font'>
             <span className={highlightColor}>
               {Math.floor(absDiff / 10_000).toLocaleString()}만원
-            </span>{' '}
+            </span>
             많게 예측됩니다.
           </Text>
           <Text className='text-black-font'>저축에 힘써보세요</Text>
@@ -41,12 +46,12 @@ export default function AdviceMessage({
         <div className='flex flex-col items-center'>
           <Image src='/svgs/image_88.svg' alt='슬퍼' width={50} height={50} />
           <Text className='text-black-font mt-1'>
-            다음 달 수입이 이번 달보다
+            {nextMonthLabel} 수입이 최근 6개월 평균 수입보다
           </Text>
           <Text className='text-black-font'>
             <span className={highlightColor}>
-              {Math.floor(absDiff / 10_000).toLocaleString()}만원
-            </span>{' '}
+              {Math.floor(absDiff / 10_000).toLocaleString()}만원&nbsp;
+            </span>
             적게 예측됩니다.
           </Text>
           <Text className='text-black-font'>이번 달은 소비를 줄여보세요.</Text>

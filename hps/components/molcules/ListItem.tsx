@@ -1,5 +1,3 @@
-'use client';
-
 import Text from '@/components/atoms/Text';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
