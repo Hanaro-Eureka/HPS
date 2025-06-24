@@ -73,6 +73,8 @@ button:hover {
     --hana-hanaman: #e5f5f2;
     --hana-ai: #eeeeee;
     --hana-button: #019591;
+    --year-graph1: #7e9cf4;
+    --year-graph2: #cbd5e0;
     --hana-yellow: #ffdd3a;
     --gray-time: #909090;
     --gray-login: #aab0b9;
@@ -95,6 +97,8 @@ button:hover {
     --consumption-red: #e93c2b;
     --consumption-yellow: #ffdd3b;
     --consumption-green: #5bcf46;
+    --income-plus: #ee4266;
+    --income-minus: #2195e8;
   }
 
   @theme inline {
@@ -106,6 +110,8 @@ button:hover {
     --color-hana-ai: var(--hana-ai);
     --color-hana-hanaman: var(--hana-hanaman);
     --color-hana-button: var(--hana-button);
+    --color-year-graph1: var(--year-graph1);
+    --color-year-graph2: var(--year-graph2);
     --color-hana-yellow: var(--hana-yellow);
     --color-input-border: var(--input-border);
     --color-gray-time: var(--gray-time);
@@ -126,6 +132,8 @@ button:hover {
     --color-consumption-red: var(--consumption-red);
     --color-consumption-yellow: var(--consumption-yellow);
     --color-consumption-green: var(--consumption-green);
+    --color-income-plus: var(--income-plus);
+    --color-income-minus: var(--income-minus);
   }
 }
 

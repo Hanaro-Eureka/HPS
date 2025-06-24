@@ -1,4 +1,4 @@
-import LineGraph from '@/components/molcules/LineGraph';
+import LineGraph from '@/app/incomeList/components/LineGraph';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
 const meta: Meta<typeof LineGraph> = {
