@@ -3,21 +3,6 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getThisYearMonth } from '../utils/salary';
 
-// const monthes = [
-//   '1월',
-//   '2월',
-//   '3월',
-//   '4월',
-//   '5월',
-//   '6월',
-//   '7월',
-//   '8월',
-//   '9월',
-//   '10월',
-//   '11월',
-//   '12월',
-// ];
-
 const getMonthes = (thisMonth: string) => {
   const monthes = [];
   for (let i = 1; i <= +thisMonth; i++) {
@@ -33,7 +18,6 @@ export function MonthToggle() {
 
   const month = thisYearMonth.slice(5, 7);
 
-  console.log(month);
   const monthes = getMonthes(month);
 
   const currentMonth = searchParams.get('month') || `${month}`;

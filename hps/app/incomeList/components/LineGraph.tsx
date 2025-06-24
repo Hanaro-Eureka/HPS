@@ -2,13 +2,11 @@
 
 import {
   CartesianGrid,
-  // Legend,
   Line,
   LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  // YAxis,
 } from 'recharts';
 import { CurveType } from 'recharts/types/shape/Curve';
 import CustomTooltip from '../../../components/molcules/CustomTooltip';

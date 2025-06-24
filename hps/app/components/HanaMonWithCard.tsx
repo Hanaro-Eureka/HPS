@@ -18,12 +18,7 @@ type Props = {
 };
 
 export default function HanaMonWithCard({ salaryList }: Props) {
-  console.log(salaryList);
-  const { rate, colorClass } = getConsumptionRateText(
-    salaryList,
-    consumptionData
-  );
-  console.log(rate, colorClass);
+  const { rate } = getConsumptionRateText(salaryList, consumptionData);
   const color =
     rate !== null
       ? rate < 60

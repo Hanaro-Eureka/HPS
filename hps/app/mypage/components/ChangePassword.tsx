@@ -34,7 +34,7 @@ export default function ChangePassword() {
       setIsEdit(false);
     } catch (err) {
       if (err instanceof Error) {
-        setMessage(err.message); // <- 서버에서 던진 에러 메시지 사용
+        setMessage(err.message);
       } else {
         setMessage('비밀번호 변경 중 알 수 없는 오류가 발생했습니다.');
       }
@@ -62,14 +62,23 @@ export default function ChangePassword() {
                 className='text-base text-black-font font-[400] border border-gray-300 rounded'
               />
             </div>
-
-            <Button
-              type='submit'
-              className='text-white rounded p-5'
-              bgColor='bg-hana-button'
-            >
-              변경
-            </Button>
+            <div className='flex flex-col gap-2 px-3'>
+              <Button
+                type='reset'
+                className='text-base text-white rounded font-[400] px-5 border border-hana-buttom'
+                bgColor='bg-hana-button'
+                onClick={() => setIsEdit(false)}
+              >
+                취소
+              </Button>
+              <Button
+                type='submit'
+                className='text-base text-white rounded font-[400] px-5 border border-hana-button'
+                bgColor='bg-hana-button'
+              >
+                변경
+              </Button>
+            </div>
           </div>
         </form>
       ) : (
