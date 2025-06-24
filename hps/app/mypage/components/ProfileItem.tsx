@@ -17,7 +17,7 @@ type Props = {
 export default function ProfileItem({ id, label, fname, value }: Props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
-  const [errorMessage, setErrorMessage] = useState(''); // 🔥 추가
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (formData: FormData) => {
     try {
