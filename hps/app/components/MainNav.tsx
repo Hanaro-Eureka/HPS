@@ -8,7 +8,7 @@ export default function MainBar() {
   const router = useRouter();
   return (
     <>
-      <div className='flex justify-between mb-8'>
+      <div className='flex justify-between'>
         <div className='text-2xl font-[600]'>하나의 완벽한 비서</div>
         <Button bgColor='#E4F4F1' onClick={() => router.push('/mypage')}>
           <Image

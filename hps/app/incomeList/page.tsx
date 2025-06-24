@@ -1,3 +1,4 @@
+import HeaderLayout from '@/components/templates/HeaderLayout';
 import GoToIncomeButton from './components/GoToIncomeButton';
 import IncomeList from './components/IncomeList';
 import IncomeListMonthBar from './components/IncomeListMonthBar';
@@ -17,7 +18,7 @@ export default async function incomePage({ searchParams }: Props) {
   const selectedMonth = searchParams1.month ?? thisMonth;
 
   return (
-    <>
+    <HeaderLayout>
       <div className='mt-8'>
         <IncomeListMonthBar />
         <div className='border p-1 rounded-3xl [box-shadow:var(--shadow-taxbox)] mt-5 mb-5'>
@@ -37,6 +38,6 @@ export default async function incomePage({ searchParams }: Props) {
       <div className='flex justify-center mt-5 mb-10'>
         <GoToIncomeButton />
       </div>
-    </>
+    </HeaderLayout>
   );
 }
