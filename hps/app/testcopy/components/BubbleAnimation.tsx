@@ -13,6 +13,10 @@ type Props = {
     duration: number;
     delay: number;
   };
+  position: {
+    top: string;
+    left: string;
+  };
 };
 
 export default function BubbleAnimation({
@@ -20,6 +24,7 @@ export default function BubbleAnimation({
   color,
   size,
   anim,
+  position,
 }: Props) {
   return (
     <motion.div
@@ -31,22 +36,21 @@ export default function BubbleAnimation({
         ease: 'easeInOut',
       }}
       className={cn(
-        'absolute rounded-full flex items-center justify-center text-center',
-        color,
+        'absolute rounded-full flex items-center justify-center text-center text-black font-semibold',
         size
       )}
-      //       style={{
-      //         backdropFilter: 'blur(10px)', // 흐림 처리
-      //         WebkitBackdropFilter: 'blur(10px)',
-      //         border: '1px solid rgba(255, 255, 255, 0.2)', // 유리 테두리 효과
-      //         boxShadow: `
-      //   0 2px 4px rgba(0, 0, 0, 0.1),
-      //   0 4px 8px rgba(0, 0, 0, 0.06),
-      //   inset 0 1px 2px rgba(255, 255, 255, 0.15)
-      // `,
-      //       }}
+      style={{
+        background: `radial-gradient(circle at 40% 40%, white 10%, ${color})`,
+        boxShadow: `
+            inset 0 -4px 6px rgba(0, 0, 0, 0.15),
+            inset 0 2px 4px rgba(255, 255, 255, 0.25),
+            0 4px 10px rgba(0, 0, 0, 0.08)
+          `,
+        top: position.top,
+        left: position.left,
+      }}
     >
-      <span className='text-xl font-[600]'>{category}</span>
+      <span className='z-10 text-sm'>{category}</span>
     </motion.div>
   );
 }
