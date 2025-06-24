@@ -53,7 +53,7 @@ export default function ConsumStar({ salaryList }: Props) {
           alt='소비율 캐릭터'
           width={131}
           height={160}
-          className='mt-25'
+          className='mt-12'
         />
       )}
     </div>

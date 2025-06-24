@@ -37,11 +37,13 @@ export default async function Consumption() {
         <ConsumptionGraph salary={monthlySalary} />
         <ConsumptionRatio />
         <ConsumptionRateText salaryList={allSalaryList} />
-        <ConsumStar salaryList={allSalaryList} />
+        <section className='mb-12 flex flex-col gap-8'>
+          <ConsumStar salaryList={allSalaryList} />
 
-        <div className='mt-10 flex justify-center'>
-          <GoSpendButton />
-        </div>
+          <div className='flex justify-center'>
+            <GoSpendButton />
+          </div>
+        </section>
       </section>
     </HeaderLayout>
   );
