@@ -2,6 +2,7 @@
 
 import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
+import ToastMsg from '@/components/molcules/ToastMsg';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -9,9 +10,12 @@ import { changePassword } from '@/lib/actions/users';
 
 export default function ChangePassword() {
   const [isEdit, setIsEdit] = useState(false);
-  const [message, setMessage] = useState('');
-  const { data: session } = useSession();
+  const [toast, setToast] = useState<{
+    message: string;
+    type?: 'error' | 'success';
+  } | null>(null);
 
+  const { data: session } = useSession();
   const userId = session?.user?.id;
   if (!userId) return null;
 
@@ -20,29 +24,48 @@ export default function ChangePassword() {
     const currentPassword = formData.get('currentPassword')?.toString() || '';
 
     if (newPassword.length < 6) {
-      setMessage('새 비밀번호는 6자 이상이어야 합니다!');
-      return;
-    }
-    if (newPassword === currentPassword) {
-      setMessage('새 비밀번호는 기존 비밀번호와 달라야 합니다!');
+      setToast({
+        message: '새 비밀번호는 6자 이상이어야 합니다!',
+        type: 'error',
+      });
       return;
     }
 
-    try {
-      await changePassword(formData);
-      setMessage('비밀번호가 성공적으로 변경되었습니다!');
-      setIsEdit(false);
-    } catch (err) {
-      if (err instanceof Error) {
-        setMessage(err.message);
-      } else {
-        setMessage('비밀번호 변경 중 알 수 없는 오류가 발생했습니다.');
-      }
+    if (newPassword === currentPassword) {
+      setToast({
+        message: '새 비밀번호는 기존 비밀번호와 달라야 합니다!',
+        type: 'error',
+      });
+      return;
     }
+
+    const result = await changePassword(formData);
+
+    if (!result.success) {
+      setToast({
+        message: result.message || '비밀번호 변경에 실패했습니다.',
+        type: 'error',
+      });
+      return;
+    }
+
+    setToast({
+      message: '비밀번호가 성공적으로 변경되었습니다!',
+      type: 'success',
+    });
+    setIsEdit(false);
   };
 
   return (
     <div className='w-full max-w-sm mt-3'>
+      {toast && (
+        <ToastMsg
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+
       {isEdit ? (
         <form action={handleSubmit} className='flex flex-col gap-2'>
           <input type='hidden' name='userId' value={userId} />
@@ -95,12 +118,6 @@ export default function ChangePassword() {
             width={6}
             height={11}
           />
-        </div>
-      )}
-
-      {message && (
-        <div className='text-sm text-center text-hana-green font-medium my-2'>
-          {message}
         </div>
       )}
     </div>
