@@ -60,16 +60,29 @@ export const updateUserField = async (formData: FormData) => {
 
   if (field === 'birthDate') {
     const parsed = value.replace(/-/g, '');
+
     if (!/^\d{8}$/.test(parsed)) {
       return {
         success: false,
         message: '생년월일은 YYYYMMDD 형식으로 입력되어야 합니다.',
       };
     }
+
+    const year = Number(parsed.slice(0, 4));
+    const month = Number(parsed.slice(4, 6)) - 1;
+    const day = Number(parsed.slice(6, 8));
+
+    const birthDate = new Date(year, month, day);
+    const today = new Date();
+
+    if (birthDate > today) {
+      return {
+        success: false,
+        message: '생년월일은 미래 날짜일 수 없습니다.',
+      };
+    }
   }
-
   const parsedValue = field === 'birthDate' ? value.replace(/-/g, '') : value;
-
   try {
     await prisma.user.update({
       where: { id },
@@ -129,6 +142,7 @@ export async function changePassword(formData: FormData) {
 
     return { success: true };
   } catch (err) {
+    console.log(err);
     return { success: false, message: '비밀번호 변경 중 오류가 발생했습니다.' };
   }
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -29,13 +30,26 @@ export default function ToastMsg({
   if (!show) return null;
 
   const baseStyle =
-    'fixed bottom-5 left-1/2 transform -translate-x-1/2 px-4 py-2 rounded-xl text-white shadow-lg z-50 text-sm';
+    'fixed bottom-5 left-0 right-0 mx-4  h-14 py-2 rounded-lg shadow-lg  z-50 whitespace-nowrap flex items-center ';
+
+  //text-center max-w-sm sm:mx-auto justify-center
 
   const typeStyles: Record<typeof type, string> = {
-    success: 'bg-hana-chartchat',
-    error: 'bg-chart-overflow',
-    info: 'bg-hana-hanaman',
+    success: 'bg-button-lightgray',
+    error: 'bg-button-lightgray',
+    info: 'bg-button-lightgray',
   };
 
-  return <div className={cn(baseStyle, typeStyles[type])}>{message}</div>;
+  return (
+    <div className={cn(baseStyle, typeStyles[type])}>
+      <Image
+        src={'/svgs/ic_toastWarning.svg'}
+        alt='토스트메세지'
+        width={20}
+        height={20}
+        className='ml-1'
+      />{' '}
+      <div className='text-sm font-[500] ml-2'>{message}</div>
+    </div>
+  );
 }
