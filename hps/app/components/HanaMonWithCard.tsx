@@ -26,13 +26,11 @@ export default function HanaMonWithCard({ salaryList }: Props) {
           ? 'Yellow'
           : 'Green'
         : 'Red'
-      : 'none';
+      : 'Red';
   const hanamon = `/hanaMonWith${color}Card.svg`;
   return (
     <>
-      <div className='mt-5'>
-        <Image src={hanamon} alt={`${hanamon}`} width={168} height={205} />
-      </div>
+      <Image src={hanamon} alt={`${hanamon}`} width={120} height={120} />
     </>
   );
 }

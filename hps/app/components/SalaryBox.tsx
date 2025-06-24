@@ -8,7 +8,7 @@ export default function SalaryBox() {
   const salaryList = use(getLastIncome(1));
   return (
     <>
-      <div className='flex mx-10'>
+      <div className='flex mx-4 mt-16 gap-3'>
         <SalarySpendButton lastSalary={sumOfSalaries} />
         <HanaMonWithCard salaryList={salaryList} />
       </div>
