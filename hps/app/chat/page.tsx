@@ -47,7 +47,7 @@ export default function Chat() {
       });
 
       if (!res.ok) {
-        console.error('❌ 프롬프트 생성 실패');
+        console.error('프롬프트 생성 실패');
         setIsSubmitted(false);
         return;
       }
@@ -58,7 +58,7 @@ export default function Chat() {
       // 새 입력칸을 위한 빈 값 추가
       setInputs((prev) => [...prev, { item: '', price: '' }]);
     } catch (error) {
-      console.error('🚨 에러 발생:', error);
+      console.error('에러 발생:', error);
     } finally {
       setIsSubmitted(false);
     }
@@ -78,7 +78,7 @@ export default function Chat() {
 
   return (
     <HeaderLayout title='별비서'>
-      <div className='flex flex-col w-full max-w-md py-5 mx-auto gap-6'>
+      <div className='flex flex-col w-full max-w-md py-5 mx-auto gap-6 first:border-t first:border-gray-300'>
         {isSubmitted && <Spinner />}
 
         <div className='flex flex-col gap-6 mb-4 pl-4'>
@@ -88,6 +88,7 @@ export default function Chat() {
             return (
               <div key={message.id} className='flex flex-col gap-6'>
                 <StarChat text={message.content.replaceAll('*', '')} />
+
                 <div className='flex items-end justify-end pr-4'>
                   <UserChat
                     item={inputs[idx]?.item || ''}
