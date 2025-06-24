@@ -1,40 +1,77 @@
 'use client';
 
+import StarChat from '@/app/chat/components/StarChat';
+import UserChat from '@/app/chat/components/UserChat';
+import Text from '@/components/atoms/Text';
 import { useChat } from '@ai-sdk/react';
+import { useState } from 'react';
 
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [item, setItem] = useState('');
+  const [price, setPrice] = useState('');
+  const { messages, append } = useChat({
+    sendExtraMessageFields: true,
     initialMessages: [
       {
         id: 'first message',
         role: 'assistant',
-        content: 'Hello,i’m SLML 입니다.',
+        content: '별비서가 언제살지 알려줄게요!',
       },
     ],
   });
 
-  return (
-    <div className='flex flex-col w-full max-w-md py-24 mx-auto stretch'>
-      {messages.map((message) => (
-        <div key={message.id} className='whitespace-pre-wrap'>
-          {message.role === 'user' ? 'User: ' : 'AI: '}
-          {message.parts.map((part, i) => {
-            switch (part.type) {
-              case 'text':
-                return <div key={`${message.id}-${i}`}>{part.text}</div>;
-            }
-          })}
-        </div>
-      ))}
+  const handleCustomSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    try {
+      const res = await fetch('/api/prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ item, price }),
+      });
 
-      <form onSubmit={handleSubmit}>
-        <input
-          className='fixed dark:bg-zinc-900 bottom-0 w-full max-w-md p-2 mb-8 border border-zinc-300 dark:border-zinc-800 rounded shadow-xl'
-          value={input}
-          placeholder='Say something...'
-          onChange={handleInputChange}
-        />
-      </form>
+      if (!res.ok) {
+        console.error('❌ 프롬프트 생성 실패');
+        setIsSubmitted(false);
+        return;
+      }
+
+      const { prompt } = await res.json();
+      await append({ role: 'user', content: prompt });
+
+      setItem('');
+      setPrice('');
+    } catch (error) {
+      console.error('🚨 에러 발생:', error);
+    } finally {
+      setIsSubmitted(false);
+    }
+  };
+  return (
+    <div className='flex flex-col w-full max-w-md py-5 mx-auto gap-6'>
+      <div className='flex items-center'>
+        <Text className='text-2xl font-[600]'>bbs</Text>
+      </div>
+      <div className='flex flex-col gap-6 mb-4 pl-4'>
+        {messages
+          .filter((message) => message.role !== 'user')
+          .map((message) => (
+            <div key={`${message.id}`} className='flex flex-col gap-6'>
+              <StarChat text={message.content.replaceAll('*', '')} />
+              <div className='flex items-end justify-end pr-4'>
+                <UserChat
+                  item={item}
+                  price={price}
+                  isSubmitted={isSubmitted}
+                  onSubmit={handleCustomSubmit}
+                  onChangeItem={(value) => setItem(value)}
+                  onChangePrice={(value) => setPrice(value)}
+                />
+              </div>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }

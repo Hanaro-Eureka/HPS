@@ -238,3 +238,21 @@ export const getLastYearNextMonthSalarySum = async (userId: number) => {
 
   return salaries.reduce((sum, s) => sum + s.amount, 0);
 };
+export const getRecent6MonthsSalarySum = async (userId: number) => {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), now.getMonth() - 6, 1); // 3개월 전 1일 (3월 1일)
+  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999); // 지난 달 말일 (5월 31일)
+
+  const salaries = await prisma.salary.findMany({
+    where: {
+      userId,
+      depositDate: {
+        gte: start,
+        lte: end,
+      },
+    },
+    select: { amount: true },
+  });
+
+  return salaries.reduce((sum, s) => sum + s.amount, 0);
+};
