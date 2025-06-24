@@ -13,7 +13,7 @@ export default function GoToIncomeListButton() {
       bgColor='bg-button-lightgray'
       onClick={() => router.push('/incomList')}
     >
-      수입내역 보러가기
+      수입 내역 보러가기
     </Button>
   );
 }
