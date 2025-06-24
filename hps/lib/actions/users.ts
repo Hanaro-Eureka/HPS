@@ -12,6 +12,7 @@ export const getUserInfo = async (id: number) => {
       loginId: true,
       birthDate: true,
       id: true,
+      businessCode: true,
     },
   });
   if (!user) throw new Error('사용자 정보를 찾을 수 없음.');

@@ -3,6 +3,7 @@
 import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import Text from '@/components/atoms/Text';
+import { businessCodeData } from '@/constants/businessCodeData';
 import Image from 'next/image';
 import { useState } from 'react';
 import { updateUserField } from '@/lib/actions/users';
@@ -10,11 +11,11 @@ import { updateUserField } from '@/lib/actions/users';
 type Props = {
   id: number;
   label: string;
-  fname: 'name' | 'loginId' | 'birthDate';
-  value: string;
+  fname: 'businessCode';
+  value: string | null;
 };
 
-export default function ProfileItem({ id, label, fname, value }: Props) {
+export default function BusinessCode({ id, label, fname, value }: Props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentValue, setCurrentValue] = useState(value);
   const [errorMessage, setErrorMessage] = useState('');
@@ -35,25 +36,8 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
     }
   };
 
-  const isName = fname === 'name';
-  const isBirthDate = fname === 'birthDate';
-
-  const formatBirthDate = (raw: string) => {
-    // YYYY-MM-DD 처리
-    const isoMatch = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (isoMatch) {
-      const [, yyyy, mm, dd] = isoMatch;
-      return `${yyyy}. ${mm}. ${dd}`;
-    }
-
-    // YYYYMMDD 처리
-    const compactMatch = raw.match(/^(\d{4})(\d{2})(\d{2})$/);
-    if (compactMatch) {
-      const [, yyyy, mm, dd] = compactMatch;
-      return `${yyyy}. ${mm}. ${dd}`;
-    }
-
-    return raw;
+  const getLabelByCode = (code: string | null) => {
+    return businessCodeData.find((item) => item.code === code)?.label || '-';
   };
 
   return (
@@ -66,29 +50,31 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
           {label}
         </Text>
 
-        {isEdit && !isName ? (
+        {isEdit ? (
           <form
             action={handleSubmit}
             className='flex flex-row justify-end items-center w-full'
           >
             <input type='hidden' name='id' value={id} />
             <input type='hidden' name='field' value={fname} />
-            {isBirthDate ? (
-              <Input
-                type='date'
-                name='value'
-                defaultValue={currentValue}
-                autoFocus
-                className='w-full text-base text-black-font font-[400] border border-gray-300 rounded mr-5 text-right'
-              />
-            ) : (
-              <Input
-                name='value'
-                defaultValue={currentValue}
-                autoFocus
-                className='w-full text-base text-black-font font-[400] border border-gray-300 rounded mr-5 text-right'
-              />
-            )}
+
+            <Input
+              as='select'
+              name='value'
+              defaultValue={currentValue ?? ''}
+              autoFocus
+              className='w-full text-base text-black-font font-[400] border border-gray-300 rounded mr-5 text-right'
+            >
+              <option value='' disabled>
+                선택하세요
+              </option>
+              {businessCodeData.map(({ code, label }) => (
+                <option key={code} value={code}>
+                  {label}
+                </option>
+              ))}
+            </Input>
+
             <Button
               bgColor='bg-hana-button'
               className='text-white rounded p-0.5 shrink-0 font-[400]'
@@ -100,23 +86,20 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
         ) : (
           <div
             onClick={() => {
-              if (!isName) setIsEdit(true);
+              setIsEdit(true);
             }}
             className='flex justify-end items-center gap-1 pr-5 cursor-pointer w-full'
           >
             <Text className='text-base pr-4 text-black-font font-[400]' tag='p'>
-              {isBirthDate
-                ? formatBirthDate(currentValue)
-                : currentValue || '-'}
+              {getLabelByCode(currentValue)}
             </Text>
-            {!isName && (
-              <Image
-                src='/svgs/ic_profile_change.svg'
-                alt='수정'
-                width={6}
-                height={11}
-              />
-            )}
+
+            <Image
+              src='/svgs/ic_profile_change.svg'
+              alt='수정'
+              width={6}
+              height={11}
+            />
           </div>
         )}
       </div>

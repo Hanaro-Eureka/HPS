@@ -4,6 +4,7 @@ import Button from '@/components/atoms/Button';
 import Title from '@/components/atoms/Title';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
+import BusinessCode from './BusinessCode';
 import ChangePassword from './ChangePassword';
 import ProfileItem from './ProfileItem';
 
@@ -12,9 +13,16 @@ type Props = {
   loginId: string;
   birthDate: string;
   id: number;
+  businessCode: string | null;
 };
 
-export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
+export default function MyPageClient({
+  id,
+  name,
+  loginId,
+  birthDate,
+  businessCode,
+}: Props) {
   return (
     <div className='w-full flex flex-col items-center text-black-font pt-10 px-5 py-5'>
       <Title tag='h1' className='text-lg font-[500] '>
@@ -38,6 +46,12 @@ export default function MyPageClient({ id, name, loginId, birthDate }: Props) {
           label='생년월일'
           fname='birthDate'
           value={birthDate}
+          id={id}
+        />
+        <BusinessCode
+          label='직종코드'
+          fname='businessCode'
+          value={businessCode}
           id={id}
         />
       </div>

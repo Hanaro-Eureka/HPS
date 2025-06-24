@@ -62,14 +62,23 @@ export default function ChangePassword() {
                 className='text-base text-black-font font-[400] border border-gray-300 rounded'
               />
             </div>
-
-            <Button
-              type='submit'
-              className='text-white rounded p-5'
-              bgColor='bg-hana-button'
-            >
-              변경
-            </Button>
+            <div className='flex flex-col gap-2 px-3'>
+              <Button
+                type='reset'
+                className='text-base text-white rounded font-[400] px-5 border border-hana-buttom'
+                bgColor='bg-hana-button'
+                onClick={() => setIsEdit(false)}
+              >
+                취소
+              </Button>
+              <Button
+                type='submit'
+                className='text-base text-white rounded font-[400] px-5 border border-hana-button'
+                bgColor='bg-hana-button'
+              >
+                변경
+              </Button>
+            </div>
           </div>
         </form>
       ) : (
