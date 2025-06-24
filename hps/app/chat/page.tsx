@@ -7,7 +7,8 @@ import { useState } from 'react';
 
 export default function Chat() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-
+  const [item, setItem] = useState('');
+  const [price, setPrice] = useState('');
   const { messages, append } = useChat({
     sendExtraMessageFields: true,
     initialMessages: [
@@ -19,21 +20,33 @@ export default function Chat() {
     ],
   });
 
-  const [item, setItem] = useState('');
-  const [price, setPrice] = useState('');
-
   const handleCustomSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
+    try {
+      const res = await fetch('/api/prompt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ item, price }),
+      });
 
-    const content = `${price}원 짜리 ${item}`;
-    await append({ role: 'user', content });
+      if (!res.ok) {
+        console.error('❌ 프롬프트 생성 실패');
+        setIsSubmitted(false);
+        return;
+      }
 
-    setItem('');
-    setPrice('');
-    setIsSubmitted(false);
+      const { prompt } = await res.json();
+      await append({ role: 'user', content: prompt });
+
+      setItem('');
+      setPrice('');
+    } catch (error) {
+      console.error('🚨 에러 발생:', error);
+    } finally {
+      setIsSubmitted(false);
+    }
   };
-
   return (
     <div className='flex flex-col w-full max-w-md py-30 mx-auto gap-6'>
       <div>{/* <Text className='text-2xl font-[600]'>didi</Text> */}</div>
