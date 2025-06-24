@@ -38,6 +38,24 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
   const isName = fname === 'name';
   const isBirthDate = fname === 'birthDate';
 
+  const formatBirthDate = (raw: string) => {
+    // YYYY-MM-DD 처리
+    const isoMatch = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (isoMatch) {
+      const [, yyyy, mm, dd] = isoMatch;
+      return `${yyyy}. ${mm}. ${dd}`;
+    }
+
+    // YYYYMMDD 처리
+    const compactMatch = raw.match(/^(\d{4})(\d{2})(\d{2})$/);
+    if (compactMatch) {
+      const [, yyyy, mm, dd] = compactMatch;
+      return `${yyyy}. ${mm}. ${dd}`;
+    }
+
+    return raw;
+  };
+
   return (
     <div className='w-full flex flex-col gap-1 pl-8 my-1.5 pt-3 pb-4'>
       <div className='flex flex-row justify-between items-center'>
@@ -87,7 +105,9 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
             className='flex justify-end items-center gap-1 pr-5 cursor-pointer w-full'
           >
             <Text className='text-base pr-4 text-black-font font-[400]' tag='p'>
-              {currentValue || '-'}
+              {isBirthDate
+                ? formatBirthDate(currentValue)
+                : currentValue || '-'}
             </Text>
             {!isName && (
               <Image
