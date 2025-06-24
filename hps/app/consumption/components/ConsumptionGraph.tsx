@@ -4,7 +4,7 @@ import {
   calculateSpendingStatus,
   filterThisMonthData,
   getCurrentMonth,
-} from '../../../utils/spending';
+} from '@/utils/spending';
 
 type Props = {
   salary: number;

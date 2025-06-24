@@ -1,8 +1,8 @@
+import { getStartAndEndOfMonth } from '@/utils/spending';
 import {
   getMonthlySalary,
   getSalariesWithUserId,
 } from '@/lib/actions/salary-actions';
-import { getStartAndEndOfMonth } from '../spendList/utils/spending';
 
 export const getFirstDayOfThisMonth = () => {
   const now = new Date();
