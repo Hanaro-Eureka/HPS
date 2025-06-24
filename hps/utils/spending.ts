@@ -4,6 +4,9 @@ export const formatDate = (dateStr: string): string =>
 export const formatTime = (dateStr: string): string =>
   `${dateStr.slice(8, 10)}:${dateStr.slice(10, 12)}`;
 
+export const formatSpendTime = (dateStr: string): string =>
+  `${dateStr.slice(9, 11)}:${dateStr.slice(11, 13)}`;
+
 export const getCurrentMonth = (): number => new Date().getMonth() + 1;
 
 export function getStartAndEndOfMonth(date: Date) {
@@ -50,6 +53,16 @@ export const groupByDate = <
     return acc;
   }, {});
 };
+
+export const groupByDateInSpendList = <T extends { trans_date: string }>(
+  data: T[]
+): Record<string, T[]> =>
+  data.reduce((acc: Record<string, T[]>, cur: T) => {
+    const key = cur.trans_date.slice(0, 8);
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(cur);
+    return acc;
+  }, {});
 
 export const calculateSpendingStatus = (
   salary: number,

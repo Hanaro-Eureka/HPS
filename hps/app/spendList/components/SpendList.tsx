@@ -1,34 +1,34 @@
+'use client';
+
+import { getCategoryIcon } from '@/app/utils/getCategoryIcon';
 import Text from '@/components/atoms/Text';
 import ListItem from '@/components/molcules/ListItem';
-import icons from '@/constants/categoryIcons';
 import { consumptionData } from '@/constants/consumptionData';
 import Image from 'next/image';
 import {
   filterThisMonthData,
   formatDate,
-  formatTime,
+  formatSpendTime,
   getCurrentMonth,
-  groupByDate,
+  groupByDateInSpendList,
 } from '../../../utils/spending';
 
 export default function SpendList() {
-  const currentMonth = getCurrentMonth();
-
   const thisMonthData = filterThisMonthData(
     consumptionData,
-    currentMonth,
+    getCurrentMonth(),
     'trans_date'
   );
 
-  const grouped = groupByDate(thisMonthData);
+  const grouped = groupByDateInSpendList(thisMonthData);
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
 
   return (
-    <div className='flex overflow-y-auto mt-6 ml-1 pr-1'>
+    <div className='flex flex-col overflow-y-auto w-full h-[calc(100vh-160px)] py-15'>
       <div className='flex flex-col gap-4'>
         {sortedDates.map((date) => (
           <div key={date}>
-            <Text className='text-sm font-[500] mb-1.5 text-gray-time'>
+            <Text className='text-sm font-[500] ml-6 text-gray-time'>
               {formatDate(date)}
             </Text>
             {grouped[date]
@@ -38,13 +38,13 @@ export default function SpendList() {
                   key={idx}
                   icon={
                     <Image
-                      src={icons[item.trans_category as keyof typeof icons]}
+                      src={getCategoryIcon(item.trans_category)}
                       alt={item.trans_category}
                       className='w-9 h-9'
                     />
                   }
                   label={item.merchant_name}
-                  time={formatTime(item.trans_date)}
+                  time={formatSpendTime(item.trans_date)}
                   amount={-item.trans_amt}
                 />
               ))}
