@@ -105,11 +105,11 @@ export default function SignUpPage() {
           />
         </div>
 
-        <div className='flex flex-col items-center justify-center gap-4 w-full mt-24'>
+        <div className='flex flex-col items-center justify-center gap-4 mt-24 w-full'>
           <Button
             type='submit'
             bgColor='bg-hana-button'
-            className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base'
+            className='w-full h-12 px-5 text-white rounded-lg font-[500] text-base'
           >
             회원가입
           </Button>

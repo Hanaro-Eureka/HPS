@@ -56,7 +56,7 @@ export default function MyPageClient({
         </div>
         <Button
           bgColor='bg-hana-button'
-          className='w-full h-14 px-5 mt-31 text-white rounded-lg font-[500] text-base'
+          className='w-full h-12 px-5 mt-31 text-white rounded-lg font-[500] text-base'
           onClick={() => signOut({ callbackUrl: '/login' })}
         >
           로그아웃

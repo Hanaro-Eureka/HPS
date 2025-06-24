@@ -69,7 +69,7 @@ export default function ProfileItem({ id, label, fname, value }: Props) {
         {isEdit && !isName ? (
           <form
             action={handleSubmit}
-            className='flex flex-row justify-end items-center w-full'
+            className='flex justify-end items-center w-full'
           >
             <input type='hidden' name='id' value={id} />
             <input type='hidden' name='field' value={fname} />
