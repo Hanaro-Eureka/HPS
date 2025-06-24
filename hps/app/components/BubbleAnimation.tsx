@@ -35,6 +35,16 @@ export default function BubbleAnimation({
         color,
         size
       )}
+      style={{
+        backdropFilter: 'blur(10px)', // 흐림 처리
+        WebkitBackdropFilter: 'blur(10px)',
+        border: '1px solid rgba(255, 255, 255, 0.2)', // 유리 테두리 효과
+        boxShadow: `
+  0 2px 4px rgba(0, 0, 0, 0.1),
+  0 4px 8px rgba(0, 0, 0, 0.06),
+  inset 0 1px 2px rgba(255, 255, 255, 0.15)
+`,
+      }}
     >
       <span className='text-xl font-[600]'>{category}</span>
     </motion.div>
