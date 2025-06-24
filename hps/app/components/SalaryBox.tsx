@@ -11,7 +11,6 @@ export default function SalaryBox() {
       <div className='flex ml-10'>
         <SalarySpendButton lastSalary={sumOfSalaries} />
         <HanaMonWithCard salaryList={salaryList} />
-        {/* <HanaMonWithCard hanaMonColor={colorClass} /> */}
       </div>
     </>
   );
