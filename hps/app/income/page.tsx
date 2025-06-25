@@ -6,6 +6,8 @@ import {
   getLastYearNextMonthSalarySum,
   getRecent3MonthsSalarySum,
   getRecent6MonthsSalarySum,
+  getThisMonthUntilTodaySalarySum,
+  getLastYearSameMonthSalarySum,
 } from '@/lib/actions/salary-actions';
 import { auth } from '@/lib/auth';
 import AdviceMessage from './components/AdviceMessage';
@@ -22,14 +24,20 @@ export default async function Income() {
     recent3MonthsSum,
     lastYear3MonthsSum,
     recent6MonthsSum,
+    thisMonthSum,
+    lastYearThisMonthsum,
   ] = await Promise.all([
     getLastYearNextMonthSalarySum(userId),
     getRecent3MonthsSalarySum(userId),
     getLastYearSamePeriodSalarySum(userId),
     getRecent6MonthsSalarySum(userId),
+    getThisMonthUntilTodaySalarySum(userId),
+    getLastYearSameMonthSalarySum(userId),
   ]);
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;
-  const predictedWithGrowth = lastYearMonthSum * growthRate;
+  const predictedNextMonthWithGrowth = lastYearMonthSum * growthRate;
+  const predictedThisMonthWithGrouth = lastYearThisMonthsum * growthRate;
+
   return (
     <HeaderLayout title='수입 관리'>
       <div className='flex flex-col w-full'>
@@ -42,15 +50,15 @@ export default async function Income() {
         </Text>
         <div className='bg-white mt-8'>
           <ProportionalBarGraph
-            currentAmount={recent6MonthsSum / 6}
-            predictedAmount={predictedWithGrowth}
+            currentAmount={thisMonthSum}
+            predictedAmount={predictedThisMonthWithGrouth}
           />
         </div>
         <div className='mt-8'></div>
         <div className='w-full bg-white p-6'>
           <AdviceMessage
             currentAmount={recent6MonthsSum / 6}
-            predictedAmount={predictedWithGrowth}
+            predictedAmount={predictedThisMonthWithGrouth}
           />
         </div>
         <div className='mt-8 flex justify-center'>
