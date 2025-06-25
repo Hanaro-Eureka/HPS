@@ -24,7 +24,7 @@ export default function NotFound() {
 
       <Button
         bgColor='white'
-        className='mt-16 font-[500] text-hana-logo border border-hana-logo py-3 px-8'
+        className='text-base font-[500] px-9 py-3 rounded-2xl bg-button-lightgray w-56 mt-16'
         onClick={() => router.push('/')}
       >
         메인으로
