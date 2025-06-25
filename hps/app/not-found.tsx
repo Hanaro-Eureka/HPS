@@ -16,7 +16,7 @@ export default function NotFound() {
         </div>
       </section>
       <Image
-        src={'/svgs/404hanaMon.svg'}
+        src={'/images/img_404hanaMon.svg'}
         alt='404hanaMon'
         width={207}
         height={193}

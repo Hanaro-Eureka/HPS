@@ -88,7 +88,7 @@ export default function ProportionalBarGraph({
       <div className='flex flex-col items-center justify-center w-18'>
         <Image
           src={'/svgs/ic_question.svg'}
-          alt='궁금해'
+          alt='다음 달 예측 수입 보기 버튼'
           width={30}
           height={50}
         />

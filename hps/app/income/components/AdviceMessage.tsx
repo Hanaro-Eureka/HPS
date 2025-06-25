@@ -30,7 +30,7 @@ export default function AdviceMessage({
     <div className='text-lg font-[500] justify-center'>
       {diffRate > 0.05 ? (
         <div className='flex flex-col items-center'>
-          <Image src='/svgs/image_86.svg' alt='기뻐' width={60} height={60} />
+          <Image src='/images/img_good.svg' alt='green-card' width={60} height={60} />
           <Text className='text-black-font mt-1'>
             {thisMonthLabel} 수입이 최근 6개월 평균 수입보다
           </Text>
@@ -44,7 +44,7 @@ export default function AdviceMessage({
         </div>
       ) : diffRate < -0.05 ? (
         <div className='flex flex-col items-center'>
-          <Image src='/svgs/image_88.svg' alt='슬퍼' width={50} height={50} />
+          <Image src='/images/img_sad.svg' alt='red-card' width={50} height={50} />
           <Text className='text-black-font mt-1'>
             {thisMonthLabel} 수입이 최근 6개월 평균 수입보다
           </Text>
@@ -58,7 +58,7 @@ export default function AdviceMessage({
         </div>
       ) : (
         <div className='flex flex-col items-center'>
-          <Image src='/svgs/image_118.svg' alt='슬퍼' width={50} height={50} />
+          <Image src='/images/img_soso.svg' alt='yellow-card' width={50} height={50} />
           <Text className='text-black-font mt-1'>
             소득이 안정적으로 유지되고 있어요.
           </Text>
