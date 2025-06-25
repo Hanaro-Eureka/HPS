@@ -49,7 +49,6 @@ export default function LoginPage() {
           onClose={() => setToast(null)}
         />
       )}
-
       <form onSubmit={Login}>
         <div className='flex flex-col w-full items-center justify-start gap-16 px-8 py-40'>
           <div className='flex flex-col w-full items-center justify-center gap-8'>

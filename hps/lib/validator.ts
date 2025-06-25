@@ -40,6 +40,7 @@ export const signUpValidator = z
     id: z.string().min(1, '아이디를 입력해주세요.'),
     password: z.string().min(6, '비밀번호는 6자 이상이어야 합니다.'),
     birth: z.string().min(1, '생년월일을 입력해주세요.'),
+    businessCode: z.string().min(1, '업종을 선택해주세요'),
   })
   .superRefine(async ({ id }, ctx) => {
     const user = await getUser(id);
