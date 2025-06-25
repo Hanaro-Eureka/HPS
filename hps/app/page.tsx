@@ -11,8 +11,10 @@ export default function Home() {
         <div className='flex items-center justify-center'>
           <SalaryBox />
         </div>
-        <div className='flex flex-1 items-end justify-center pt-3 pb-24'>
-          <SalaryCircle />
+        <div className='flex pt-3 pb-24'>
+          <div className='flex h-[calc(100vh-400px)]'>
+            <SalaryCircle />
+          </div>
         </div>
       </div>
       <BottomTabBar />
