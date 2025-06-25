@@ -39,10 +39,10 @@ export default function LoginPage() {
 
   return (
     <form onSubmit={Login}>
-      <div className='flex flex-col w-full items-center justify-start gap-16 px-8 py-40'>
-        <div className='flex flex-col w-full items-center justify-center gap-8'>
+      <div className='flex flex-col w-full items-center gap-16 px-8 pt-40'>
+        <div className='flex flex-col w-full items-center justify-center gap-6'>
           <Text className=' text-xl font-[300] text-black-font'>로그인</Text>
-          <Text className=' text-center text-black-font font-[500]'>
+          <Text className=' text-center text-xl text-black-font font-[500]'>
             아이디와 비밀번호를
             <br />
             입력해 주세요
@@ -79,7 +79,7 @@ export default function LoginPage() {
           <Button
             type='submit'
             bgColor='bg-hana-button'
-            className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base'
+            className='w-full h-12 px-8 mt-39 text-white rounded-lg font-[500] text-base'
           >
             로그인
           </Button>

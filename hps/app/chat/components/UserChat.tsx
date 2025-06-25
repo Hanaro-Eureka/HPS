@@ -4,15 +4,17 @@ type Props = {
   item: string;
   price: string;
   isSubmitted?: boolean;
-  onChangeItem: (value: string) => void;
-  onChangePrice: (value: string) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onChangeItem?: (value: string) => void;
+  onChangePrice?: (value: string) => void;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+  disabled?: boolean;
 };
 
 export default function UserChat({
   item,
   price,
   isSubmitted,
+  disabled = false,
   onChangeItem,
   onChangePrice,
   onSubmit,
@@ -25,13 +27,15 @@ export default function UserChat({
           placeholder='구매할 물건'
           className='w-full rounded-lg px-1.5 py-1.5 border border-input-border bg-white text-xs font-[400]'
           value={item}
-          onChange={(e) => onChangeItem(e.target.value)}
+          disabled={disabled}
+          onChange={(e) => onChangeItem && onChangeItem(e.target.value)}
         />
         <input
           placeholder='가격'
+          disabled={disabled}
           className='w-full rounded-lg px-1.5 py-1.5 border border-input-border bg-white text-xs font-[400]'
           value={price}
-          onChange={(e) => onChangePrice(e.target.value)}
+          onChange={(e) => onChangePrice && onChangePrice(e.target.value)}
         />
         {!isSubmitted && ( // 전송 중이면 버튼 숨김
           <div className='flex justify-end'>

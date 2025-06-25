@@ -9,6 +9,7 @@ type Input = {
   id: string;
   password: string;
   birth: string;
+  businessCode: string;
 };
 
 export async function handleSignUp(input: Input) {
@@ -23,7 +24,7 @@ export async function handleSignUp(input: Input) {
     };
   }
 
-  const { name, id, birth, password } = result.data;
+  const { name, id, birth, password, businessCode } = result.data;
   const birthInt = birth.replace(/-/g, ''); // YYYYMMDD 형식으로 변환
 
   const hashed = await hash(password, 10);
@@ -34,6 +35,7 @@ export async function handleSignUp(input: Input) {
       loginId: id,
       birthDate: birthInt,
       password: hashed,
+      businessCode,
     },
   });
 
