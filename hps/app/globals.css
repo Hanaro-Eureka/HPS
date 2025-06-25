@@ -99,6 +99,7 @@ button:hover {
     --consumption-green: #5bcf46;
     --income-plus: #ee4266;
     --income-minus: #2195e8;
+    --modal-shadow: rgba(60, 60, 60, 0.6);
   }
 
   @theme inline {
@@ -134,6 +135,7 @@ button:hover {
     --color-consumption-green: var(--consumption-green);
     --color-income-plus: var(--income-plus);
     --color-income-minus: var(--income-minus);
+    --color-modal-shadow: var(--modal-shadow);
   }
 }
 
