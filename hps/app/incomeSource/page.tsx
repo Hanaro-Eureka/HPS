@@ -2,10 +2,13 @@ import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { getSalaryByUserId } from '@/lib/actions/salary-select-actions';
+import { auth } from '@/lib/auth';
 import IncomeSelectorSection from './components/IncomeSelectorSection';
 
 export default async function IncomeSource() {
-  const rawSalary = await getSalaryByUserId(1);
+  const session = await auth();
+  const userId = Number(session?.user?.id);
+  const rawSalary = await getSalaryByUserId(userId);
 
   const existingSalary = rawSalary
     .filter((s) => s.depositorName !== null)

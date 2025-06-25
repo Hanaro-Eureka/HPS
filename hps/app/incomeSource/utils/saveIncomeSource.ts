@@ -7,10 +7,12 @@ import {
   createIncomeSources,
   removeIncomeSources,
 } from '@/lib/actions/salary-select-actions';
+import { auth } from '@/lib/auth';
 import { parseKSTDateFromDtime } from './parseKSTDate';
 
 export async function saveIncomeSource(ids: (string | number)[]) {
-  const userId = 1; // TODO: 로그인 미구현 상태, 임시 고정
+  const session = await auth();
+  const userId = Number(session?.user?.id);
 
   const existing = await getSalaryThisYear(userId);
 
