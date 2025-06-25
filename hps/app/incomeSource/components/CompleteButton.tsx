@@ -6,15 +6,16 @@ import { saveIncomeSource } from '../utils/saveIncomeSource';
 
 type Props = {
   selectedIds: (string | number)[];
+  from: string;
 };
 
-export default function CompleteButton({ selectedIds }: Props) {
+export default function CompleteButton({ selectedIds, from }: Props) {
   const router = useRouter();
 
   const handleClick = async () => {
     await saveIncomeSource(selectedIds);
-    router.back();
-    
+    // router.back();
+    router.replace(`${from}?refresh=true`);
   };
 
   return (

@@ -1,6 +1,7 @@
 'use client';
 
 import { incomeData } from '@/constants/incomeData';
+import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { parseKSTDateFromDtime } from '../utils/parseKSTDate';
 import CompleteButton from './CompleteButton';
@@ -16,17 +17,18 @@ export default function IncomeSelectorSection({
     depositDate: Date;
   }[];
 }) {
+  const searchParams = useSearchParams();
+  const from = searchParams.get('from') || '/';
+
   const selectedIdsFromDB = incomeData
     .filter((item) => {
       const timestamp = parseKSTDateFromDtime(item.trans_dtime).getTime();
-
-      return existingSalary.some((s) => {
-        return (
+      return existingSalary.some(
+        (s) =>
           s.depositorName === item.trans_memo &&
           s.amount === item.trans_amt &&
           s.depositDate.getTime() === timestamp
-        );
-      });
+      );
     })
     .map((item) => item.id);
 
@@ -44,7 +46,7 @@ export default function IncomeSelectorSection({
         </section>
       </div>
       <section className='flex justify-center mt-28'>
-        <CompleteButton selectedIds={selectedIds} />
+        <CompleteButton selectedIds={selectedIds} from={from} />
       </section>
     </>
   );
