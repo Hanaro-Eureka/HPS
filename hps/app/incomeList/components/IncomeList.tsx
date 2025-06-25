@@ -4,6 +4,7 @@ import {
   getMonthlyIncomeWithUserId,
   getSalaryChangeFromLastMonth,
 } from '@/lib/actions/salary-actions';
+import { auth } from '@/lib/auth';
 import {
   formatDate,
   formatTime,
@@ -16,12 +17,14 @@ type Props = {
 };
 
 export default async function IncomeList({ month }: Props) {
+  const session = await auth();
+  const userId = Number(session?.user?.id);
   const thisYear = getThisYearMonth().slice(0, 4);
   const ym = `${thisYear}-${month.padStart(2, '0')}`;
 
   const [monthlyIncome, incomeChanges] = await Promise.all([
-    getMonthlyIncomeWithUserId(1, ym),
-    getSalaryChangeFromLastMonth(1, ym),
+    getMonthlyIncomeWithUserId(userId, ym),
+    getSalaryChangeFromLastMonth(userId, ym),
   ]);
 
   const grouped = groupByDate(monthlyIncome, 'depositDate');
