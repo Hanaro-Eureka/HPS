@@ -35,11 +35,9 @@ export default async function Income() {
     getLastYearSameMonthSalarySum(userId),
   ]);
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;
-  // console.log(growthRate);
   const predictedNextMonthWithGrowth = lastYearMonthSum * growthRate;
   const predictedThisMonthWithGrouth = lastYearThisMonthsum * growthRate;
 
-  console.log(recent6MonthsSum / 6, predictedThisMonthWithGrouth);
   return (
     <HeaderLayout title='수입 관리'>
       <div className='flex flex-col w-full'>
