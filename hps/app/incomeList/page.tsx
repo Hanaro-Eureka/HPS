@@ -1,4 +1,5 @@
 import HeaderLayout from '@/components/templates/HeaderLayout';
+import { auth } from '@/lib/auth';
 import GoToIncomeButton from './components/GoToIncomeButton';
 import IncomeList from './components/IncomeList';
 import IncomeListMonthBar from './components/IncomeListMonthBar';
@@ -13,7 +14,9 @@ type Props = {
 
 export default async function incomePage({ searchParams }: Props) {
   const searchParams1 = await searchParams;
-  const sixMonthIncomes = await getSixMonthIncome(1);
+  const session = await auth();
+  const userId = Number(session?.user?.id);
+  const sixMonthIncomes = await getSixMonthIncome(userId);
   const thisMonth = getThisYearMonth().slice(5, 7);
   const selectedMonth = searchParams1.month ?? thisMonth;
 
