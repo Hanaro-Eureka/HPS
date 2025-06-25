@@ -1,6 +1,6 @@
 'use client';
 
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 type Props = {
   name?: string;
@@ -9,7 +9,6 @@ type Props = {
   type?: 'text' | 'password' | 'date';
   defaultValue?: string;
   autoFocus?: boolean;
-  children?: ReactNode;
 };
 
 export default function Input({
@@ -19,7 +18,6 @@ export default function Input({
   className,
   defaultValue,
   autoFocus = false,
-  children,
 }: PropsWithChildren<Props>) {
   return (
     <div className={className}>

@@ -1,6 +1,7 @@
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { getStartAndEndOfMonth } from '@/utils/spending';
 import { getMonthlySalary } from '@/lib/actions/salary-actions';
+import { auth } from '@/lib/auth';
 import ConsumStar from './components/ConsumStar';
 import ConsumptionGraph from './components/ConsumptionGraph';
 import ConsumptionRateText from './components/ConsumptionRateText';
@@ -8,7 +9,8 @@ import ConsumptionRatio from './components/ConsumptionRatio';
 import GoSpendButton from './components/GoSpendButton';
 
 export default async function Consumption() {
-  const userId = 1; // TODO: 실제 로그인 유저 ID로 교체
+  const session = await auth();
+  const userId = Number(session?.user?.id);
 
   const now = new Date();
 
