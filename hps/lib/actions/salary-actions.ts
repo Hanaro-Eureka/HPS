@@ -147,51 +147,71 @@ export const getSalaryChangeFromLastMonth = async (
   return result;
 };
 
-// 지난 달 입금 합 구하자. (지금이 6월 n일이라면 5월 입금 합.)
+//특정 기간의 급여 합 함수.
+export const getSalarySumByPeriod = async (
+  userId: number,
+  startDate: Date,
+  endDate: Date
+) => {
+  const salaries = await prisma.salary.findMany({
+    where: {
+      userId,
+      depositDate: {
+        gte: startDate,
+        lte: endDate,
+      },
+    },
+    select: { amount: true },
+  });
+
+  return salaries.reduce((sum, s) => sum + s.amount, 0);
+};
+
+// 지난 달 입금 합
 export const getLastMonthSalarySum = async (userId: number) => {
   const now = new Date();
-  const start = new Date(now.getFullYear(), now.getMonth() - 1, 1); // 지난 달 1일
-  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999); // 지난 달 말일
-
-  const salaries = await prisma.salary.findMany({
-    where: {
-      userId,
-      depositDate: {
-        gte: start,
-        lte: end,
-      },
-    },
-    select: { amount: true },
-  });
-
-  return salaries.reduce((sum, s) => sum + s.amount, 0);
+  const start = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999);
+  return getSalarySumByPeriod(userId, start, end);
 };
 
-// 직전 1개월,2개월,3개월 수입 합! (지금이 6월 n일이라면 3,4,5월 입금 합)
+// 직전 3개월 수입 합 (3, 4, 5월 등)
 export const getRecent3MonthsSalarySum = async (userId: number) => {
   const now = new Date();
-  const start = new Date(now.getFullYear(), now.getMonth() - 3, 1); // 3개월 전 1일 (3월 1일)
-  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999); // 지난 달 말일 (5월 31일)
-
-  const salaries = await prisma.salary.findMany({
-    where: {
-      userId,
-      depositDate: {
-        gte: start,
-        lte: end,
-      },
-    },
-    select: { amount: true },
-  });
-
-  return salaries.reduce((sum, s) => sum + s.amount, 0);
+  const start = new Date(now.getFullYear(), now.getMonth() - 3, 1);
+  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999);
+  return getSalarySumByPeriod(userId, start, end);
 };
 
-// 동일 13개월 전, 14개월 전, 15개월 전 수입의 합
-// (지금이 2025년 6월이라면 2024년 3,4,5월 입금 합)
+// 직전 6개월 수입 합
+export const getRecent6MonthsSalarySum = async (userId: number) => {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), now.getMonth() - 6, 1);
+  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999);
+  return getSalarySumByPeriod(userId, start, end);
+};
+
+// 이번 달 1일부터 오늘까지 수입 합
+export const getThisMonthUntilTodaySalarySum = async (userId: number) => {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), now.getMonth(), 1);
+  return getSalarySumByPeriod(userId, start, now);
+};
+
+// 작년 동일 월 수입 합 (지금이 6월이면 2024년 6월)
+export const getLastYearSameMonthSalarySum = async (userId: number) => {
+  const now = new Date();
+  const year = now.getFullYear() - 1;
+  const month = now.getMonth(); // 0-indexed
+  const start = new Date(year, month, 1);
+  const end = new Date(year, month + 1, 0, 23, 59, 59, 999);
+  return getSalarySumByPeriod(userId, start, end);
+};
+
+// 작년 동일 분기 수입 합 (지금이 6월이면 3~5월)
 export const getLastYearSamePeriodSalarySum = async (userId: number) => {
   const now = new Date();
-  const start = new Date(now.getFullYear() - 1, now.getMonth() - 3, 1); // 작년 3월 1일
+  const start = new Date(now.getFullYear() - 1, now.getMonth() - 3, 1);
   const end = new Date(
     now.getFullYear() - 1,
     now.getMonth(),
@@ -200,60 +220,16 @@ export const getLastYearSamePeriodSalarySum = async (userId: number) => {
     59,
     59,
     999
-  ); // 작년 5월 31일
-
-  const salaries = await prisma.salary.findMany({
-    where: {
-      userId,
-      depositDate: {
-        gte: start,
-        lte: end,
-      },
-    },
-    select: { amount: true },
-  });
-
-  return salaries.reduce((sum, s) => sum + s.amount, 0);
+  );
+  return getSalarySumByPeriod(userId, start, end);
 };
 
-// 11개월 전 달 월급. (지금이 2025년 6월이라면 2024년 7월 입금 합.)
+// 작년 다음 달 수입 합 (지금이 6월이면 작년 7월)
 export const getLastYearNextMonthSalarySum = async (userId: number) => {
   const now = new Date();
   const year = now.getFullYear() - 1;
-  const targetMonth = now.getMonth() + 1; // 다음 달 (0-indexed)
-
-  const start = new Date(year, targetMonth, 1); // ex: 2024-07-01
-  const end = new Date(year, targetMonth + 1, 0, 23, 59, 59, 999); // 2024-07-31
-
-  const salaries = await prisma.salary.findMany({
-    where: {
-      userId,
-      depositDate: {
-        gte: start,
-        lte: end,
-      },
-    },
-    select: { amount: true },
-  });
-
-  return salaries.reduce((sum, s) => sum + s.amount, 0);
-};
-// 직전 1개월,2개월,3개월 수입 합! (지금이 6월 n일이라면 3,4,5월 입금 합)
-export const getRecent6MonthsSalarySum = async (userId: number) => {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), now.getMonth() - 6, 1); // 3개월 전 1일 (3월 1일)
-  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999); // 지난 달 말일 (5월 31일)
-
-  const salaries = await prisma.salary.findMany({
-    where: {
-      userId,
-      depositDate: {
-        gte: start,
-        lte: end,
-      },
-    },
-    select: { amount: true },
-  });
-
-  return salaries.reduce((sum, s) => sum + s.amount, 0);
+  const targetMonth = now.getMonth() + 1;
+  const start = new Date(year, targetMonth, 1);
+  const end = new Date(year, targetMonth + 1, 0, 23, 59, 59, 999);
+  return getSalarySumByPeriod(userId, start, end);
 };
