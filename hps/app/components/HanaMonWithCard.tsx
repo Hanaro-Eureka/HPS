@@ -30,7 +30,7 @@ export default function HanaMonWithCard({ salaryList }: Props) {
   const hanamon = `/hanaMonWith${color}Card.svg`;
   return (
     <>
-      <Image src={hanamon} alt={`${hanamon}`} width={120} height={120} />
+      <Image src={hanamon} alt={`${hanamon}`} width={120} height={120} className='ml-2'/>
     </>
   );
 }
