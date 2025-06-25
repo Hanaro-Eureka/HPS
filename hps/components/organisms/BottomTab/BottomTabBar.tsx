@@ -16,7 +16,7 @@ export default function BottomTabBar() {
   const router = useRouter();
 
   return (
-    <div className='fixed bottom-0 flex flex-row w-full items-center justify-center'>
+    <div className='fixed bottom-0 flex w-full items-center justify-center'>
       {tabItems.map((item) => (
         <TabBarItem
           key={item.href}

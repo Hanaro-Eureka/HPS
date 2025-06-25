@@ -1,12 +1,12 @@
 'use client';
 
 import Button from '@/components/atoms/Button';
-import Input from '@/components/atoms/Input';
 import Text from '@/components/atoms/Text';
 import { businessCodeData } from '@/constants/businessCodeData';
 import Image from 'next/image';
 import { useState } from 'react';
 import { updateUserField } from '@/lib/actions/users';
+import SelectBusinessEdit from './SelectBusinessEdit';
 
 type Props = {
   id: number;
@@ -41,10 +41,10 @@ export default function BusinessCode({ id, label, fname, value }: Props) {
   };
 
   return (
-    <div className='w-full flex flex-col gap-1 pl-8 my-1.5 pt-3 pb-4'>
-      <div className='flex flex-row justify-between items-center'>
+    <div className='w-full flex flex-col px-7 py-3'>
+      <div className='flex justify-between items-center'>
         <Text
-          className='text-base text-black-font font-[400] pr-1 shrink-0'
+          className='text-base text-black-font font-[400] shrink-0'
           tag='span'
         >
           {label}
@@ -53,31 +53,20 @@ export default function BusinessCode({ id, label, fname, value }: Props) {
         {isEdit ? (
           <form
             action={handleSubmit}
-            className='flex flex-row justify-end items-center w-full'
+            className='flex justify-end items-center w-full'
           >
             <input type='hidden' name='id' value={id} />
             <input type='hidden' name='field' value={fname} />
 
-            <Input
-              as='select'
-              name='value'
-              defaultValue={currentValue ?? ''}
-              autoFocus
-              className='w-full text-base text-black-font font-[400] border border-gray-300 rounded mr-5 text-right'
-            >
-              <option value='' disabled>
-                선택하세요
-              </option>
-              {businessCodeData.map(({ code, label }) => (
-                <option key={code} value={code}>
-                  {label}
-                </option>
-              ))}
-            </Input>
+            <input type='hidden' name='value' value={currentValue ?? ''} />
+            <SelectBusinessEdit
+              value={currentValue}
+              onChange={(val) => setCurrentValue(val)}
+            />
 
             <Button
               bgColor='bg-hana-button'
-              className='text-white rounded p-0.5 shrink-0 font-[400]'
+              className='text-white rounded px-1 shrink-0 font-[400]'
               type='submit'
             >
               저장
@@ -88,9 +77,9 @@ export default function BusinessCode({ id, label, fname, value }: Props) {
             onClick={() => {
               setIsEdit(true);
             }}
-            className='flex justify-end items-center gap-1 pr-5 cursor-pointer w-full'
+            className='flex justify-end items-center cursor-pointer w-full'
           >
-            <Text className='text-base pr-4 text-black-font font-[400]' tag='p'>
+            <Text className='text-base text-black-font font-[400]' tag='p'>
               {getLabelByCode(currentValue)}
             </Text>
 
@@ -99,6 +88,7 @@ export default function BusinessCode({ id, label, fname, value }: Props) {
               alt='수정'
               width={6}
               height={11}
+              className='ml-3'
             />
           </div>
         )}
