@@ -1,64 +1,21 @@
-import Image from 'next/image';
+import Bar from './Bar';
+import NextMonthPredictionTrigger from './NextMonthPredictionTrigger';
 
 type Props = {
   currentAmount: number;
-  predictedAmount: number;
+  predictedThisMonthAmount: number;
+  predictedNextMonthAmount: number;
 };
-
-const MAX_AMOUNT = 10_000_000;
-const GRAPH_HEIGHT_PX = 200;
-const MIN_BAR_HEIGHT_PX = 10;
-
-function Bar({
-  label,
-  amount,
-  color = '#CCCCCC',
-  textColor = 'text-black',
-}: {
-  label: string;
-  amount: number;
-  color?: string;
-  textColor?: string;
-}) {
-  const proportionalHeight = Math.max(
-    (amount / MAX_AMOUNT) * GRAPH_HEIGHT_PX,
-    MIN_BAR_HEIGHT_PX
-  );
-
-  const textColorStyle = textColor.startsWith('#')
-    ? { color: textColor }
-    : undefined;
-  const textColorClass = textColor.startsWith('#') ? '' : textColor;
-
-  return (
-    <div className='flex flex-col items-center w-18'>
-      <span
-        className={`text-base font-[500] mb-2 ${textColorClass}`}
-        style={textColorStyle}
-      >
-        {Math.floor(amount / 10_000).toLocaleString()}만원
-      </span>
-      <div
-        className='w-14 rounded-2xl'
-        style={{
-          height: proportionalHeight,
-          backgroundColor: color,
-          transition: 'height 0.3s ease',
-        }}
-      />
-      <span className='text-sm mt-2 text-center whitespace-pre-line text-black-font'>
-        {label}
-      </span>
-    </div>
-  );
-}
 
 export default function ProportionalBarGraph({
   currentAmount,
-  predictedAmount,
+  predictedThisMonthAmount,
+  predictedNextMonthAmount,
 }: Props) {
   const diffRate =
-    currentAmount > 0 ? (predictedAmount - currentAmount) / currentAmount : 0;
+    currentAmount > 0
+      ? (predictedThisMonthAmount - currentAmount) / currentAmount
+      : 0;
 
   let rightColor = '#FFDD3A';
   if (diffRate > 0.05) {
@@ -80,22 +37,15 @@ export default function ProportionalBarGraph({
       <div className='flex justify-center'>
         <Bar
           label={'이번 달\n예측 수입'}
-          amount={predictedAmount}
+          amount={predictedThisMonthAmount}
           color={rightColor}
           textColor={rightColor}
         />
       </div>
-      <div className='flex flex-col items-center justify-center w-18'>
-        <Image
-          src={'/svgs/ic_question.svg'}
-          alt='다음 달 예측 수입 보기 버튼'
-          width={30}
-          height={50}
-        />
-        <span className='text-sm mt-2 text-center whitespace-pre-line text-black-font'>
-          {'다음 달\n예측 수입'}
-        </span>
-      </div>
+      <NextMonthPredictionTrigger
+        averageAmount={currentAmount}
+        predictedNextMonthAmount={predictedNextMonthAmount}
+      />
     </div>
   );
 }

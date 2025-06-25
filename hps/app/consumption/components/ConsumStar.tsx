@@ -38,7 +38,7 @@ export default function ConsumStar({ salaryList }: Props) {
           className='object-contain'
           priority
         />
-        <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-39 h-14 pr-4 flex flex-col items-center justify-center text-black font-medium text-base text-center leading-snug'>
+        <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-39 h-14 pr-4 flex flex-col items-center justify-center text-black-font font-medium text-base text-center leading-snug'>
           {textMess?.split('\n').map((line, idx) => (
             <span key={idx}>
               {line}

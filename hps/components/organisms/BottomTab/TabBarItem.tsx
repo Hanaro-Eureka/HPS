@@ -29,7 +29,7 @@ export default function TabBarItem({
       <span
         className={clsx(
           'text-xs transition-colors',
-          active ? 'text-black font-medium' : 'text-gray-400'
+          active ? 'text-black-font font-medium' : 'text-gray-400'
         )}
       >
         {label}
