@@ -15,7 +15,7 @@ export default function SalarySpendButton({ lastSalary }: Props) {
         bgColor='bg-white'
         onClick={() => router.push('/incomeSource')}
         className='rounded-3xl w-44 h-32 [box-shadow:var(--shadow-taxbox)]
-      overflow-hidden mt-16'
+      overflow-hidden mt-6'
       >
         <div className='flex flex-col mt-6 mb-8'>
           <div className='flex justify-center text-center'>

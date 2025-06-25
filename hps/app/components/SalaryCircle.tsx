@@ -1,4 +1,5 @@
 import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
+import { auth } from '@/lib/auth';
 import BubbleAnimation from './BubbleAnimation';
 
 const floatSettings = [
@@ -12,9 +13,11 @@ const floatSettings = [
 ];
 
 export default async function SalaryCircle() {
+  const session = await auth();
+  const userId = Number(session?.user?.id);
   const now = new Date();
   const start = new Date(now.getFullYear(), now.getMonth(), 1);
-  const data = await getIncomeSourcesByUserId(1, start);
+  const data = await getIncomeSourcesByUserId(userId, start);
 
   const colors = [
     'bg-pink-200',
