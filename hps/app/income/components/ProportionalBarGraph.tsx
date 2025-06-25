@@ -89,8 +89,8 @@ export default function ProportionalBarGraph({
         <Image
           src={'/svgs/ic_question.svg'}
           alt='궁금해'
-          width={39}
-          height={70}
+          width={30}
+          height={50}
         />
         <span className='text-sm mt-2 text-center whitespace-pre-line text-black-font'>
           {'다음 달\n예측 수입'}

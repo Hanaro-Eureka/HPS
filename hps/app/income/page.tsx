@@ -42,11 +42,11 @@ export default async function Income() {
     <HeaderLayout title='수입 관리'>
       <div className='flex flex-col w-full'>
         <Text className='text-xl font-[500] text-black-font mt-6 ml-6'>
-          다음 달 수입은 얼마나 될까?
+          이번 달 수입은 얼마나 될까?
         </Text>
 
         <Text className='text-xs font-[300] text-black-font py-2.5 px-6'>
-          작년 수입을 기반으로 다음 달 수입을 예측해 드릴게요.
+          작년 수입을 기반으로 이번 달 수입을 예측해 드릴게요.
         </Text>
         <div className='bg-white mt-8'>
           <ProportionalBarGraph
