@@ -6,7 +6,7 @@ import SpendList from './components/SpendList';
 export default function SpendListPage() {
   return (
     <>
-      <HeaderLayout>
+      <HeaderLayout path='/consumption'>
         <Title
           tag='h1'
           className='text-2xl font-[600] text-black-font mt-8 ml-6 pb-16'

@@ -14,10 +14,10 @@ export default function AdviceMessage({
   const absDiff = Math.abs(diff);
   const diffRate = currentAmount > 0 ? diff / currentAmount : 0;
 
-  // 현재 기준 다음 달 계산
+  // 이번 달 계산
   const now = new Date();
-  const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-  const nextMonthLabel = `${nextMonth.getMonth() + 1}월`;
+  const thisMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const thisMonthLabel = `${thisMonth.getMonth() + 1}월`;
 
   let highlightColor = 'text-hana-yellow';
   if (diffRate > 0.05) {
@@ -32,7 +32,7 @@ export default function AdviceMessage({
         <div className='flex flex-col items-center'>
           <Image src='/svgs/image_86.svg' alt='기뻐' width={60} height={60} />
           <Text className='text-black-font mt-1'>
-            {nextMonthLabel} 수입이 최근 6개월 평균 수입보다
+            {thisMonthLabel} 수입이 최근 6개월 평균 수입보다
           </Text>
           <Text className='text-black-font'>
             <span className={highlightColor}>
@@ -46,7 +46,7 @@ export default function AdviceMessage({
         <div className='flex flex-col items-center'>
           <Image src='/svgs/image_88.svg' alt='슬퍼' width={50} height={50} />
           <Text className='text-black-font mt-1'>
-            {nextMonthLabel} 수입이 최근 6개월 평균 수입보다
+            {thisMonthLabel} 수입이 최근 6개월 평균 수입보다
           </Text>
           <Text className='text-black-font'>
             <span className={highlightColor}>

@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 type Props = {
   currentAmount: number;
   predictedAmount: number;
@@ -69,7 +71,7 @@ export default function ProportionalBarGraph({
     <div className='flex justify-center gap-8 items-end w-full mt-10 mb-15'>
       <div className='flex justify-center'>
         <Bar
-          label={'평균\n수입'}
+          label={'현재\n수입'}
           amount={currentAmount}
           color='#E4E8EB'
           textColor='text-gray-400'
@@ -77,11 +79,22 @@ export default function ProportionalBarGraph({
       </div>
       <div className='flex justify-center'>
         <Bar
-          label={'다음 달\n예측 수입'}
+          label={'이번 달\n예측 수입'}
           amount={predictedAmount}
           color={rightColor}
           textColor={rightColor}
         />
+      </div>
+      <div className='flex flex-col items-center justify-center w-18'>
+        <Image
+          src={'/svgs/ic_question.svg'}
+          alt='궁금해'
+          width={39}
+          height={70}
+        />
+        <span className='text-sm mt-2 text-center whitespace-pre-line text-black-font'>
+          {'다음 달\n예측 수입'}
+        </span>
       </div>
     </div>
   );
