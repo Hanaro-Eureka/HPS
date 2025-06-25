@@ -39,7 +39,7 @@ export default function MyPageClient({
         <div className='w-full flex flex-col gap-3 font-[400]'>
           <ProfileItem label='이름' fname='name' value={name} id={id} />
           <ProfileItem label='아이디' fname='loginId' value={loginId} id={id} />
-          <ChangePassword userId={1} />
+          <ChangePassword userId={id} />
 
           <ProfileItem
             label='생년월일'
@@ -48,7 +48,7 @@ export default function MyPageClient({
             id={id}
           />
           <BusinessCode
-            label='직종코드'
+            label='업종'
             fname='businessCode'
             value={businessCode}
             id={id}
