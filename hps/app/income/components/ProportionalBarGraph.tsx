@@ -1,3 +1,4 @@
+import { calculateDiffRate, getIncomeColor } from '../utils/incomeGraph';
 import Bar from './Bar';
 import NextMonthPredictionTrigger from './NextMonthPredictionTrigger';
 
@@ -5,24 +6,17 @@ type Props = {
   currentAmount: number;
   predictedThisMonthAmount: number;
   predictedNextMonthAmount: number;
+  averageAmount: number;
 };
 
 export default function ProportionalBarGraph({
   currentAmount,
   predictedThisMonthAmount,
   predictedNextMonthAmount,
+  averageAmount,
 }: Props) {
-  const diffRate =
-    currentAmount > 0
-      ? (predictedThisMonthAmount - currentAmount) / currentAmount
-      : 0;
-
-  let rightColor = '#FFDD3A';
-  if (diffRate > 0.05) {
-    rightColor = '#2F9E8C'; // 수입 상승
-  } else if (diffRate < -0.05) {
-    rightColor = '#E97272'; // 수입 하락
-  }
+  const diffRate = calculateDiffRate(currentAmount, predictedThisMonthAmount);
+  const { barColor, textColor } = getIncomeColor(diffRate);
 
   return (
     <div className='flex justify-center gap-8 items-end w-full mt-10 mb-15'>
@@ -31,19 +25,19 @@ export default function ProportionalBarGraph({
           label={'현재\n수입'}
           amount={currentAmount}
           color='#E4E8EB'
-          textColor='text-gray-400'
+          textColor='#909090'
         />
       </div>
       <div className='flex justify-center'>
         <Bar
           label={'이번 달\n예측 수입'}
           amount={predictedThisMonthAmount}
-          color={rightColor}
-          textColor={rightColor}
+          color={barColor}
+          textColor={textColor}
         />
       </div>
       <NextMonthPredictionTrigger
-        averageAmount={currentAmount}
+        averageAmount={averageAmount}
         predictedNextMonthAmount={predictedNextMonthAmount}
       />
     </div>

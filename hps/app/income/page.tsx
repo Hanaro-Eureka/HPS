@@ -35,8 +35,8 @@ export default async function Income() {
     getLastYearSameMonthSalarySum(userId),
   ]);
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;
-  const predictedNextMonthWithGrowth = lastYearMonthSum * growthRate;
   const predictedThisMonthWithGrouth = lastYearThisMonthsum * growthRate;
+  const predictedNextMonthWithGrowth = lastYearMonthSum * growthRate;
 
   return (
     <HeaderLayout title='수입 관리'>
@@ -51,7 +51,9 @@ export default async function Income() {
         <div className='bg-white mt-8'>
           <ProportionalBarGraph
             currentAmount={thisMonthSum}
-            predictedAmount={predictedThisMonthWithGrouth}
+            predictedThisMonthAmount={predictedThisMonthWithGrouth}
+            predictedNextMonthAmount={predictedNextMonthWithGrowth}
+            averageAmount={recent6MonthsSum / 6}
           />
         </div>
         <div className='mt-8'></div>
@@ -61,7 +63,7 @@ export default async function Income() {
             predictedAmount={predictedThisMonthWithGrouth}
           />
         </div>
-        <div className='mt-8 flex justify-center'>
+        <div className='mt-18 flex justify-center'>
           <GoToIncomeListButton />
         </div>
       </div>
