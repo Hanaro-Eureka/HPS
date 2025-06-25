@@ -15,7 +15,7 @@ type Props = {
   error?: string;
 };
 
-export default function SelectBusiness({ value, onChange, error }: Props) {
+export default function SelectBusiness({ value, onChange }: Props) {
   return (
     <div className='flex flex-col gap-1 w-full'>
       <Select value={value} onValueChange={onChange}>
