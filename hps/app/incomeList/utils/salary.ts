@@ -93,7 +93,7 @@ export const groupByDate = <
 
     if (typeof dateValue === 'object' && dateValue !== null) {
       const date = new Date(dateValue.toString());
-      const groupKey = `${date.toISOString()}`;
+      const groupKey = `${date.toISOString().slice(0, 10)}`;
       if (!acc[groupKey]) acc[groupKey] = [];
       acc[groupKey].push(cur);
     }
