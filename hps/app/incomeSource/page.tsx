@@ -20,7 +20,7 @@ export default async function IncomeSource() {
     }));
 
   return (
-    <HeaderLayout>
+    <HeaderLayout path='/' isIncome={true}>
       <Title tag='h1' className='text-2xl font-[600] text-black-font mt-8 ml-6'>
         주요 수입원을 선택하세요.
       </Title>

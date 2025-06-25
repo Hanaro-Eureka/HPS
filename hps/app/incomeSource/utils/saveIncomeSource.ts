@@ -1,7 +1,6 @@
 'use server';
 
 import { incomeData } from '@/constants/incomeData';
-import { redirect } from 'next/navigation';
 import {
   getSalaryThisYear,
   createIncomeSources,
@@ -60,6 +59,4 @@ export async function saveIncomeSource(ids: (string | number)[]) {
   if (toDelete.length > 0) {
     await removeIncomeSources(userId, toDelete);
   }
-
-  redirect('/incomeList');
 }

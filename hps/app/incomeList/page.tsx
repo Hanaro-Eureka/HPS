@@ -21,7 +21,7 @@ export default async function incomePage({ searchParams }: Props) {
   const selectedMonth = searchParams1.month ?? thisMonth;
 
   return (
-    <HeaderLayout>
+    <HeaderLayout path='/income'>
       <div className='mt-8'>
         <IncomeListMonthBar />
         <div className='border p-1 rounded-3xl [box-shadow:var(--shadow-taxbox)] mt-9 mb-15 mx-6'>
