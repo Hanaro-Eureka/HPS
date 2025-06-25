@@ -257,3 +257,45 @@ export const getRecent6MonthsSalarySum = async (userId: number) => {
 
   return salaries.reduce((sum, s) => sum + s.amount, 0);
 };
+
+// 이번 달 1일부터 오늘까지의 입금 합계
+export const getThisMonthUntilTodaySalarySum = async (userId: number) => {
+  const now = new Date();
+  const start = new Date(now.getFullYear(), now.getMonth(), 1);
+
+  const salaries = await prisma.salary.findMany({
+    where: {
+      userId,
+      depositDate: {
+        gte: start,
+        lte: now,
+      },
+    },
+    select: { amount: true },
+  });
+
+  return salaries.reduce((sum, s) => sum + s.amount, 0);
+};
+
+// 작년 이번달 급여 합 구하기 (지금이 25년 6월이면 2024년 6월 합산)
+export const getLastYearSameMonthSalarySum = async (userId: number) => {
+  const now = new Date();
+  const lastYear = now.getFullYear() - 1;
+  const month = now.getMonth();
+
+  const start = new Date(lastYear, month, 1);
+  const end = new Date(lastYear, month + 1, 0, 23, 59, 59, 999);
+
+  const salaries = await prisma.salary.findMany({
+    where: {
+      userId,
+      depositDate: {
+        gte: start,
+        lte: end,
+      },
+    },
+    select: { amount: true },
+  });
+
+  return salaries.reduce((sum, s) => sum + s.amount, 0);
+};
