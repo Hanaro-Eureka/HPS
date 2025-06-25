@@ -1,4 +1,7 @@
+'use client';
+
 import Button from '@/components/atoms/Button';
+import { useRouter } from 'next/navigation';
 import { saveIncomeSource } from '../utils/saveIncomeSource';
 
 type Props = {
@@ -6,8 +9,12 @@ type Props = {
 };
 
 export default function CompleteButton({ selectedIds }: Props) {
+  const router = useRouter();
+
   const handleClick = async () => {
     await saveIncomeSource(selectedIds);
+    router.back();
+    
   };
 
   return (

@@ -13,7 +13,7 @@ export default function SalarySpendButton({ lastSalary }: Props) {
     <>
       <Button
         bgColor='bg-white'
-        onClick={() => router.push('/incomeSource')}
+        onClick={() => router.push('/income')}
         className='rounded-3xl w-44 h-32 [box-shadow:var(--shadow-taxbox)]
       overflow-hidden mt-6'
       >
@@ -25,6 +25,10 @@ export default function SalarySpendButton({ lastSalary }: Props) {
               alt='최근 수입원 선택 페이지로 이동'
               width={20}
               height={20}
+              onClick={(e) => {
+                e.stopPropagation(); // 👈 부모(Button) 클릭 방지
+                router.push('/incomeSource');
+              }}
             />
           </div>
           <div className='mt-4 text-center text-xl font-[600] '>
