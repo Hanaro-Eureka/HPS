@@ -43,7 +43,7 @@ export default async function SalaryCircle() {
     { top: '25%', left: '40px' },
     { top: '22%', left: '155px' },
     { top: '43%', left: '10px' },
-    { top: '45%', left: '150px' },
+    { top: '55%', left: '150px' },
     { top: '65%', left: '50%' },
     { top: '75%', left: '20%' },
   ];
@@ -61,7 +61,7 @@ export default async function SalaryCircle() {
   });
 
   return (
-    <div className='relative w-full h-150'>
+    <div className='relative h-130'>
       {sizedData.map((item, idx) => (
         <BubbleAnimation
           key={idx}
