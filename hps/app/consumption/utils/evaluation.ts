@@ -47,15 +47,15 @@ export function getConsumptionRateText(
   let textMess = '';
   if (consumptionRate > 60) {
     colorClass = 'text-consumption-red';
-    imagePath = '/hanaMonWithRedCard.svg';
+    imagePath = '/images/img_hanaMonWithRedCard.svg';
     textMess = '지금은\n 절약이 필요해요!';
   } else if (consumptionRate >= 30) {
     colorClass = 'text-consumption-yellow';
-    imagePath = '/hanaMonWithYellowCard.svg';
+    imagePath = '/images/img_hanaMonWithYellowCard.svg';
     textMess = '지금 균형은 맞췄지만\n 여유는 없어요.';
   } else {
     colorClass = 'text-consumption-green';
-    imagePath = '/hanaMonWithGreenCard.svg';
+    imagePath = '/images/img_hanaMonWithGreenCard.svg';
     textMess = '이번 달 여유 있어요!\n 별비서에게 소비를\n 추천받아보세요!';
   }
 

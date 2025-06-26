@@ -21,7 +21,7 @@ export default function SalarySpendButton({ lastSalary }: Props) {
           <div className='flex justify-center text-center'>
             <div className='font-[500] w-24 h-6 text-center'>이번 달 수입</div>
             <Image
-              src={'/cogwheel.svg'}
+              src={'/svgs/ic_cogWheel.svg'}
               alt='최근 수입원 선택 페이지로 이동'
               width={20}
               height={20}

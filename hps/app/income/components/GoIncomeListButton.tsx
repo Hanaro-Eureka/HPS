@@ -8,12 +8,12 @@ export default function GoToIncomeListButton() {
 
   return (
     <Button
-      aria-label='수입 내역 가기'
+      aria-label='수입내역 보러가기'
       className='text-base font-[500] px-13 py-3 rounded-2xl'
       bgColor='bg-button-lightgray'
       onClick={() => router.push('/incomeList')}
     >
-      수입 내역 보러가기
+      수입내역 보러가기
     </Button>
   );
 }

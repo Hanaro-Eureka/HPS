@@ -18,7 +18,7 @@ export default function StarChat({ text }: { text: string }) {
       </div>
       <div className='bg-hana-ai p-4 rounded-t-3xl rounded-br-3xl w-58'>
         {lines.map((line, idx) => (
-          <p key={idx} className='text-sm font-[500] text-black'>
+          <p key={idx} className='text-sm font-[500] text-black-font'>
             {line}
           </p>
         ))}
