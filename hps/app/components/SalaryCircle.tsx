@@ -33,15 +33,17 @@ export default async function SalaryCircle() {
     'w-28 h-28',
     'w-34 h-34',
     'w-40 h-40',
-    'w-48 h-48',
+    'w-45 h-45',
+    'w-50 h-50',
+    // 'w-56 h-56',
   ];
 
   const positions = [
-    { top: '5%', left: '200px' },
-    { top: '25%', left: '40px' },
-    { top: '22%', left: '155px' },
-    { top: '43%', left: '10px' },
     { top: '55%', left: '150px' },
+    { top: '47%', left: '7px' },
+    { top: '28%', left: '155px' },
+    { top: '22%', left: '35px' },
+    { top: '13%', left: '200px' },
     { top: '65%', left: '50%' },
     { top: '75%', left: '20%' },
   ];
