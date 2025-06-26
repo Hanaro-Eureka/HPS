@@ -30,6 +30,7 @@ export default async function SalaryCircle() {
   ];
   const circleSize = [
     'w-22 h-22',
+    'w-24 h-24',
     'w-28 h-28',
     'w-34 h-34',
     'w-40 h-40',
@@ -39,10 +40,10 @@ export default async function SalaryCircle() {
   ];
 
   const positions = [
-    { top: '55%', left: '150px' },
+    { top: '52%', left: '150px' },
     { top: '47%', left: '7px' },
     { top: '28%', left: '155px' },
-    { top: '22%', left: '35px' },
+    { top: '24%', left: '35px' },
     { top: '13%', left: '200px' },
     { top: '65%', left: '50%' },
     { top: '75%', left: '20%' },
