@@ -1,13 +1,16 @@
 import Text from '@/components/atoms/Text';
 import Image from 'next/image';
+import IncomeGraph from './IncomeGraph';
 
 type Props = {
   currentAmount: number;
+  thisMonthSalary: number;
   predictedAmount: number;
 };
 
 export default function AdviceMessage({
   currentAmount,
+  thisMonthSalary,
   predictedAmount,
 }: Props) {
   const diff = predictedAmount - currentAmount;
@@ -30,7 +33,12 @@ export default function AdviceMessage({
     <div className='text-lg font-[500] justify-center'>
       {diffRate > 0.05 ? (
         <div className='flex flex-col items-center'>
-          <Image src='/images/img_good.svg' alt='green-card' width={60} height={60} />
+          <Image
+            src='/images/img_good.svg'
+            alt='green-card'
+            width={60}
+            height={60}
+          />
           <Text className='text-black-font mt-1'>
             {thisMonthLabel} 수입이 최근 6개월 평균 수입보다
           </Text>
@@ -44,7 +52,12 @@ export default function AdviceMessage({
         </div>
       ) : diffRate < -0.05 ? (
         <div className='flex flex-col items-center'>
-          <Image src='/images/img_sad.svg' alt='red-card' width={50} height={50} />
+          <Image
+            src='/images/img_sad.svg'
+            alt='red-card'
+            width={50}
+            height={50}
+          />
           <Text className='text-black-font mt-1'>
             {thisMonthLabel} 수입이 최근 6개월 평균 수입보다
           </Text>
@@ -54,11 +67,20 @@ export default function AdviceMessage({
             </span>
             적게 예측됩니다.
           </Text>
-          <Text className='text-black-font'>이번 달은 소비를 줄여보세요.</Text>
+          <IncomeGraph
+            predictedAmount={predictedAmount}
+            currentAmount={thisMonthSalary}
+          />
+          {/* <Text className='text-black-font'>이번 달은 소비를 줄여보세요.</Text> */}
         </div>
       ) : (
         <div className='flex flex-col items-center'>
-          <Image src='/images/img_soso.svg' alt='yellow-card' width={50} height={50} />
+          <Image
+            src='/images/img_soso.svg'
+            alt='yellow-card'
+            width={50}
+            height={50}
+          />
           <Text className='text-black-font mt-1'>
             소득이 안정적으로 유지되고 있어요.
           </Text>

@@ -17,7 +17,6 @@ type Props = {
 export default function SalaryBarGraph({ data, colors, height }: Props) {
   const { used, remain } = colors;
 
-  console.log();
   return (
     <div style={{ width: '100%', height: height }}>
       <ResponsiveContainer width='100%' height='100%'>

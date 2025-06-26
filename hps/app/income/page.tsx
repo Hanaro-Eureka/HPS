@@ -60,6 +60,7 @@ export default async function Income() {
         <div className='w-full bg-white p-6'>
           <AdviceMessage
             currentAmount={recent6MonthsSum / 6}
+            thisMonthSalary={thisMonthSum}
             predictedAmount={predictedThisMonthWithGrouth}
           />
         </div>

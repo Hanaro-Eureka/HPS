@@ -28,7 +28,7 @@ export default function ProportionalBarGraph({
           textColor='#909090'
         />
       </div>
-      <div className='flex justify-center'>
+      <div className='flex justify-center '>
         <Bar
           label={'이번 달\n예측 수입'}
           amount={predictedThisMonthAmount}
