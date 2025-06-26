@@ -71,7 +71,7 @@ export const incomeData = [
     trans_type: '03',
     trans_amt: 98100,
     branch_name: '하나은행 신촌점',
-    trans_memo: '틱톡',
+    trans_memo: '광고',
     id: 37,
   },
 ];
