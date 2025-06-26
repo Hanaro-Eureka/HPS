@@ -56,11 +56,11 @@ export const incomeData = [
     id: 7,
   },
   {
-    trans_dtime: '20250626030530',
+    trans_dtime: '20250603170530',
     trans_type: '03',
-    trans_amt: 1240000,
+    trans_amt: 2880000,
     branch_name: '하나은행 본점',
-    trans_memo: '수고하셨어요',
+    trans_memo: '개미인력',
     id: 8,
   },
   {
@@ -138,9 +138,9 @@ export const incomeData = [
   {
     trans_dtime: '20250603050944',
     trans_type: '03',
-    trans_amt: 2880000,
+    trans_amt: 1240000,
     branch_name: '하나은행 본사',
-    trans_memo: '급여',
+    trans_memo: '유튜브',
     id: 18,
   },
   {
@@ -200,11 +200,11 @@ export const incomeData = [
     id: 25,
   },
   {
-    trans_dtime: '20250626090237',
+    trans_dtime: '20250625130237',
     trans_type: '03',
-    trans_amt: 3690000,
+    trans_amt: 1880000,
     branch_name: '하나은행 본점',
-    trans_memo: '수고하셨어요',
+    trans_memo: '수고하였어요',
     id: 26,
   },
   {
@@ -240,11 +240,19 @@ export const incomeData = [
     id: 30,
   },
   {
-    trans_dtime: '20250613150944',
+    trans_dtime: '20250612150944',
     trans_type: '03',
-    trans_amt: 188000,
+    trans_amt: 98000,
     branch_name: '하나은행 본사',
-    trans_memo: '(주)유튜브',
+    trans_memo: '틱톡',
     id: 31,
+  },
+  {
+    trans_dtime: '20250611150944',
+    trans_type: '03',
+    trans_amt: 1700000,
+    branch_name: '하나은행 본사',
+    trans_memo: '인스타그램',
+    id: 32,
   },
 ];
