@@ -16,7 +16,7 @@ export default function IncomeListMonthBar() {
         <span className='text-2xl font-[600]'>수입 내역</span>
         <Button
           bgColor='white'
-          onClick={() => router.push('/incomeSource')}
+          onClick={() => router.push('/incomeSource?from=/incomeList')}
           className='px-2'
         >
           <Image

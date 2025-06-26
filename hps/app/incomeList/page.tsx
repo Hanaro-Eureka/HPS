@@ -6,6 +6,8 @@ import IncomeListMonthBar from './components/IncomeListMonthBar';
 import LineGraph from './components/LineGraph';
 import { getSixMonthIncome, getThisYearMonth } from './utils/salary';
 
+export const dynamic = 'force-dynamic';
+
 type Props = {
   searchParams: Promise<{
     month?: string;

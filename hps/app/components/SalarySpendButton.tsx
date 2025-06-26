@@ -26,8 +26,8 @@ export default function SalarySpendButton({ lastSalary }: Props) {
               width={20}
               height={20}
               onClick={(e) => {
-                e.stopPropagation(); // 👈 부모(Button) 클릭 방지
-                router.push('/incomeSource');
+                e.stopPropagation();
+                router.push('/incomeSource?from=/');
               }}
             />
           </div>
