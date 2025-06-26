@@ -1,4 +1,5 @@
 import HeaderLayout from '@/components/templates/HeaderLayout';
+import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
 import GoToIncomeButton from './components/GoToIncomeButton';
 import IncomeList from './components/IncomeList';
@@ -17,6 +18,9 @@ type Props = {
 export default async function incomePage({ searchParams }: Props) {
   const searchParams1 = await searchParams;
   const session = await auth();
+  if (!session || !session.user) {
+    redirect('/login');
+  }
   const userId = Number(session?.user?.id);
   const sixMonthIncomes = await getSixMonthIncome(userId);
   const thisMonth = getThisYearMonth().slice(5, 7);

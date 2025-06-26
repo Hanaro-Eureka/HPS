@@ -37,7 +37,7 @@ export default function UserChat({
           value={price}
           onChange={(e) => onChangePrice && onChangePrice(e.target.value)}
         />
-        {!isSubmitted && ( // 전송 중이면 버튼 숨김
+        {!isSubmitted && (
           <div className='flex justify-end'>
             <button type='submit'>
               <Image
