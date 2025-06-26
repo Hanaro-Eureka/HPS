@@ -19,7 +19,7 @@ export const getIncomeSourcesByUserId = async (
         },
       },
       _sum: { amount: true },
-      orderBy: { _sum: { amount: 'asc' } },
+      orderBy: { _sum: { amount: 'desc' } },
     })
   ).map((item) => ({
     category: item.incomeSource ?? item.depositorName,

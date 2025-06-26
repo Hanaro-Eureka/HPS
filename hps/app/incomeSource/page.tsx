@@ -1,12 +1,16 @@
 import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
 import HeaderLayout from '@/components/templates/HeaderLayout';
+import { redirect } from 'next/navigation';
 import { getSalaryByUserId } from '@/lib/actions/salary-select-actions';
 import { auth } from '@/lib/auth';
 import IncomeSelectorSection from './components/IncomeSelectorSection';
 
 export default async function IncomeSource() {
   const session = await auth();
+  if (!session) {
+    redirect('/login');
+  }
   const userId = Number(session?.user?.id);
   const rawSalary = await getSalaryByUserId(userId);
 

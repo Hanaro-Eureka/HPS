@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import Session from './session';
 
 export const metadata: Metadata = {
   title: '하나의 완벽한 비서',
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang='ko' suppressHydrationWarning>
       <body className={`relative antialiased bg-[var(--color-background)]`}>
-        {children}
+        <Session>{children}</Session>
       </body>
     </html>
   );

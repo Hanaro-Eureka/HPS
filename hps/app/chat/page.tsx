@@ -2,9 +2,12 @@
 
 import StarChat from '@/app/chat/components/StarChat';
 import UserChat from '@/app/chat/components/UserChat';
+import BottomTabBar from '@/components/organisms/BottomTab/BottomTabBar';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { useChat } from '@ai-sdk/react';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Spinner from './components/Spinner';
 
 type InputRecord = {
@@ -13,9 +16,12 @@ type InputRecord = {
 };
 
 export default function Chat() {
+  const { status } = useSession();
+  const router = useRouter();
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [inputs, setInputs] = useState<InputRecord[]>([
-    { item: '', price: '' }, // 첫 번째 입력칸용
+    { item: '', price: '' },
   ]);
   const { messages, append } = useChat({
     sendExtraMessageFields: true,
@@ -27,6 +33,16 @@ export default function Chat() {
       },
     ],
   });
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.replace('/login');
+    }
+  }, [status, router]);
+
+  if (status === 'loading' || status === 'unauthenticated') {
+    return null;
+  }
 
   const assistantMessages = messages.filter((m) => m.role !== 'user');
 
@@ -55,7 +71,6 @@ export default function Chat() {
       const { prompt } = await res.json();
       await append({ role: 'user', content: prompt });
 
-      // 새 입력칸을 위한 빈 값 추가
       setInputs((prev) => [...prev, { item: '', price: '' }]);
     } catch (error) {
       console.error('에러 발생:', error);
@@ -78,15 +93,14 @@ export default function Chat() {
 
   return (
     <HeaderLayout title='별비서'>
-      <div className='flex flex-col w-full max-w-md py-5 mx-auto gap-6 first:border-t first:border-gray-300'>
+      <div className='flex flex-col mt-7 overflow-y-auto w-full h-[calc(100vh-146px)]'>
         {isSubmitted && <Spinner />}
-
         <div className='flex flex-col gap-6 mb-4 pl-4'>
           {assistantMessages.map((message, idx) => {
             const isLast = idx === assistantMessages.length - 1;
 
             return (
-              <div key={message.id} className='flex flex-col gap-6'>
+              <div key={message.id} className='flex flex-col gap-6 pb-3'>
                 <StarChat text={message.content.replaceAll('*', '')} />
 
                 <div className='flex items-end justify-end pr-4'>
@@ -114,6 +128,7 @@ export default function Chat() {
             );
           })}
         </div>
+        <BottomTabBar />
       </div>
     </HeaderLayout>
   );

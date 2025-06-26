@@ -1,9 +1,15 @@
 import Title from '@/components/atoms/Title';
 import BottomTabBar from '@/components/organisms/BottomTab/BottomTabBar';
 import HeaderLayout from '@/components/templates/HeaderLayout';
+import { redirect } from 'next/navigation';
+import { auth } from '@/lib/auth';
 import SpendList from './components/SpendList';
 
-export default function SpendListPage() {
+export default async function SpendListPage() {
+  const session = await auth();
+  if (!session) {
+    redirect('/login');
+  }
   return (
     <>
       <HeaderLayout path='/consumption'>
