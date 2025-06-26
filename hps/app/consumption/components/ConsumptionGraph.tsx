@@ -59,7 +59,7 @@ export default function ConsumptionGraph({ salary }: Props) {
         }}
       >
         <span className='text-black-font'>
-          {isOverSpent ? '내 수입' : '내 소비'}
+          {isOverSpent ? '지난 달 수입' : '이번 달 소비'}
         </span>
         <br />
         <span className='whitespace-nowrap text-black-font'>
@@ -69,7 +69,7 @@ export default function ConsumptionGraph({ salary }: Props) {
 
       <div className='absolute -top-10 right-10 text-sm text-right font-[400]'>
         <span className={isOverSpent ? 'text-spend-alert' : 'text-black-font'}>
-          {isOverSpent ? '내 소비' : '내 수입'}
+          {isOverSpent ? '이번 달 소비' : '지난 달 수입'}
         </span>
         <br />
         <span className={isOverSpent ? 'text-spend-alert' : 'text-black-font'}>

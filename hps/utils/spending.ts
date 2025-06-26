@@ -81,6 +81,8 @@ export const calculateSpendingStatus = (
   if (remain < 10) {
     // 너무 차이가 안 나면 그래프에서 안 보이니까
     return { isOverSpent, used: 95, remain: 5 };
+  } else if (used < 5) {
+    return { isOverSpent, used: 5, remain: 95 };
   }
   return { isOverSpent, used, remain };
 };

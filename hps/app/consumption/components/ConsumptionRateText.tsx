@@ -36,7 +36,7 @@ export default function ConsumptionRateText({ salaryList }: Props) {
 
   return (
     <p className='text-center text-sm font-medium text-black-font mt-2'>
-      이번 달 지출이 지난달 수입 대비
+      이번 달 지출이 지난 달 수입 대비&nbsp;
       <span className={colorClass}>{rate}%</span> 수준이에요.
     </p>
   );
