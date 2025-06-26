@@ -1,8 +1,9 @@
 'use server';
 
 import { incomeData } from '@/constants/incomeData';
+import { getStartAndEndOfMonth } from '@/utils/spending';
 import {
-  getSalaryThisYear,
+  getMonthlyIncomeWithUserId,
   createIncomeSources,
   removeIncomeSources,
 } from '@/lib/actions/salary-select-actions';
@@ -13,7 +14,10 @@ export async function saveIncomeSource(ids: (string | number)[]) {
   const session = await auth();
   const userId = Number(session?.user?.id);
 
-  const existing = await getSalaryThisYear(userId);
+  const now = new Date();
+  const thisMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+
+  const existing = await getMonthlyIncomeWithUserId(userId, thisMonth);
 
   const selectedItems = incomeData
     .filter((item) => ids.includes(item.id))

@@ -23,11 +23,22 @@ export const getSalaryByUserId = async (userId: number) => {
   });
 };
 
-// 이번 년도 주요 수입 내역 조회
-export const getSalaryThisYear = async (userId: number) => {
-  const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 1);
-  const end = new Date(now.getFullYear(), 11, 31, 23, 59, 59);
+// 해당 월 수입만 조회
+export const getMonthlyIncomeWithUserId = async (
+  userId: number,
+  yearMonth: string
+) => {
+  const date = new Date(`${yearMonth}-01T00:00:00Z`);
+  const start = new Date(date.getFullYear(), date.getMonth(), 1);
+  const end = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0,
+    23,
+    59,
+    59,
+    999
+  );
 
   return prisma.salary.findMany({
     where: {
@@ -37,7 +48,6 @@ export const getSalaryThisYear = async (userId: number) => {
         lte: end,
       },
     },
-    orderBy: { depositDate: 'desc' },
   });
 };
 
