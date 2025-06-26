@@ -22,16 +22,16 @@ export default function ProportionalBarGraph({
     <div className='flex justify-center gap-8 items-end w-full mt-10 mb-15'>
       <div className='flex justify-center'>
         <Bar
-          label={'최근 6개월\n평균 수입'}
-          amount={averageAmount}
+          label={'이번 달\n예측 수입'}
+          amount={predictedThisMonthAmount}
           color='#E4E8EB'
           textColor='#909090'
         />
       </div>
       <div className='flex justify-center '>
         <Bar
-          label={'이번 달\n예측 수입'}
-          amount={predictedThisMonthAmount}
+          label={'이번 달\n수입'}
+          amount={currentAmount}
           color={barColor}
           textColor={textColor}
         />
