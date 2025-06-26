@@ -1,4 +1,3 @@
-// app/api/prompt/route.ts
 import {
   getLastMonthSalarySum,
   getLastYearNextMonthSalarySum,

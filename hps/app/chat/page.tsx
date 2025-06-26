@@ -4,7 +4,9 @@ import StarChat from '@/app/chat/components/StarChat';
 import UserChat from '@/app/chat/components/UserChat';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { useChat } from '@ai-sdk/react';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Spinner from './components/Spinner';
 
 type InputRecord = {
@@ -13,9 +15,13 @@ type InputRecord = {
 };
 
 export default function Chat() {
+  const { data: session, status } = useSession();
+  console.log('Session:', session, 'Status:', status);
+  const router = useRouter();
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [inputs, setInputs] = useState<InputRecord[]>([
-    { item: '', price: '' }, // 첫 번째 입력칸용
+    { item: '', price: '' },
   ]);
   const { messages, append } = useChat({
     sendExtraMessageFields: true,
@@ -27,6 +33,16 @@ export default function Chat() {
       },
     ],
   });
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.replace('/login');
+    }
+  }, [status, router]);
+
+  if (status === 'loading' || status === 'unauthenticated') {
+    return null;
+  }
 
   const assistantMessages = messages.filter((m) => m.role !== 'user');
 
@@ -55,7 +71,6 @@ export default function Chat() {
       const { prompt } = await res.json();
       await append({ role: 'user', content: prompt });
 
-      // 새 입력칸을 위한 빈 값 추가
       setInputs((prev) => [...prev, { item: '', price: '' }]);
     } catch (error) {
       console.error('에러 발생:', error);

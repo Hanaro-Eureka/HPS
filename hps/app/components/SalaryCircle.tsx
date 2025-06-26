@@ -34,8 +34,6 @@ export default async function SalaryCircle() {
     'w-34 h-34',
     'w-40 h-40',
     'w-48 h-48',
-    // 'w-52 h-52',
-    // 'w-56 h-56',
   ];
 
   const positions = [

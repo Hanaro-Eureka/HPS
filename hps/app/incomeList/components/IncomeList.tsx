@@ -29,7 +29,6 @@ export default async function IncomeList({ month }: Props) {
 
   const grouped = groupByDate(monthlyIncome, 'depositDate');
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
-  console.log(sortedDates);
 
   return (
     <>
@@ -66,14 +65,7 @@ export default async function IncomeList({ month }: Props) {
             };
           });
 
-        return (
-          <List
-            key={date}
-            date={formatDate(date)}
-            data={items}
-            // className='mt-14'
-          />
-        );
+        return <List key={date} date={formatDate(date)} data={items} />;
       })}
     </>
   );
