@@ -66,4 +66,12 @@ export const incomeData = [
     trans_memo: '(주)블루웨일',
     id: 36,
   },
+  {
+    trans_dtime: '20250612191744',
+    trans_type: '03',
+    trans_amt: 98100,
+    branch_name: '하나은행 신촌점',
+    trans_memo: '틱톡',
+    id: 37,
+  },
 ];
