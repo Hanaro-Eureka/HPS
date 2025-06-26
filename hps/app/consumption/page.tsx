@@ -1,5 +1,6 @@
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { getStartAndEndOfMonth } from '@/utils/spending';
+import { redirect } from 'next/navigation';
 import { getMonthlySalary } from '@/lib/actions/salary-actions';
 import { auth } from '@/lib/auth';
 import ConsumStar from './components/ConsumStar';
@@ -10,6 +11,9 @@ import GoSpendButton from './components/GoSpendButton';
 
 export default async function Consumption() {
   const session = await auth();
+  if (!session) {
+    redirect('/login');
+  }
   const userId = Number(session?.user?.id);
 
   const now = new Date();

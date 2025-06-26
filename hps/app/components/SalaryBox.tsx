@@ -9,7 +9,7 @@ export default async function SalaryBox() {
   const userId = Number(session?.user?.id);
 
   if (!userId || isNaN(userId)) {
-    redirect('/login'); // 로그인 페이지로 이동
+    redirect('/login');
   }
 
   const [sumOfSalaries, salaryList] = await Promise.all([
