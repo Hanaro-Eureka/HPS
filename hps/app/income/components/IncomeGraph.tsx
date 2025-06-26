@@ -1,42 +1,33 @@
-import SalaryBarGraph from '@/components/molcules/SalaryBarGraph';
-import { consumptionData } from '@/constants/consumptionData';
-import {
-  calculateSpendingStatus,
-  filterThisMonthData,
-  getCurrentMonth,
-} from '@/utils/spending';
+import IncomeBarGraph from '@/components/molcules/IncomeBarGraph';
+import { calculateSpendingStatus } from '@/utils/spending';
 
 type Props = {
-  salary: number;
+  predictedAmount: number;
+  currentAmount: number;
 };
 
-export default function ConsumptionGraph({ salary }: Props) {
-  const currentMonth = getCurrentMonth();
-  const thisMonthData = filterThisMonthData(
-    consumptionData,
-    currentMonth,
-    'trans_date'
-  );
-
-  const totalSpending = thisMonthData.reduce(
-    (sum, item) => sum + item.trans_amt,
-    0
-  );
-
+export default function IncomeGraph({ predictedAmount, currentAmount }: Props) {
   const { isOverSpent, used, remain } = calculateSpendingStatus(
-    salary,
-    totalSpending
+    predictedAmount,
+    currentAmount
   );
+
+  const safePredictedAmount = Math.floor(
+    predictedAmount / 10_000
+  ).toLocaleString();
+  const safeCurrentAmount = Math.floor(currentAmount / 10_000).toLocaleString();
 
   const referencePercentage =
-    (Math.min(totalSpending, salary) / Math.max(totalSpending, salary)) * 100;
+    (Math.min(currentAmount, predictedAmount) /
+      Math.max(currentAmount, predictedAmount)) *
+    100;
 
   return (
-    <div className='relative w-full px-12'>
-      <SalaryBarGraph
+    <div className='relative w-full px-12 mt-12'>
+      <IncomeBarGraph
         data={[
           {
-            name: '소비 내역',
+            name: '이번 달 수입',
             used,
             remain,
           },
@@ -59,21 +50,28 @@ export default function ConsumptionGraph({ salary }: Props) {
         }}
       >
         <span className='text-black-font'>
-          {isOverSpent ? '지난 달 수입' : '이번 달 소비'}
+          {isOverSpent ? '이번 달 예측 수입' : '이번 달 수입'}
         </span>
         <br />
         <span className='whitespace-nowrap text-black-font'>
-          {(isOverSpent ? salary : totalSpending).toLocaleString()}원
+          {(isOverSpent
+            ? safePredictedAmount
+            : safeCurrentAmount
+          ).toLocaleString()}
+          만원
         </span>
       </div>
-
       <div className='absolute -top-10 right-10 text-sm text-right font-[400]'>
         <span className={isOverSpent ? 'text-spend-alert' : 'text-black-font'}>
-          {isOverSpent ? '이번 달 소비' : '지난 달 수입'}
+          {isOverSpent ? '이번 달 수입' : '이번 달 예측 수입'}
         </span>
         <br />
         <span className={isOverSpent ? 'text-spend-alert' : 'text-black-font'}>
-          {(isOverSpent ? totalSpending : salary).toLocaleString()}원
+          {(isOverSpent
+            ? safeCurrentAmount
+            : safePredictedAmount
+          ).toLocaleString()}
+          만원
         </span>
       </div>
     </div>

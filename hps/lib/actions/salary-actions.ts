@@ -1,18 +1,25 @@
 'use server';
 
+import { toUtcFromSeoul } from '@/utils/time';
 import { startOfMonth, endOfMonth } from 'date-fns';
 import prisma from '../db';
 
-export const getSalariesWithUserId = async (userId: number, startDate: Date) =>
-  prisma.salary.findMany({
+export const getSalariesWithUserId = async (
+  userId: number,
+  startDate: Date
+) => {
+  const now = new Date();
+  const utcTime = toUtcFromSeoul(now.toISOString());
+  return prisma.salary.findMany({
     where: {
       userId,
       depositDate: {
         gte: new Date(startDate),
-        lte: new Date(),
+        lte: utcTime,
       },
     },
   });
+};
 
 export const getLatestSixMonthSalariesWithUserId = async (userId: number) =>
   await prisma.$queryRaw<{ yearMonth: string; totalSalary: number }[]>`
@@ -194,8 +201,9 @@ export const getRecent6MonthsSalarySum = async (userId: number) => {
 // 이번 달 1일부터 오늘까지 수입 합
 export const getThisMonthUntilTodaySalarySum = async (userId: number) => {
   const now = new Date();
+  const utcTime = toUtcFromSeoul(now.toISOString());
   const start = new Date(now.getFullYear(), now.getMonth(), 1);
-  return getSalarySumByPeriod(userId, start, now);
+  return getSalarySumByPeriod(userId, start, utcTime);
 };
 
 // 작년 동일 월 수입 합 (지금이 6월이면 2024년 6월)

@@ -31,7 +31,7 @@ export default async function Consumption() {
     getMonthlySalary(userId, lastMonth.start, lastMonth.end),
   ]);
 
-  const monthlySalary = thisMonthSalaryList.reduce(
+  const monthlySalary = lastMonthSalaryList.reduce(
     (sum, s) => sum + s.amount,
     0
   );
