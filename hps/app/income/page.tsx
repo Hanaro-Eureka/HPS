@@ -56,7 +56,6 @@ export default async function Income() {
             averageAmount={recent6MonthsSum / 6}
           />
         </div>
-        <div className='mt-8'></div>
         <div className='w-full bg-white p-6'>
           <AdviceMessage
             currentAmount={recent6MonthsSum / 6}
