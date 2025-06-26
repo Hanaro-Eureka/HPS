@@ -230,7 +230,7 @@ export const incomeData = [
     trans_amt: 3690000,
     balance_amt: 8570000,
     branch_name: '하나은행 본점',
-    trans_memo: '수고하셨어요',
+    trans_memo: 'Tiktok',
     id: 26,
   },
   {
