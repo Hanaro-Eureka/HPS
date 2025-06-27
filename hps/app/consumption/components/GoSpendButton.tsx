@@ -9,7 +9,7 @@ export default function GoSpendButton() {
   return (
     <Button
       aria-label='소비 내역 가기'
-      className='text-base font-[500] px-9 py-3 rounded-2xl'
+      className='text-base font-[500] px-13 py-3 rounded-2xl'
       bgColor='bg-button-lightgray'
       onClick={() => router.push('/spendList')}
     >
