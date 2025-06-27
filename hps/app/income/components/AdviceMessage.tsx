@@ -15,25 +15,11 @@ export default function AdviceMessage({
   const absDiff = Math.abs(diff);
   const diffRate = predictedAmount > 0 ? diff / predictedAmount : 0;
 
-  // 이번 달 계산
-  const now = new Date();
-  const thisMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-  const thisMonthLabel = `${thisMonth.getMonth() + 1}월`;
-
-  const rate = Math.floor((thisMonthSalary / predictedAmount) * 100);
-
   let highlightColor = 'text-hana-yellow';
   if (diffRate > 0.05) {
     highlightColor = 'text-hana-green';
   } else if (diffRate < -0.05) {
     highlightColor = 'text-chart-overflow';
-  }
-
-  let highlightColor2 = 'text-hana-yellow';
-  if (rate > 105) {
-    highlightColor2 = 'text-hana-green';
-  } else if (rate < -105) {
-    highlightColor2 = 'text-chart-overflow';
   }
 
   return (
@@ -47,20 +33,21 @@ export default function AdviceMessage({
             height={60}
           />
           <Text className='text-black-font mt-1'>
-            {thisMonthLabel} 수입이 예측 수입보다
-          </Text>
-          <Text className='text-black-font'>
+            예측 수입보다&nbsp;
             <span className={cn(highlightColor)}>
               {Math.floor(absDiff / 10_000).toLocaleString()}만원&nbsp;
             </span>
             많습니다.
           </Text>
-          <Text className='text-black-font mt-2'>
+          <Text className='text-black-font'>
             현재 수입은 예측 수입의{' '}
             <span className={cn(highlightColor)}>
               {Math.floor((diffRate + 1) * 100)}%{' '}
             </span>
-            입니다!
+            입니다.
+          </Text>
+          <Text className='text-black-font'>
+            여유 자금을 저축하는 것을 추천합니다!
           </Text>
         </div>
       ) : diffRate < -0.05 ? (
@@ -71,22 +58,22 @@ export default function AdviceMessage({
             width={50}
             height={50}
           />
-          <Text className='text-black-font mt-1'>
-            {thisMonthLabel} 수입이 최근 6개월 평균 수입보다
-          </Text>
           <Text className='text-black-font'>
+            예측 수입보다&nbsp;
             <span className={highlightColor}>
               {Math.floor(absDiff / 10_000).toLocaleString()}만원&nbsp;
             </span>
-            적게 예측됩니다.
+            적습니다.
           </Text>
-          <Text className='text-black-font mt-1'>이번 달 수입은 현재까지</Text>
           <Text>
-            <span>
-              예측 수입의&nbsp;
-              <span className={cn(highlightColor2)}>{rate}% </span>
-              달성했습니다.
+            현재 수입은 예측 수입의{' '}
+            <span className={cn(highlightColor)}>
+              {Math.floor((diffRate + 1) * 100)}%{' '}
             </span>
+            입니다.
+          </Text>
+          <Text className='text-black-font'>
+            또 다른 일을 구해보는 건 어떨까요??
           </Text>
         </div>
       ) : (
@@ -100,8 +87,16 @@ export default function AdviceMessage({
           <Text className='text-black-font mt-1'>
             소득이 안정적으로 유지되고 있어요.
           </Text>
-          <Text className='text-black-font'>이 흐름을 살려 저축이나</Text>
-          <Text className='text-black-font'>투자 계획을 살려주세요</Text>
+          <Text>
+            현재 수입은 예측 수입의{' '}
+            <span className={cn(highlightColor)}>
+              {Math.floor((diffRate + 1) * 100)}%{' '}
+            </span>
+            입니다.
+          </Text>
+          <Text className='text-black-font'>
+            안정적인 수입관리를 하고 계세요.
+          </Text>
         </div>
       )}
     </div>
