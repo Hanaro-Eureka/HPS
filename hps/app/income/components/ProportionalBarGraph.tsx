@@ -18,6 +18,10 @@ export default function ProportionalBarGraph({
   const diffRate = calculateDiffRate(predictedThisMonthAmount, currentAmount);
   const { barColor, textColor } = getIncomeColor(diffRate);
 
+  const now = new Date();
+  const thisMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const thisMonthLabel = `${thisMonth.getMonth() + 1}월`;
+
   return (
     <div className='flex justify-center gap-8 items-end w-full mt-10 mb-15'>
       <div className='flex justify-center'>
@@ -30,7 +34,7 @@ export default function ProportionalBarGraph({
       </div>
       <div className='flex justify-center '>
         <Bar
-          label={'이번 달\n수입'}
+          label={`${thisMonthLabel}\n수입`}
           amount={currentAmount}
           color={barColor}
           textColor={textColor}
