@@ -20,7 +20,7 @@ export default async function Income() {
 
   const userId = Number(session.user?.id);
   const [
-    lastYearMonthSum,
+    lastYearNextMonthSum,
     recent3MonthsSum,
     lastYear3MonthsSum,
     recent6MonthsSum,
@@ -36,7 +36,7 @@ export default async function Income() {
   ]);
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;
   const predictedThisMonthWithGrouth = lastYearThisMonthsum * growthRate;
-  const predictedNextMonthWithGrowth = lastYearMonthSum * growthRate;
+  const predictedNextMonthWithGrowth = lastYearNextMonthSum * growthRate;
 
   return (
     <HeaderLayout title='수입 관리'>
