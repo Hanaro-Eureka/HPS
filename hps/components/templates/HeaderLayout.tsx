@@ -35,7 +35,7 @@ export default function HeaderLayout({
   return (
     <div className='bg-background'>
       {shouldShowBack && (
-        <div className='relative flex items-center px-4 py-2'>
+        <div className='relative flex items-center px-4 mt-6'>
           {isIncome ? (
             <button
               onClick={() => router.back()}
