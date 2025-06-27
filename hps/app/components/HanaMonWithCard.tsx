@@ -18,7 +18,8 @@ type Props = {
 };
 
 export default function HanaMonWithCard({ salaryList }: Props) {
-  const { rate } = getConsumptionRateText(salaryList, consumptionData);
+  const predictedSalary = salaryList.reduce((sum, s) => sum + s.amount, 0);
+  const { rate } = getConsumptionRateText(predictedSalary, consumptionData);
   const color =
     rate !== null
       ? rate < 60
