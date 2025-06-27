@@ -26,7 +26,7 @@ export default function ConsumptionRatio() {
   ];
 
   return (
-    <div className='w-full mt-12'>
+    <div className='w-full my-6'>
       <ResponsiveContainer width='100%' height={200}>
         <PieChart>
           <Pie

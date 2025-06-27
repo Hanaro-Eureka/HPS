@@ -49,7 +49,7 @@ export default function ConsumptionGraph({ salary }: Props) {
       />
 
       <div
-        className={`absolute top-full text-sm text-center font-[400] ${
+        className={`absolute text-sm text-center font-[400] ${
           referencePercentage > 90
             ? 'translate-x-[-100%] text-right'
             : '-translate-x-1/2'
