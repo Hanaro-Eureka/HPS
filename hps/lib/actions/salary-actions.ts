@@ -241,3 +241,17 @@ export const getLastYearNextMonthSalarySum = async (userId: number) => {
   const end = new Date(year, targetMonth + 1, 0, 23, 59, 59, 999);
   return getSalarySumByPeriod(userId, start, end);
 };
+
+export async function getPredictedNextMonthSalary(
+  userId: number
+): Promise<number> {
+  const [lastYearNextMonthSum, recent3MonthsSum, lastYear3MonthsSum] =
+    await Promise.all([
+      getLastYearNextMonthSalarySum(userId),
+      getRecent3MonthsSalarySum(userId),
+      getLastYearSamePeriodSalarySum(userId),
+    ]);
+
+  const growthRate = recent3MonthsSum / lastYear3MonthsSum || 1;
+  return lastYearNextMonthSum * growthRate;
+}
