@@ -18,8 +18,10 @@ export default function ConsumptionRateText({ salaryList }: Props) {
   const [colorClass, setColorClass] = useState('');
 
   useEffect(() => {
+    const predictedSalary = salaryList.reduce((sum, s) => sum + s.amount, 0);
+
     const { rate, colorClass } = getConsumptionRateText(
-      salaryList,
+      predictedSalary,
       consumptionData
     );
     setRate(rate);

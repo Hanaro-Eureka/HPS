@@ -20,16 +20,12 @@ export default async function Consumption() {
 
   const now = new Date();
 
-  // 이번 달
-  const thisMonth = getStartAndEndOfMonth(now);
-
   // 지난 달
   const lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
   const lastMonth = getStartAndEndOfMonth(lastMonthDate);
 
-  // 두 달치 급여 가져오기
-  const [thisMonthSalaryList, lastMonthSalaryList] = await Promise.all([
-    getMonthlySalary(userId, thisMonth.start, thisMonth.end),
+  // 급여 가져오기
+  const [lastMonthSalaryList] = await Promise.all([
     getMonthlySalary(userId, lastMonth.start, lastMonth.end),
   ]);
 
@@ -37,7 +33,6 @@ export default async function Consumption() {
     (sum, s) => sum + s.amount,
     0
   );
-  const allSalaryList = [...thisMonthSalaryList, ...lastMonthSalaryList];
 
   // 다음 달 예측 수입
   const predictedNextMonthSalary = await getPredictedNextMonthSalary(userId);
