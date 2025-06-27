@@ -50,14 +50,14 @@ export default function AdviceMessage({
             {thisMonthLabel} 수입이 예측 수입보다
           </Text>
           <Text className='text-black-font'>
-            <span className={cn(highlightColor, 'font-bold')}>
+            <span className={cn(highlightColor)}>
               {Math.floor(absDiff / 10_000).toLocaleString()}만원&nbsp;
             </span>
             많습니다.
           </Text>
           <Text className='text-black-font mt-2'>
             현재 수입은 예측 수입의{' '}
-            <span className={cn(highlightColor, 'font-bold')}>
+            <span className={cn(highlightColor)}>
               {Math.floor((diffRate + 1) * 100)}%{' '}
             </span>
             입니다!
@@ -84,7 +84,7 @@ export default function AdviceMessage({
           <Text>
             <span>
               예측 수입의&nbsp;
-              <span className={cn(highlightColor2, 'font-bold')}>{rate}% </span>
+              <span className={cn(highlightColor2)}>{rate}% </span>
               달성했습니다.
             </span>
           </Text>

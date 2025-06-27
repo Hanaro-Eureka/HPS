@@ -57,13 +57,13 @@ export default async function Income() {
           />
         </div>
         <div className='mt-8' />
-        <div className='w-full bg-white p-6'>
+        <div className='w-full bg-white px-6 py-9'>
           <AdviceMessage
             thisMonthSalary={thisMonthSum}
             predictedAmount={predictedThisMonthWithGrouth}
           />
         </div>
-        <div className='mt-18 flex justify-center'>
+        <div className='mt-10 flex justify-center'>
           <GoToIncomeListButton />
         </div>
       </div>
