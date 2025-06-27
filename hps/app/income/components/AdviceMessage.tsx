@@ -85,7 +85,7 @@ export default function AdviceMessage({
             height={50}
           />
           <Text className='text-black-font mt-1'>
-            소득이 안정적으로 유지되고 있어요.
+            수입이 안정적으로 유지되고 있어요.
           </Text>
           <Text>
             현재 수입은 예측 수입의{' '}
