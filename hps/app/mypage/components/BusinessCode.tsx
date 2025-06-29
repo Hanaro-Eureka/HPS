@@ -6,7 +6,7 @@ import ToastMsg from '@/components/molcules/ToastMsg';
 import { businessCodeData } from '@/constants/businessCodeData';
 import Image from 'next/image';
 import { useState } from 'react';
-import { updateUserField } from '@/lib/actions/users';
+import { updateUserField } from '@/lib/users';
 import SelectBusinessEdit from './SelectBusinessEdit';
 
 type Props = {

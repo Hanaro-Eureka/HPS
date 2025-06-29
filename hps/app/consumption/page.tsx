@@ -1,8 +1,7 @@
 import HeaderLayout from '@/components/templates/HeaderLayout';
-import { getStartAndEndOfMonth } from '@/utils/spending';
 import { redirect } from 'next/navigation';
 import {
-  getMonthlyIncome,
+  getMonthlyIncomeWithUserId,
   getPredictedNextMonthIncome,
 } from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
@@ -22,11 +21,14 @@ export default async function Consumption() {
 
   // 지난 달
   const lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-  const lastMonth = getStartAndEndOfMonth(lastMonthDate);
+  // const lastMonth = getStartAndEndOfMonth(lastMonthDate);
+  const thisYear = lastMonthDate.getFullYear().toString();
+  const month = (lastMonthDate.getMonth() + 1).toString();
+  const lastYearMonth = `${thisYear}-${month.padStart(2, '0')}`;
 
   // 급여 가져오기
   const [lastMonthIncomeList] = await Promise.all([
-    getMonthlyIncome(userId, lastMonth.start, lastMonth.end),
+    getMonthlyIncomeWithUserId(userId, lastYearMonth),
   ]);
 
   const monthlyIncome = lastMonthIncomeList.reduce(

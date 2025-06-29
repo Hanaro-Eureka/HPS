@@ -2,10 +2,10 @@
 
 import { incomeData } from '@/constants/incomeData';
 import {
-  getMonthlyIncomeWithUserId,
   createIncomeSources,
+  getMonthlyIncomeWithUserId,
   removeIncomeSources,
-} from '@/lib/actions/income-select-actions';
+} from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
 import { parseKSTDateFromDtime } from './parseKSTDate';
 

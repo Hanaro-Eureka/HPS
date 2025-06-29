@@ -6,7 +6,7 @@ import Text from '@/components/atoms/Text';
 import ToastMsg from '@/components/molcules/ToastMsg';
 import Image from 'next/image';
 import { useState } from 'react';
-import { changePassword } from '@/lib/actions/users';
+import { changePassword } from '@/lib/users';
 
 type Props = {
   userId: number;

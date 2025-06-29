@@ -1,6 +1,6 @@
 'use server';
 
-import { loginValidator } from '../validator';
+import { loginValidator } from './validator';
 
 type Input = {
   id: string;

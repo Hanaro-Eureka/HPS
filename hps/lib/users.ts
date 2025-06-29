@@ -1,8 +1,8 @@
 'use server';
 
 import bcrypt from 'bcryptjs';
-import prisma from '../db';
-import { Prisma } from '../generated/prisma';
+import prisma from './db';
+import { Prisma } from './generated/prisma';
 
 export const getUserInfo = async (id: number) => {
   const user = await prisma.user.findFirst({

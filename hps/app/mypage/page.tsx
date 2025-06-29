@@ -1,7 +1,7 @@
 import { SessionProvider } from 'next-auth/react';
 import { redirect } from 'next/navigation';
-import { getUserInfo } from '@/lib/actions/users';
 import { auth } from '@/lib/auth';
+import { getUserInfo } from '@/lib/users';
 import MyPageClient from './components/MyPageClient';
 
 export default async function MyPage() {

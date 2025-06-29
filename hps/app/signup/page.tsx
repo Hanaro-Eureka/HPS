@@ -6,7 +6,7 @@ import Text from '@/components/atoms/Text';
 import ToastMsg from '@/components/molcules/ToastMsg';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { handleSignUp } from '@/lib/actions/signup';
+import { handleSignUp } from '@/lib/signup';
 import SelectBusiness from './components/SelectBusiness';
 
 export default function SignUpPage() {
