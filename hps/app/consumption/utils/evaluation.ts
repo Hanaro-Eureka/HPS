@@ -1,7 +1,5 @@
 'use client';
 
-import { getStartAndEndOfMonth } from '@/utils/spending';
-
 type RateResult = {
   rate: number | null;
   colorClass: string;
@@ -10,18 +8,10 @@ type RateResult = {
 };
 
 export function getConsumptionRateText(
-  salaryList: { depositDate: Date; amount: number }[],
+  predictedSalary: number, // 다음 달 예측 수입
   spendingList: { trans_date: string; trans_amt: number }[]
 ): RateResult {
   const now = new Date();
-
-  // 지난달 수입
-  const lastMonthDate = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-  const { start: lastStart, end: lastEnd } =
-    getStartAndEndOfMonth(lastMonthDate);
-  const lastMonthSalary = salaryList
-    .filter((s) => s.depositDate >= lastStart && s.depositDate <= lastEnd)
-    .reduce((sum, s) => sum + s.amount, 0);
 
   // 이번 달 소비
   const thisMonth = now.getMonth() + 1;
@@ -29,7 +19,7 @@ export function getConsumptionRateText(
     .filter((item) => +item.trans_date.slice(4, 6) === thisMonth)
     .reduce((sum, item) => sum + item.trans_amt, 0);
 
-  if (lastMonthSalary === 0) {
+  if (!predictedSalary || predictedSalary === 0) {
     return {
       rate: null,
       colorClass: 'text-gray-time',
@@ -39,24 +29,25 @@ export function getConsumptionRateText(
   }
 
   const consumptionRate = Math.round(
-    (thisMonthSpending / lastMonthSalary) * 100
+    (thisMonthSpending / predictedSalary) * 100
   );
 
   let colorClass = '';
   let imagePath = '';
   let textMess = '';
+
   if (consumptionRate > 60) {
     colorClass = 'text-consumption-red';
     imagePath = '/images/img_hanaMonWithRedCard.svg';
-    textMess = '지금은\n 절약이 필요해요!';
+    textMess = `이번 달 소비가 다음 달\n 예측 수입 대비 ${consumptionRate}% 입니다.\n 지금부터 초절약 모드 ON!`;
   } else if (consumptionRate >= 30) {
     colorClass = 'text-consumption-yellow';
     imagePath = '/images/img_hanaMonWithYellowCard.svg';
-    textMess = '지금 균형은 맞췄지만\n 여유는 없어요.';
+    textMess = `이번 달 소비가 다음 달\n 예측 수입 대비 ${consumptionRate}% 입니다.\n 다음 달을 위해\n 소비를 줄여보세요!`;
   } else {
     colorClass = 'text-consumption-green';
     imagePath = '/images/img_hanaMonWithGreenCard.svg';
-    textMess = '이번 달 여유 있어요!\n 별비서에게 소비를\n 추천받아보세요!';
+    textMess = `이번 달 소비가 다음 달\n 예측 수입 대비 ${consumptionRate}% 입니다.\n 현명한 소비를 하고 계시네요!`;
   }
 
   return {
