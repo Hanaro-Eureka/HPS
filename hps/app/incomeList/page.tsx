@@ -42,7 +42,9 @@ export default async function incomePage({ searchParams }: Props) {
             }}
           />
         </div>
-        <IncomeList month={selectedMonth} />
+        <div className='overflow-y-auto w-full h-65'>
+          <IncomeList month={selectedMonth} />
+        </div>
       </div>
       <div className='flex justify-center mt-5 mb-10'>
         <GoToIncomeButton />
