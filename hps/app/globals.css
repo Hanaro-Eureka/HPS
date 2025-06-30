@@ -74,6 +74,7 @@ button:hover {
     --hana-hanaman: #e5f5f2;
     --hana-ai: #eeeeee;
     --hana-button: #019591;
+    --toast-message: #767b7f;
     --year-graph1: #7e9cf4;
     --year-graph2: #cbd5e0;
     --hana-yellow: #ffdd3a;
@@ -137,6 +138,7 @@ button:hover {
     --color-income-plus: var(--income-plus);
     --color-income-minus: var(--income-minus);
     --color-modal-shadow: var(--modal-shadow);
+    --color-toast-message: var(--toast-message);
   }
 }
 

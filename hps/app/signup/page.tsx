@@ -103,7 +103,7 @@ export default function SignUpPage() {
             <Button
               type='submit'
               bgColor='bg-hana-button'
-              className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base'
+              className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base mt-25'
             >
               회원가입
             </Button>

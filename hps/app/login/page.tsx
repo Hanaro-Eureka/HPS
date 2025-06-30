@@ -77,7 +77,7 @@ export default function LoginPage() {
             <Button
               type='submit'
               bgColor='bg-hana-button'
-              className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base'
+              className='w-full h-14 px-5 text-white rounded-lg font-[500] text-base mt-40'
             >
               로그인
             </Button>
