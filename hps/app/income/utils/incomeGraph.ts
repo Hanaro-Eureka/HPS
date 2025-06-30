@@ -23,7 +23,7 @@ export function getIncomeColor(diffRate: number): {
 
   return {
     barColor: '#FFDD3A',
-    textColor: '#212121',
+    textColor: '#FFDD3A',
   };
 }
 
