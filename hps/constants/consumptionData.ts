@@ -1461,7 +1461,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250601T134709',
-    trans_amt: 22345,
+    trans_amt: 12345,
     merchant_name: '쿠팡',
     trans_title: '가전제품',
     trans_category: 'shopping',
@@ -1471,7 +1471,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250602T083902',
-    trans_amt: 23490,
+    trans_amt: 6490,
     merchant_name: '스타벅스',
     trans_title: '아이스 아메리카노',
     trans_category: 'cafe',
@@ -1481,7 +1481,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250605T015807',
-    trans_amt: 33018,
+    trans_amt: 23018,
     merchant_name: '더부스',
     trans_title: '치킨세트',
     trans_category: 'pub',
@@ -1491,7 +1491,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250607T181728',
-    trans_amt: 84945,
+    trans_amt: 44945,
     merchant_name: '유니클로',
     trans_title: '가전제품',
     trans_category: 'shopping',
@@ -1531,7 +1531,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250613T013627',
-    trans_amt: 70185,
+    trans_amt: 20185,
     merchant_name: '더부스',
     trans_title: '치킨세트',
     trans_category: 'pub',
@@ -1561,7 +1561,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250615T133609',
-    trans_amt: 30212,
+    trans_amt: 10212,
     merchant_name: '스타벅스',
     trans_title: '아이스 아메리카노',
     trans_category: 'cafe',
@@ -1581,7 +1581,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250617T121118',
-    trans_amt: 19730,
+    trans_amt: 9730,
     merchant_name: '버거킹',
     trans_title: '도시락 2개',
     trans_category: 'restaurant',
@@ -1601,7 +1601,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250619T074637',
-    trans_amt: 140571,
+    trans_amt: 40571,
     merchant_name: '쿠팡',
     trans_title: '샌들',
     trans_category: 'shopping',
@@ -1611,7 +1611,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250620T151258',
-    trans_amt: 51352,
+    trans_amt: 21352,
     merchant_name: '유니클로',
     trans_title: '샌들',
     trans_category: 'shopping',
@@ -1621,7 +1621,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250622T091553',
-    trans_amt: 59483,
+    trans_amt: 20483,
     merchant_name: '쿠팡',
     trans_title: '샌들',
     trans_category: 'shopping',
@@ -1651,7 +1651,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250625T021511',
-    trans_amt: 137116,
+    trans_amt: 37116,
     merchant_name: 'ABC마트',
     trans_title: '가전제품',
     trans_category: 'shopping',
@@ -1681,7 +1681,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250625T224413',
-    trans_amt: 11366,
+    trans_amt: 36366,
     merchant_name: 'ABC마트',
     trans_title: '샌들',
     trans_category: 'shopping',
@@ -1690,8 +1690,8 @@ export const consumptionData = [
     id: 171,
   },
   {
-    trans_date: '20250627T092953',
-    trans_amt: 27132,
+    trans_date: '20250626T092953',
+    trans_amt: 7132,
     merchant_name: '이디야커피',
     trans_title: '카페라떼',
     trans_category: 'cafe',
@@ -1700,7 +1700,7 @@ export const consumptionData = [
     id: 172,
   },
   {
-    trans_date: '20250627T102101',
+    trans_date: '20250626T102101',
     trans_amt: 11530,
     merchant_name: 'GS25',
     trans_title: '말보루 레드',
@@ -1708,26 +1708,6 @@ export const consumptionData = [
     pay_method: '카드',
     pay_id: '****6342',
     id: 173,
-  },
-  {
-    trans_date: '20250627T201811',
-    trans_amt: 6030,
-    merchant_name: '버거킹',
-    trans_title: '햄버거 2개',
-    trans_category: 'restaurant',
-    pay_method: '무통장',
-    pay_id: '무통장',
-    id: 174,
-  },
-  {
-    trans_date: '20250630T231017',
-    trans_amt: 141689,
-    merchant_name: '쿠팡',
-    trans_title: '가전제품',
-    trans_category: 'shopping',
-    pay_method: '선불',
-    pay_id: '선불머니',
-    id: 175,
   },
   {
     trans_date: '20250701T005626',
@@ -1741,7 +1721,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250701T013927',
-    trans_amt: 33067,
+    trans_amt: 23067,
     merchant_name: '비어오크',
     trans_title: '치킨세트',
     trans_category: 'pub',
@@ -1751,7 +1731,7 @@ export const consumptionData = [
   },
   {
     trans_date: '20250702T024948',
-    trans_amt: 89564,
+    trans_amt: 54564,
     merchant_name: '쿠팡',
     trans_title: '여름 반팔티',
     trans_category: 'shopping',
@@ -1800,7 +1780,7 @@ export const consumptionData = [
     id: 182,
   },
   {
-    trans_date: '20240402T101000',
+    trans_date: '20250402T101000',
     trans_amt: 14500,
     merchant_name: '넷플릭스',
     trans_title: '프리미엄 요금제',
@@ -1810,7 +1790,7 @@ export const consumptionData = [
     id: 183,
   },
   {
-    trans_date: '20240503T103000',
+    trans_date: '20250503T103000',
     trans_amt: 14500,
     merchant_name: '넷플릭스',
     trans_title: '프리미엄 요금제',
@@ -1820,7 +1800,7 @@ export const consumptionData = [
     id: 184,
   },
   {
-    trans_date: '20240601T104500',
+    trans_date: '20250601T104500',
     trans_amt: 14500,
     merchant_name: '넷플릭스',
     trans_title: '프리미엄 요금제',
@@ -1830,7 +1810,7 @@ export const consumptionData = [
     id: 185,
   },
   {
-    trans_date: '20240402T070000',
+    trans_date: '20250402T070000',
     trans_amt: 89000,
     merchant_name: 'SKT',
     trans_title: '휴대폰 요금',
@@ -1840,7 +1820,7 @@ export const consumptionData = [
     id: 186,
   },
   {
-    trans_date: '20240501T071500',
+    trans_date: '20250501T071500',
     trans_amt: 89500,
     merchant_name: 'SKT',
     trans_title: '휴대폰 요금',
@@ -1850,8 +1830,8 @@ export const consumptionData = [
     id: 187,
   },
   {
-    trans_date: '20240601T073000',
-    trans_amt: 92030,
+    trans_date: '20250601T073000',
+    trans_amt: 89500,
     merchant_name: 'SKT',
     trans_title: '휴대폰 요금',
     trans_category: 'etc',
@@ -1860,7 +1840,7 @@ export const consumptionData = [
     id: 188,
   },
   {
-    trans_date: '20240403T090000',
+    trans_date: '20250403T090000',
     trans_amt: 550000,
     merchant_name: '하나부동산',
     trans_title: '월세이체',
@@ -1870,7 +1850,7 @@ export const consumptionData = [
     id: 189,
   },
   {
-    trans_date: '20240504T091000',
+    trans_date: '20250504T091000',
     trans_amt: 550000,
     merchant_name: '하나부동산',
     trans_title: '월세이체',
@@ -1880,7 +1860,7 @@ export const consumptionData = [
     id: 190,
   },
   {
-    trans_date: '20240602T093000',
+    trans_date: '20250602T093000',
     trans_amt: 550000,
     merchant_name: '하나부동산',
     trans_title: '월세이체',
@@ -1890,7 +1870,7 @@ export const consumptionData = [
     id: 191,
   },
   {
-    trans_date: '20240405T060000',
+    trans_date: '20250405T060000',
     trans_amt: 75000,
     merchant_name: '타이탄휘트니스',
     trans_title: '헬스장 회원권',
@@ -1900,7 +1880,7 @@ export const consumptionData = [
     id: 192,
   },
   {
-    trans_date: '20240506T063000',
+    trans_date: '20250506T063000',
     trans_amt: 75000,
     merchant_name: '타이탄휘트니스',
     trans_title: '헬스장 회원권',
@@ -1910,7 +1890,7 @@ export const consumptionData = [
     id: 193,
   },
   {
-    trans_date: '20240606T065000',
+    trans_date: '20250606T065000',
     trans_amt: 75000,
     merchant_name: '타이탄휘트니스',
     trans_title: '헬스장 회원권',
