@@ -35,7 +35,7 @@ export default function ConsumStar({ predictedSalary }: Props) {
           className='object-contain'
           priority
         />
-        <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-46 h-18 pr-4 flex flex-col items-center justify-center text-black-font font-medium text-sm text-center leading-snug'>
+        <p className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-18 pr-4 flex flex-col items-center justify-center text-black-font font-medium text-sm text-center leading-snug'>
           {textMess?.split('\n').map((line, idx) => {
             const match = line.match(/(\d+%)/);
             if (match) {

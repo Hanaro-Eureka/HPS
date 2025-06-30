@@ -4,6 +4,7 @@ import Button from '@/components/atoms/Button';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import BusinessCode from './BusinessCode';
 import ChangePassword from './ChangePassword';
 import ProfileItem from './ProfileItem';
@@ -23,6 +24,7 @@ export default function MyPageClient({
   birthDate,
   businessCode,
 }: Props) {
+  const router = useRouter();
   return (
     <HeaderLayout title='마이페이지'>
       <div className='w-full flex flex-col items-center text-black-font pt-10 px-5 py-5'>
@@ -53,6 +55,18 @@ export default function MyPageClient({
             value={businessCode}
             id={id}
           />
+          <Button
+            bgColor='white'
+            className='ml-80'
+            onClick={() => router.push('/counselor')}
+          >
+            <Image
+              src={'/svgs/ic_miniSecretary.svg'}
+              alt='상담사연결'
+              width={34}
+              height={34}
+            />
+          </Button>
         </div>
         <Button
           bgColor='bg-hana-button'
