@@ -30,14 +30,14 @@ export default function ToastMsg({
   if (!show) return null;
 
   const baseStyle =
-    'fixed bottom-5 left-0 right-0 mx-4  h-14 py-2 rounded-lg shadow-lg  z-50 whitespace-nowrap flex items-center ';
+    'fixed bottom-45 left-0 right-0 mx-2  h-14 py-2 rounded-lg shadow-lg  z-50 whitespace-nowrap flex items-center text-white';
 
   //text-center max-w-sm sm:mx-auto justify-center
 
   const typeStyles: Record<typeof type, string> = {
-    success: 'bg-button-lightgray',
-    error: 'bg-button-lightgray',
-    info: 'bg-button-lightgray',
+    success: 'bg-toast-message',
+    error: 'bg-toast-message',
+    info: 'bg-toast-message',
   };
 
   return (
@@ -47,7 +47,7 @@ export default function ToastMsg({
         alt='토스트메세지'
         width={20}
         height={20}
-        className='ml-1'
+        className='ml-3'
       />{' '}
       <div className='text-sm font-[500] ml-2'>{message}</div>
     </div>
