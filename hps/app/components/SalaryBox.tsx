@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
+import { getPredictedNextMonthSalary } from '@/lib/actions/salary-actions';
 import { auth } from '@/lib/auth';
-import { getLastIncome, getSumOfThisMonthSalaries } from '../utils/salary';
+import { getSumOfThisMonthSalaries } from '../utils/salary';
 import HanaMonWithCard from './HanaMonWithCard';
 import SalarySpendButton from './SalarySpendButton';
 
@@ -12,15 +13,15 @@ export default async function SalaryBox() {
     redirect('/login');
   }
 
-  const [sumOfSalaries, salaryList] = await Promise.all([
+  const [sumOfSalaries, predictedNextMonthSalary] = await Promise.all([
     getSumOfThisMonthSalaries(userId),
-    getLastIncome(userId),
+    getPredictedNextMonthSalary(userId),
   ]);
 
   return (
     <div className='flex mt-16 gap-4'>
       <SalarySpendButton lastSalary={sumOfSalaries} />
-      <HanaMonWithCard salaryList={salaryList} />
+      <HanaMonWithCard predictedNextMonthSalary={predictedNextMonthSalary} />
     </div>
   );
 }
