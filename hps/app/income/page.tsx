@@ -40,7 +40,7 @@ export default async function Income() {
 
   return (
     <HeaderLayout title='수입 관리'>
-      <div className='flex flex-col w-full'>
+      <div className='flex flex-col w-full relative'>
         <Text className='text-xl font-[500] text-black-font mt-6 ml-6'>
           이번 달 수입은 얼마나 될까?
         </Text>
@@ -63,7 +63,7 @@ export default async function Income() {
             predictedAmount={predictedThisMonthWithGrouth}
           />
         </div>
-        <div className='mt-10 flex justify-center'>
+        <div className='pt-10 flex justify-center'>
           <GoToIncomeListButton />
         </div>
       </div>

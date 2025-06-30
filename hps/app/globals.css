@@ -16,6 +16,7 @@ h6 {
 
 body {
   margin: 0;
+  overflow: hidden;
 }
 
 button:hover {

@@ -1,7 +1,7 @@
+import BottomTabBar from '@/components/organisms/BottomTab/BottomTabBar';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
-import GoToIncomeButton from './components/GoToIncomeButton';
 import IncomeList from './components/IncomeList';
 import IncomeListMonthBar from './components/IncomeListMonthBar';
 import LineGraph from './components/LineGraph';
@@ -27,28 +27,28 @@ export default async function incomePage({ searchParams }: Props) {
   const selectedMonth = searchParams1.month ?? thisMonth;
 
   return (
-    <HeaderLayout path='/income'>
-      <div className='mt-8'>
-        <IncomeListMonthBar />
-        <div className='border p-1 rounded-3xl [box-shadow:var(--shadow-taxbox)] mt-9 mb-15 mx-6'>
-          <LineGraph
-            data={sixMonthIncomes}
-            xDataKey='month'
-            width={343}
-            height={223}
-            lineColors={{
-              thisIncome: '#7E9CF4',
-              lastIncome: '#CBD5E0',
-            }}
-          />
+    <>
+      <HeaderLayout path='/income'>
+        <div className='mt-8'>
+          <IncomeListMonthBar />
+          <div className='border p-1 rounded-3xl [box-shadow:var(--shadow-taxbox)] mt-9 mb-10 mx-6'>
+            <LineGraph
+              data={sixMonthIncomes}
+              xDataKey='month'
+              width={343}
+              height={223}
+              lineColors={{
+                thisIncome: '#7E9CF4',
+                lastIncome: '#CBD5E0',
+              }}
+            />
+          </div>
+          <div className='overflow-y-auto w-full h-65'>
+            <IncomeList month={selectedMonth} />
+          </div>
         </div>
-        <div className='overflow-y-auto w-full h-65'>
-          <IncomeList month={selectedMonth} />
-        </div>
-      </div>
-      <div className='flex justify-center mt-5 mb-10'>
-        <GoToIncomeButton />
-      </div>
-    </HeaderLayout>
+      </HeaderLayout>
+      <BottomTabBar />
+    </>
   );
 }
