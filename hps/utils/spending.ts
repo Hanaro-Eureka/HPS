@@ -65,17 +65,17 @@ export const groupByDateInSpendList = <T extends { trans_date: string }>(
   }, {});
 
 export const calculateSpendingStatus = (
-  salary: number,
+  income: number,
   spending: number
 ): {
   isOverSpent: boolean;
   used: number;
   remain: number;
 } => {
-  const isOverSpent = spending > salary;
+  const isOverSpent = spending > income;
   const used = isOverSpent
-    ? (salary / spending) * 100
-    : (spending / salary) * 100;
+    ? (income / spending) * 100
+    : (spending / income) * 100;
   const remain = 100 - used;
 
   if (remain < 10) {

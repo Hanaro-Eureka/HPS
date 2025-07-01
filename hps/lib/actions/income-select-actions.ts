@@ -5,7 +5,7 @@ export const createIncomeSources = async (
   userId: number,
   data: { depositorName: string; amount: number; depositDate: Date }[]
 ) => {
-  return prisma.salary.createMany({
+  return prisma.income.createMany({
     data: data.map((item) => ({
       userId,
       depositorName: item.depositorName,
@@ -16,8 +16,8 @@ export const createIncomeSources = async (
 };
 
 // 사용자별 전체 주요 수입 내역 조회
-export const getSalaryByUserId = async (userId: number) => {
-  return prisma.salary.findMany({
+export const getIncomeByUserId = async (userId: number) => {
+  return prisma.income.findMany({
     where: { userId },
     orderBy: { depositDate: 'desc' },
   });
@@ -40,7 +40,7 @@ export const getMonthlyIncomeWithUserId = async (
     999
   );
 
-  return prisma.salary.findMany({
+  return prisma.income.findMany({
     where: {
       userId,
       depositDate: {
@@ -57,7 +57,7 @@ export const removeIncomeSources = async (
   data: { depositorName: string; amount: number; depositDate: Date }[]
 ) => {
   for (const item of data) {
-    await prisma.salary.deleteMany({
+    await prisma.income.deleteMany({
       where: {
         userId,
         amount: item.amount,

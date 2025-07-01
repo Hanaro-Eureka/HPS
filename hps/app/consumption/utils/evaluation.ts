@@ -8,7 +8,7 @@ type RateResult = {
 };
 
 export function getConsumptionRateText(
-  predictedSalary: number, // 다음 달 예측 수입
+  predictedIncome: number, // 다음 달 예측 수입
   spendingList: { trans_date: string; trans_amt: number }[]
 ): RateResult {
   const now = new Date();
@@ -19,7 +19,7 @@ export function getConsumptionRateText(
     .filter((item) => +item.trans_date.slice(4, 6) === thisMonth)
     .reduce((sum, item) => sum + item.trans_amt, 0);
 
-  if (!predictedSalary || predictedSalary === 0) {
+  if (!predictedIncome || predictedIncome === 0) {
     return {
       rate: null,
       colorClass: 'text-gray-time',
@@ -29,7 +29,7 @@ export function getConsumptionRateText(
   }
 
   const consumptionRate = Math.round(
-    (thisMonthSpending / predictedSalary) * 100
+    (thisMonthSpending / predictedIncome) * 100
   );
 
   let colorClass = '';

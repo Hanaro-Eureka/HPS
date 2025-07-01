@@ -1,7 +1,7 @@
 import {
-  getLastYearSixMonthSalariesWithUserId,
-  getLatestSixMonthSalariesWithUserId,
-} from '@/lib/actions/salary-actions';
+  getLastYearSixMonthIncomesWithUserId,
+  getLatestSixMonthIncomesWithUserId,
+} from '@/lib/actions/income-actions';
 
 const getLatestSixMonth = () => {
   const now = new Date();
@@ -25,11 +25,11 @@ const getLatestSixMonth = () => {
 
 export const getSixMonthIncome = async (userId: number) => {
   // 올해 6개월 수입
-  const thisSixMonthIncome = await getLatestSixMonthSalariesWithUserId(userId);
+  const thisSixMonthIncome = await getLatestSixMonthIncomesWithUserId(userId);
 
   // 작년 6개월 수입
   const lastYearSixMonthIncome =
-    await getLastYearSixMonthSalariesWithUserId(userId);
+    await getLastYearSixMonthIncomesWithUserId(userId);
 
   // 집계할 6개월에 대한 List
   // ex) ['2025-06', '2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
@@ -46,10 +46,10 @@ export const getSixMonthIncome = async (userId: number) => {
 
   // 올해 6개월동안 소득이 있던 달의 총 소득
   const thisTotalIncome = thisSixMonthIncome.map(
-    ({ totalSalary }) => totalSalary
+    ({ totalIncome }) => totalIncome
   );
   const lastTotalIncome = lastYearSixMonthIncome.map(
-    ({ totalSalary }) => totalSalary
+    ({ totalIncome }) => totalIncome
   );
 
   const arr: {

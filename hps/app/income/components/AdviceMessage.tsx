@@ -3,15 +3,15 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 type Props = {
-  thisMonthSalary: number;
+  thisMonthIncome: number;
   predictedAmount: number;
 };
 
 export default function AdviceMessage({
-  thisMonthSalary,
+  thisMonthIncome,
   predictedAmount,
 }: Props) {
-  const diff = thisMonthSalary - predictedAmount;
+  const diff = thisMonthIncome - predictedAmount;
   const absDiff = Math.abs(diff);
   const diffRate = predictedAmount > 0 ? diff / predictedAmount : 0;
 

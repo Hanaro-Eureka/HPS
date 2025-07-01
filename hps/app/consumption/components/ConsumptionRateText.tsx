@@ -4,29 +4,29 @@ import { consumptionData } from '@/constants/consumptionData';
 import { useEffect, useState } from 'react';
 import { getConsumptionRateText } from '../utils/evaluation';
 
-type Salary = {
+type Income = {
   depositDate: Date;
   amount: number;
 };
 
 type Props = {
-  salaryList: Salary[];
+  incomeList: Income[];
 };
 
-export default function ConsumptionRateText({ salaryList }: Props) {
+export default function ConsumptionRateText({ incomeList }: Props) {
   const [rate, setRate] = useState<number | null>(null);
   const [colorClass, setColorClass] = useState('');
 
   useEffect(() => {
-    const predictedSalary = salaryList.reduce((sum, s) => sum + s.amount, 0);
+    const predictedIncome = incomeList.reduce((sum, s) => sum + s.amount, 0);
 
     const { rate, colorClass } = getConsumptionRateText(
-      predictedSalary,
+      predictedIncome,
       consumptionData
     );
     setRate(rate);
     setColorClass(colorClass);
-  }, [salaryList]);
+  }, [incomeList]);
 
   if (rate === null) {
     return (

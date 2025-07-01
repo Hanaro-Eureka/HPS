@@ -5,7 +5,7 @@ import { auth } from '@/lib/auth';
 import IncomeList from './components/IncomeList';
 import IncomeListMonthBar from './components/IncomeListMonthBar';
 import LineGraph from './components/LineGraph';
-import { getSixMonthIncome, getThisYearMonth } from './utils/salary';
+import { getSixMonthIncome, getThisYearMonth } from './utils/income';
 
 export const dynamic = 'force-dynamic';
 

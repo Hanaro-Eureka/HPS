@@ -8,9 +8,9 @@ import CompleteButton from './CompleteButton';
 import IncomeSelectorList from './IncomeSelectorList';
 
 export default function IncomeSelectorSection({
-  existingSalary,
+  existingIncome,
 }: {
-  existingSalary: {
+  existingIncome: {
     depositorName: string;
     incomeSource?: string | null;
     amount: number;
@@ -23,7 +23,7 @@ export default function IncomeSelectorSection({
   const selectedIdsFromDB = incomeData
     .filter((item) => {
       const timestamp = parseKSTDateFromDtime(item.trans_dtime).getTime();
-      return existingSalary.some(
+      return existingIncome.some(
         (s) =>
           s.depositorName === item.trans_memo &&
           s.amount === item.trans_amt &&

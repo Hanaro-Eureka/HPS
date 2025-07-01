@@ -4,22 +4,13 @@ import { consumptionData } from '@/constants/consumptionData';
 import Image from 'next/image';
 import { getConsumptionRateText } from '../consumption/utils/evaluation';
 
-// type Salary = {
-//   id: number;
-//   userId: number;
-//   amount: number;
-//   depositDate: Date;
-//   depositorName: string | null;
-//   incomeSource: string | null;
-// };
-
 type Props = {
-  predictedNextMonthSalary: number;
+  predictedNextMonthIncome: number;
 };
 
-export default function HanaMonWithCard({ predictedNextMonthSalary }: Props) {
+export default function HanaMonWithCard({ predictedNextMonthIncome }: Props) {
   const { rate } = getConsumptionRateText(
-    predictedNextMonthSalary,
+    predictedNextMonthIncome,
     consumptionData
   );
   const color =

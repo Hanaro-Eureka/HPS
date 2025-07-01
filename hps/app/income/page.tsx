@@ -2,13 +2,13 @@ import Text from '@/components/atoms/Text';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { redirect } from 'next/navigation';
 import {
-  getLastYearSamePeriodSalarySum,
-  getLastYearNextMonthSalarySum,
-  getRecent3MonthsSalarySum,
-  getRecent6MonthsSalarySum,
-  getThisMonthUntilTodaySalarySum,
-  getLastYearSameMonthSalarySum,
-} from '@/lib/actions/salary-actions';
+  getLastYearSamePeriodIncomeSum,
+  getLastYearNextMonthIncomeSum,
+  getRecent3MonthsIncomeSum,
+  getRecent6MonthsIncomeSum,
+  getThisMonthUntilTodayIncomeSum,
+  getLastYearSameMonthIncomeSum,
+} from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
 import AdviceMessage from './components/AdviceMessage';
 import GoToIncomeListButton from './components/GoIncomeListButton';
@@ -27,12 +27,12 @@ export default async function Income() {
     thisMonthSum,
     lastYearThisMonthsum,
   ] = await Promise.all([
-    getLastYearNextMonthSalarySum(userId),
-    getRecent3MonthsSalarySum(userId),
-    getLastYearSamePeriodSalarySum(userId),
-    getRecent6MonthsSalarySum(userId),
-    getThisMonthUntilTodaySalarySum(userId),
-    getLastYearSameMonthSalarySum(userId),
+    getLastYearNextMonthIncomeSum(userId),
+    getRecent3MonthsIncomeSum(userId),
+    getLastYearSamePeriodIncomeSum(userId),
+    getRecent6MonthsIncomeSum(userId),
+    getThisMonthUntilTodayIncomeSum(userId),
+    getLastYearSameMonthIncomeSum(userId),
   ]);
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;
   const predictedThisMonthWithGrouth = lastYearThisMonthsum * growthRate;
@@ -59,7 +59,7 @@ export default async function Income() {
         <div className='mt-8' />
         <div className='w-full bg-white px-6 py-9'>
           <AdviceMessage
-            thisMonthSalary={thisMonthSum}
+            thisMonthIncome={thisMonthSum}
             predictedAmount={predictedThisMonthWithGrouth}
           />
         </div>

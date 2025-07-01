@@ -6,23 +6,23 @@ import { useEffect, useState } from 'react';
 import { getConsumptionRateText } from '../utils/evaluation';
 
 type Props = {
-  predictedSalary: number;
+  predictedIncome: number;
 };
 
-export default function ConsumStar({ predictedSalary }: Props) {
+export default function ConsumStar({ predictedIncome }: Props) {
   const [imagePath, setImagePath] = useState<string | null>(null);
   const [textMess, setTextMess] = useState<string | null>(null);
   const [colorClass, setColorClass] = useState<string>('text-black-font');
 
   useEffect(() => {
     const { imagePath, textMess, colorClass } = getConsumptionRateText(
-      predictedSalary,
+      predictedIncome,
       consumptionData
     );
     setImagePath(imagePath);
     setTextMess(textMess);
     setColorClass(colorClass);
-  }, [predictedSalary]);
+  }, [predictedIncome]);
 
   return (
     <div className='flex relative items-center justify-center'>

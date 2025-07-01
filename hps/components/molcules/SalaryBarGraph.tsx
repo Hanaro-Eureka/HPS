@@ -14,7 +14,7 @@ type Props = {
     remain: string;
   };
 };
-export default function SalaryBarGraph({ data, colors, height }: Props) {
+export default function IncomeBarGraph({ data, colors, height }: Props) {
   const { used, remain } = colors;
 
   return (

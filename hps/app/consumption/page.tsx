@@ -2,9 +2,9 @@ import HeaderLayout from '@/components/templates/HeaderLayout';
 import { getStartAndEndOfMonth } from '@/utils/spending';
 import { redirect } from 'next/navigation';
 import {
-  getMonthlySalary,
-  getPredictedNextMonthSalary,
-} from '@/lib/actions/salary-actions';
+  getMonthlyIncome,
+  getPredictedNextMonthIncome,
+} from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
 import ConsumStar from './components/ConsumStar';
 import ConsumptionGraph from './components/ConsumptionGraph';
@@ -25,28 +25,28 @@ export default async function Consumption() {
   const lastMonth = getStartAndEndOfMonth(lastMonthDate);
 
   // 급여 가져오기
-  const [lastMonthSalaryList] = await Promise.all([
-    getMonthlySalary(userId, lastMonth.start, lastMonth.end),
+  const [lastMonthIncomeList] = await Promise.all([
+    getMonthlyIncome(userId, lastMonth.start, lastMonth.end),
   ]);
 
-  const monthlySalary = lastMonthSalaryList.reduce(
+  const monthlyIncome = lastMonthIncomeList.reduce(
     (sum, s) => sum + s.amount,
     0
   );
 
   // 다음 달 예측 수입
-  const predictedNextMonthSalary = await getPredictedNextMonthSalary(userId);
+  const predictedNextMonthIncome = await getPredictedNextMonthIncome(userId);
 
   return (
     <HeaderLayout title='소비 관리'>
       <section className='flex flex-col w-full mt-7'>
         <div className='bg-white py-14 w-full'>
-          <ConsumptionGraph salary={monthlySalary} />
+          <ConsumptionGraph income={monthlyIncome} />
         </div>
         <ConsumptionRatio />
 
         <div className='bg-white mb-12 gap-8 w-full'>
-          <ConsumStar predictedSalary={predictedNextMonthSalary} />
+          <ConsumStar predictedIncome={predictedNextMonthIncome} />
         </div>
 
         <div className='flex justify-center'>

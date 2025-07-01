@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { getThisYearMonth } from '../utils/salary';
+import { getThisYearMonth } from '../utils/income';
 
 const getMonthes = (thisMonth: string) => {
   const monthes = [];

@@ -2,7 +2,7 @@ import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { redirect } from 'next/navigation';
-import { getSalaryByUserId } from '@/lib/actions/salary-select-actions';
+import { getIncomeByUserId } from '@/lib/actions/income-select-actions';
 import { auth } from '@/lib/auth';
 import IncomeSelectorSection from './components/IncomeSelectorSection';
 
@@ -12,9 +12,9 @@ export default async function IncomeSource() {
     redirect('/login');
   }
   const userId = Number(session?.user?.id);
-  const rawSalary = await getSalaryByUserId(userId);
+  const rawIncome = await getIncomeByUserId(userId);
 
-  const existingSalary = rawSalary
+  const existingIncome = rawIncome
     .filter((s) => s.depositorName !== null)
     .map((s) => ({
       depositorName: s.depositorName as string,
@@ -32,7 +32,7 @@ export default async function IncomeSource() {
         내 통장 입금 내역
       </Text>
 
-      <IncomeSelectorSection existingSalary={existingSalary} />
+      <IncomeSelectorSection existingIncome={existingIncome} />
     </HeaderLayout>
   );
 }

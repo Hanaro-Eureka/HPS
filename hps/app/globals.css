@@ -94,7 +94,7 @@ button:hover {
     --button-lightgray: #f3f4f6;
     --button-gray: #e5e7eb;
     --shadow-taxbox: 0 0 4px rgba(0, 0, 0, 0.15);
-    --shadow-salarybox: 0 0 4 0 rgba(0, 0, 0, 0.25);
+    --shadow-incomebox: 0 0 4 0 rgba(0, 0, 0, 0.25);
     --spend-alert: #d83e3e;
     --consumption-red: #e93c2b;
     --consumption-yellow: #ffdd3b;
@@ -250,7 +250,7 @@ button:hover {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-.bg-gradient-salary {
+.bg-gradient-income {
   background: linear-gradient(to bottom, #e5f5f3 0%, #fefefe 100%);
 }
 

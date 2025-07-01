@@ -5,7 +5,7 @@ import {
   getMonthlyIncomeWithUserId,
   createIncomeSources,
   removeIncomeSources,
-} from '@/lib/actions/salary-select-actions';
+} from '@/lib/actions/income-select-actions';
 import { auth } from '@/lib/auth';
 import { parseKSTDateFromDtime } from './parseKSTDate';
 

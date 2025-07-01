@@ -1,8 +1,8 @@
 import { getStartAndEndOfMonth } from '@/utils/spending';
 import {
-  getMonthlySalary,
-  getSalariesWithUserId,
-} from '@/lib/actions/salary-actions';
+  getMonthlyIncome,
+  getIncomesWithUserId,
+} from '@/lib/actions/income-actions';
 
 export const getFirstDayOfThisMonth = () => {
   const now = new Date();
@@ -15,19 +15,19 @@ export const getFirstDayOfThisMonth = () => {
   return firstDayOfThisMonth;
 };
 
-export const getSumOfThisMonthSalaries = async (userId: number) => {
+export const getSumOfThisMonthIncomes = async (userId: number) => {
   const firstDayOfThisMonth = getFirstDayOfThisMonth();
-  const salariesOfThisMonth = await getSalariesWithUserId(
+  const incomesOfThisMonth = await getIncomesWithUserId(
     userId,
     firstDayOfThisMonth
   );
 
-  const sumOfSalaries = salariesOfThisMonth.reduce(
-    (sum, salary) => sum + salary.amount,
+  const sumOfIncomes = incomesOfThisMonth.reduce(
+    (sum, income) => sum + income.amount,
     0
   );
 
-  return sumOfSalaries;
+  return sumOfIncomes;
 };
 
 export const getLastIncome = async (userId: number) => {
@@ -41,12 +41,12 @@ export const getLastIncome = async (userId: number) => {
   const lastMonth = getStartAndEndOfMonth(lastMonthDate);
 
   // 두 달치 급여 가져오기
-  const [thisMonthSalaryList, lastMonthSalaryList] = await Promise.all([
-    getMonthlySalary(userId, thisMonth.start, thisMonth.end),
-    getMonthlySalary(userId, lastMonth.start, lastMonth.end),
+  const [thisMonthIncomeList, lastMonthIncomeList] = await Promise.all([
+    getMonthlyIncome(userId, thisMonth.start, thisMonth.end),
+    getMonthlyIncome(userId, lastMonth.start, lastMonth.end),
   ]);
 
-  const allSalaryList = [...thisMonthSalaryList, ...lastMonthSalaryList];
+  const allIncomeList = [...thisMonthIncomeList, ...lastMonthIncomeList];
 
-  return allSalaryList;
+  return allIncomeList;
 };

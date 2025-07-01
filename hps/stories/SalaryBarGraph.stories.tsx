@@ -1,9 +1,9 @@
-import SalaryBarChart from '@/components/molcules/SalaryBarGraph';
+import IncomeBarChart from '@/components/molcules/IncomeBarGraph';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
-const meta: Meta<typeof SalaryBarChart> = {
-  title: 'Molecules/SalaryBarChart',
-  component: SalaryBarChart,
+const meta: Meta<typeof IncomeBarChart> = {
+  title: 'Molecules/IncomeBarChart',
+  component: IncomeBarChart,
   tags: ['autodocs'],
   argTypes: {
     data: {
@@ -30,7 +30,7 @@ const meta: Meta<typeof SalaryBarChart> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof SalaryBarChart>;
+type Story = StoryObj<typeof IncomeBarChart>;
 
 export const Default: Story = {
   args: {

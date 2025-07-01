@@ -2,15 +2,15 @@ import List from '@/components/molcules/List';
 import Image from 'next/image';
 import {
   getMonthlyIncomeWithUserId,
-  getSalaryChangeFromLastMonth,
-} from '@/lib/actions/salary-actions';
+  getIncomeChangeFromLastMonth,
+} from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
 import {
   formatDate,
   formatTime,
   getThisYearMonth,
   groupByDate,
-} from '../utils/salary';
+} from '../utils/income';
 
 type Props = {
   month: string;
@@ -24,7 +24,7 @@ export default async function IncomeList({ month }: Props) {
 
   const [monthlyIncome, incomeChanges] = await Promise.all([
     getMonthlyIncomeWithUserId(userId, ym),
-    getSalaryChangeFromLastMonth(userId, ym),
+    getIncomeChangeFromLastMonth(userId, ym),
   ]);
 
   const grouped = groupByDate(monthlyIncome, 'depositDate');
