@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     ]);
 
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;
-  const nextmonthpay = lastYearMonthSum * growthRate + 2000000;
+  const nextmonthpay = lastYearMonthSum * growthRate;
 
   const prompt = `다음 정보를 기반으로, 해당 물건을 언제 구매하는 것이 좋을지 조언해줘.
 
