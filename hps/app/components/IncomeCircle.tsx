@@ -1,4 +1,4 @@
-import { getIncomeSourcesByUserId } from '@/lib/actions/salary-summary';
+import { getIncomeSourcesByUserId } from '@/lib/actions/income-summary';
 import { auth } from '@/lib/auth';
 import BubbleAnimation from './BubbleAnimation';
 
@@ -12,7 +12,7 @@ const floatSettings = [
   { x: 1, y: 18, duration: 2.1, delay: 0.05 },
 ];
 
-export default async function SalaryCircle() {
+export default async function IncomeCircle() {
   const session = await auth();
   const userId = Number(session?.user?.id);
   const now = new Date();

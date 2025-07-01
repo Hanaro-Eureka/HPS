@@ -9,7 +9,7 @@ export const getIncomeSourcesByUserId = async (
   const utcTime = toUtcFromSeoul(now.toISOString());
 
   return (
-    await prisma.salary.groupBy({
+    await prisma.income.groupBy({
       by: ['incomeSource', 'depositorName'],
       where: {
         userId,

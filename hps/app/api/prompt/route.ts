@@ -1,10 +1,10 @@
 import {
-  getLastMonthSalarySum,
-  getLastYearNextMonthSalarySum,
-  getLastYearSamePeriodSalarySum,
-  getRecent3MonthsSalarySum,
-  getRecent6MonthsSalarySum,
-} from '@/lib/actions/salary-actions';
+  getLastMonthIncomeSum,
+  getLastYearNextMonthIncomeSum,
+  getLastYearSamePeriodIncomeSum,
+  getRecent3MonthsIncomeSum,
+  getRecent6MonthsIncomeSum,
+} from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
 
 export async function POST(req: Request) {
@@ -18,11 +18,11 @@ export async function POST(req: Request) {
 
   const [lastMonthSum, lastYearMonthSum, recent3MonthsSum, lastYear3MonthsSum] =
     await Promise.all([
-      getLastMonthSalarySum(userId),
-      getLastYearNextMonthSalarySum(userId),
-      getRecent3MonthsSalarySum(userId),
-      getLastYearSamePeriodSalarySum(userId),
-      getRecent6MonthsSalarySum(userId),
+      getLastMonthIncomeSum(userId),
+      getLastYearNextMonthIncomeSum(userId),
+      getRecent3MonthsIncomeSum(userId),
+      getLastYearSamePeriodIncomeSum(userId),
+      getRecent6MonthsIncomeSum(userId),
     ]);
 
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;

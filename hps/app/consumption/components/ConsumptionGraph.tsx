@@ -1,4 +1,4 @@
-import SalaryBarGraph from '@/components/molcules/SalaryBarGraph';
+import IncomeBarGraph from '@/components/molcules/IncomeBarGraph';
 import { consumptionData } from '@/constants/consumptionData';
 import {
   calculateSpendingStatus,
@@ -7,10 +7,10 @@ import {
 } from '@/utils/spending';
 
 type Props = {
-  salary: number;
+  income: number;
 };
 
-export default function ConsumptionGraph({ salary }: Props) {
+export default function ConsumptionGraph({ income }: Props) {
   const currentMonth = getCurrentMonth();
   const thisMonthData = filterThisMonthData(
     consumptionData,
@@ -24,16 +24,16 @@ export default function ConsumptionGraph({ salary }: Props) {
   );
 
   const { isOverSpent, used, remain } = calculateSpendingStatus(
-    salary,
+    income,
     totalSpending
   );
 
   const referencePercentage =
-    (Math.min(totalSpending, salary) / Math.max(totalSpending, salary)) * 100;
+    (Math.min(totalSpending, income) / Math.max(totalSpending, income)) * 100;
 
   return (
     <div className='relative w-full px-12'>
-      <SalaryBarGraph
+      <IncomeBarGraph
         data={[
           {
             name: '소비 내역',
@@ -63,7 +63,7 @@ export default function ConsumptionGraph({ salary }: Props) {
         </span>
         <br />
         <span className='whitespace-nowrap text-black-font'>
-          {(isOverSpent ? salary : totalSpending).toLocaleString()}원
+          {(isOverSpent ? income : totalSpending).toLocaleString()}원
         </span>
       </div>
 
@@ -73,7 +73,7 @@ export default function ConsumptionGraph({ salary }: Props) {
         </span>
         <br />
         <span className={isOverSpent ? 'text-spend-alert' : 'text-black-font'}>
-          {(isOverSpent ? totalSpending : salary).toLocaleString()}원
+          {(isOverSpent ? totalSpending : income).toLocaleString()}원
         </span>
       </div>
     </div>

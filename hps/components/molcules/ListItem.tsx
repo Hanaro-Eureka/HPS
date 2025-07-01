@@ -2,7 +2,7 @@ import Text from '@/components/atoms/Text';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { updateIncome } from '@/lib/actions/salary-actions';
+import { updateIncome } from '@/lib/actions/income-actions';
 import { cn } from '@/lib/utils';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';

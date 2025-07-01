@@ -7,7 +7,7 @@ export const getFirstPensionDate = async (user_id: number) => {
   if (typeof user_id !== 'number' || Number.isNaN(user_id)) {
     throw new Error('유효하지 않은 사용자 ID');
   }
-  return prisma.salary.findFirst({
+  return prisma.income.findFirst({
     where: {
       userId: user_id,
     },
@@ -21,11 +21,11 @@ export const getFirstPensionDate = async (user_id: number) => {
 };
 
 //사용자의 아이디로 마지막 급여 금액 조회
-export const getLastSalary = async (user_id: number) => {
+export const getLastIncome = async (user_id: number) => {
   if (typeof user_id !== 'number' || Number.isNaN(user_id)) {
     throw new Error('유효하지 않은 사용자 ID');
   }
-  const lastSalary = await prisma.salary.findFirst({
+  const lastIncome = await prisma.income.findFirst({
     where: {
       userId: user_id,
     },
@@ -37,5 +37,5 @@ export const getLastSalary = async (user_id: number) => {
     },
   });
 
-  return lastSalary ? lastSalary.amount : 0; // 마지막 급여가 없으면 0 반환
+  return lastIncome ? lastIncome.amount : 0; // 마지막 급여가 없으면 0 반환
 };

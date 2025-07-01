@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 type Props = {
-  lastSalary: number;
+  lastIncome: number;
 };
-export default function SalarySpendButton({ lastSalary }: Props) {
+export default function IncomeSpendButton({ lastIncome }: Props) {
   const router = useRouter();
   return (
     <>
@@ -32,7 +32,7 @@ export default function SalarySpendButton({ lastSalary }: Props) {
             />
           </div>
           <div className='mt-4 text-center text-xl font-[600] '>
-            {lastSalary.toLocaleString()}원
+            {lastIncome.toLocaleString()}원
           </div>
         </div>
       </Button>
