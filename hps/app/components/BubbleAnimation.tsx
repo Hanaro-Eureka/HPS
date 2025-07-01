@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 type Props = {
@@ -17,6 +18,7 @@ type Props = {
     top: string;
     left: string;
   };
+  href?: string;
 };
 
 export default function BubbleAnimation({
@@ -25,9 +27,12 @@ export default function BubbleAnimation({
   size,
   anim,
   position,
+  href,
 }: Props) {
+  const router = useRouter();
   return (
     <motion.div
+      onClick={() => href && router.push(href)}
       animate={{ y: [0, anim.y, 0], x: [0, anim.x, 0] }}
       transition={{
         duration: anim.duration,
@@ -50,7 +55,7 @@ export default function BubbleAnimation({
         left: position.left,
       }}
     >
-      <span className='text-xl font-[600]'>{category}</span>
+      <span className='text-xl font-[600] px-3'>{category}</span>
     </motion.div>
   );
 }
