@@ -41,7 +41,7 @@
 <br/>
 
 ### 별비서 상담
-![Image](https://github.com/user-attachments/assets/d853bbee-390d-4c6f-a986-e10ff525a8b6)
+![Image](https://github.com/user-attachments/assets/8ccf3ce2-a536-45b8-88bb-c48d3aaea819)
 무엇을 언제 사면 좋을지 고민될 때, <br/>
 💬 별비서 서비스로 상담을 받아보세요. <br/>
 소비 여유나 적정 시점 등을 기반으로 맞춤형 소비 조언을 제공합니다.
