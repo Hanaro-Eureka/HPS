@@ -25,17 +25,19 @@ export const getIncomesWithUserId = async (userId: number, startDate: Date) => {
 export const getSixMonthIncomesWithUserId = async (
   userId: number,
   monthsAgo: number
-) =>
-  await prisma.$queryRaw<{ yearMonth: string; totalIncome: number }[]>`
+) => {
+  const end = monthsAgo - 5 < 0 ? 'NOW()' : (monthsAgo - 5).toString();
+  return await prisma.$queryRaw<{ yearMonth: string; totalIncome: number }[]>`
   SELECT
     DATE_FORMAT(depositDate, '%Y-%m') AS yearMonth,
     SUM(amount) AS totalIncome
   FROM income
   WHERE depositDate BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL ${monthsAgo} MONTH), '%Y-%m-01')
-                      AND NOW() and userId = ${userId}
+                      AND LAST_DAY(DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL ${end} MONTH))  and userId = ${userId}
   GROUP BY yearMonth
   ORDER BY yearMonth desc;
 `;
+};
 
 // 한 달 동안의 수입 내역 조회
 export const getMonthlyIncomeWithUserId = async (

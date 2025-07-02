@@ -65,6 +65,7 @@ export default function ListItem({
                       placeholder={newValue}
                       className='border-1 w-full'
                       name='value'
+                      defaultValue={newValue}
                     />
                   </form>
                 ) : (
