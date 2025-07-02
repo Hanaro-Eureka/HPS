@@ -1,6 +1,6 @@
 ## 💰 하나의 완벽한 비서: MZ 프리랜서 전용 스마트 금융 비서
 
-![Image](https://github.com/user-attachments/files/21009388/overview.pdf)
+![Image](https://github.com/user-attachments/assets/74e85a02-ba3a-4c41-9bf4-4cd221f9e5a0)
 
 ### ☁️ 프로젝트 소개
 
@@ -14,8 +14,8 @@
 ### 🌟 주요 기능
 
 ### 수입 관리
-![Image](https://github.com/user-attachments/files/21009324/income.pdf)
-![Image](https://github.com/user-attachments/files/21009327/income2.pdf)
+![Image](https://github.com/user-attachments/assets/d7abcfa3-fce3-4fae-85e4-32ae7d8dd7f9)
+![Image](https://github.com/user-attachments/assets/b388bda1-dc4e-4e34-9ec3-92e122cafae6)
 여러 수입원 중 주요 수입원을 사용자가 선택하면, <br/>
 📊 현재 수입과 이번 달 예측 수입을 그래프로 시각화해주고 <br/>
 📊 평균 수입과 다음 달 예측 수입을 모달로 보여줍니다. <br/>
@@ -24,7 +24,7 @@
 <br/>
 
 ### 소비 관리
-![Image](https://github.com/user-attachments/files/21009349/spend.pdf)
+![Image](https://github.com/user-attachments/assets/5c7c35ce-44d2-48ea-8af3-ca0c79f4e824)
 <div align="center">
 
 | 종류                 | 상황                                                                                                                                                                                                                                                                                                                            | 
@@ -41,7 +41,7 @@
 <br/>
 
 ### 별비서 상담
-![Image](https://github.com/user-attachments/files/21009373/assistant.pdf)
+![Image](https://github.com/user-attachments/assets/69a69fd0-46d8-44ff-9569-c5ecdf519e6d)
 무엇을 언제 사면 좋을지 고민될 때, <br/>
 💬 별비서 서비스로 상담을 받아보세요. <br/>
 소비 여유나 적정 시점 등을 기반으로 맞춤형 소비 조언을 제공합니다.
