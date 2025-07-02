@@ -1,6 +1,6 @@
 ## 💰 하나의 완벽한 비서: MZ 프리랜서 전용 스마트 금융 비서
 
-<!--  ![Image](https://github.com/user-attachments/assets/375a8f56-3eef-4007-9eda-ab90832de409) -->
+![Image](https://github.com/user-attachments/files/21009388/overview.pdf)
 
 ### ☁️ 프로젝트 소개
 
@@ -9,53 +9,45 @@
 
 "하나의 완벽한 비서"는 수입이 불규칙한 MZ 프리랜서를 위해, 수입 예측, 소비 분석, 그리고 구매 상담까지 도와주는 스마트 금융 서비스입니다.
 
+<br/>
 
-<!-- 
 ### 🌟 주요 기능
 
 ### 수입 관리
+![Image](https://github.com/user-attachments/files/21009324/income.pdf)
+![Image](https://github.com/user-attachments/files/21009327/income2.pdf)
 여러 수입원 중 주요 수입원을 사용자가 선택하면, <br/>
 📊 현재 수입과 이번 달 예측 수입을 그래프로 시각화해주고 <br/>
 📊 평균 수입과 다음 달 예측 수입을 모달로 보여줍니다. <br/>
 예측 수입은 작년 총 수입을 기반으로, 직전 6개월의 평균 상승률과 전년도 동월 대비 상승률을 반영해 산출합니다.
 
+<br/>
 
 ### 소비 관리
-📈 수입 대비 소비를 막대 그래프로 보여주고, <br/>
-🔘 고정비 / 유지비 비율을 원 그래프로 시각화하며, <br/>
-🚨 소비 경고 카드를 통해 지출 상황을 한눈에 파악할 수 있습니다. <br/>
-
-  <div align="center">
+![Image](https://github.com/user-attachments/files/21009349/spend.pdf)
+<div align="center">
 
 | 종류                 | 상황                                                                                                                                                                                                                                                                                                                            | 
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | 
-| **🔴 레드카드**          | 지출 > 수입의 60% | 
-| **🟡 옐로카드** | 지출 30~60%| 
-| **🟢 그린카드**          | 지출 < 30% |
+| **🔴 레드카드**          | 지출이 수입의 60% 초과 | 
+| **🟡 옐로카드** | 지출 30~60% 범위 | 
+| **🟢 그린카드**          | 지출이 수입의 30% 미만 |
 </div>
+📈 수입 대비 소비를 막대 그래프로 보여주고, <br/>
+🔘 고정비 / 유지비 비율을 원 그래프로 시각화하며, <br/>
+🚨 소비 경고 카드를 통해 지출 상황을 한눈에 파악할 수 있습니다. 
 
+<br/>
+<br/>
 
 ### 별비서 상담
+![Image](https://github.com/user-attachments/files/21009373/assistant.pdf)
 무엇을 언제 사면 좋을지 고민될 때, <br/>
-💬 별비서 채팅 서비스로 상담을 받아보세요. <br/>
+💬 별비서 서비스로 상담을 받아보세요. <br/>
 소비 여유나 적정 시점 등을 기반으로 맞춤형 소비 조언을 제공합니다.
 
+<br/>
 
-![Image](https://github.com/user-attachments/assets/cd0d3f0e-e03b-4ac8-b0ba-a591698c767a)
-
-![Image](https://github.com/user-attachments/assets/3bcd3e66-e922-4c86-8ac2-a928c8432734)
-
-![Image](https://github.com/user-attachments/assets/704fbbc9-d1b3-49c0-bb57-2e533303ace9)
-
-![Image](https://github.com/user-attachments/assets/6436a5a7-dad0-445a-a861-2212155a9aa3)
-
-![Image](https://github.com/user-attachments/assets/af5efe23-fd79-47f0-8204-094173d89d5d)
-
-
-### 📍 IA
-
-![Image](https://github.com/user-attachments/assets/f3d7e34a-0664-47b0-8fde-0887820c6eb3)
- -->
 
 <br/>
 
