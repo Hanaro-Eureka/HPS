@@ -16,35 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `CheckBox`
---
-
-DROP TABLE IF EXISTS `CheckBox`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `CheckBox` (
-  `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `userId` int unsigned NOT NULL,
-  `receiptIssuedAt` datetime DEFAULT NULL,
-  `hasReceipt` datetime DEFAULT NULL,
-  `isIncomeTracked` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `userId` (`userId`),
-  CONSTRAINT `checkbox_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `User` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `CheckBox`
---
-
-LOCK TABLES `CheckBox` WRITE;
-/*!40000 ALTER TABLE `CheckBox` DISABLE KEYS */;
-INSERT INTO `CheckBox` VALUES (1,1,'2025-01-01 10:00:00','2025-02-01 10:00:00','2025-03-01 10:00:00'),(2,2,'2025-01-05 11:00:00','2025-02-05 11:00:00','2025-03-05 11:00:00'),(3,3,'2025-01-10 09:30:00','2025-02-10 09:30:00','2025-03-10 09:30:00'),(4,4,'2025-01-15 15:00:00','2025-02-15 15:00:00','2025-03-15 15:00:00'),(5,5,'2025-01-20 08:00:00','2025-02-20 08:00:00','2025-03-20 08:00:00'),(6,6,'2025-01-25 14:30:00','2025-02-25 14:30:00','2025-03-25 14:30:00'),(7,7,'2025-01-30 16:00:00','2025-02-28 16:00:00','2025-03-30 16:00:00'),(8,8,'2025-01-31 12:00:00','2025-02-27 12:00:00','2025-03-31 12:00:00'),(9,9,'2025-01-18 18:00:00','2025-02-18 18:00:00','2025-03-18 18:00:00'),(10,10,'2025-01-22 13:00:00','2025-02-22 13:00:00','2025-03-22 13:00:00');
-/*!40000 ALTER TABLE `CheckBox` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `FixedExpense`
 --
 
