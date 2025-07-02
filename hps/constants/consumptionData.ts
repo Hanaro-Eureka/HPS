@@ -1740,7 +1740,7 @@ export const consumptionData = [
     id: 178,
   },
   {
-    trans_date: '20250702T162926',
+    trans_date: '20250701T162926',
     trans_amt: 67579,
     merchant_name: '스타벅스',
     trans_title: '모닝커피',
@@ -1750,7 +1750,7 @@ export const consumptionData = [
     id: 179,
   },
   {
-    trans_date: '20250703T102501',
+    trans_date: '20250702T012501',
     trans_amt: 27132,
     merchant_name: '스타벅스',
     trans_title: '모닝커피',
@@ -1760,7 +1760,7 @@ export const consumptionData = [
     id: 180,
   },
   {
-    trans_date: '20250703T201454',
+    trans_date: '20250702T081454',
     trans_amt: 32693,
     merchant_name: '더부스',
     trans_title: '치킨세트',
@@ -1770,7 +1770,7 @@ export const consumptionData = [
     id: 181,
   },
   {
-    trans_date: '20250703T215400',
+    trans_date: '20250701T215400',
     trans_amt: 150070,
     merchant_name: 'ABC마트',
     trans_title: '샌들',
@@ -1960,7 +1960,7 @@ export const consumptionData = [
     id: 200,
   },
   {
-    trans_date: '20250715T091700',
+    trans_date: '20250702T091700',
     trans_amt: 59400,
     merchant_name: 'T-money',
     trans_title: '정기 교통비',

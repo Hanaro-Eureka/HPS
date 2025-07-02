@@ -2,10 +2,10 @@
 
 import { incomeData } from '@/constants/incomeData';
 import {
-  getMonthlyIncomeWithUserId,
   createIncomeSources,
+  getMonthlyIncomeWithUserId,
   removeIncomeSources,
-} from '@/lib/actions/income-select-actions';
+} from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
 import { parseKSTDateFromDtime } from './parseKSTDate';
 
@@ -18,6 +18,7 @@ export async function saveIncomeSource(ids: (string | number)[]) {
 
   const existing = await getMonthlyIncomeWithUserId(userId, thisMonth);
 
+  console.log(ids);
   const selectedItems = incomeData
     .filter((item) => ids.includes(item.id))
     .map((item) => ({
@@ -25,6 +26,7 @@ export async function saveIncomeSource(ids: (string | number)[]) {
       depositorName: item.trans_memo,
       depositDate: parseKSTDateFromDtime(item.trans_dtime),
     }));
+  console.log(selectedItems);
 
   const selectedKeySet = new Set(
     selectedItems.map(

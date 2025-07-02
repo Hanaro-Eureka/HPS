@@ -1,4 +1,4 @@
-import { getIncomeSourcesByUserId } from '@/lib/actions/income-summary';
+import { getIncomeSourcesByUserId } from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
 import BubbleAnimation from './BubbleAnimation';
 

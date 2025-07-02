@@ -2,14 +2,14 @@ import Text from '@/components/atoms/Text';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { redirect } from 'next/navigation';
 import {
-  getLastYearSamePeriodIncomeSum,
   getLastYearNextMonthIncomeSum,
-  getRecent3MonthsIncomeSum,
-  getRecent6MonthsIncomeSum,
-  getThisMonthUntilTodayIncomeSum,
-  getLastYearSameMonthIncomeSum,
+  getIncomeSumByPeriod,
 } from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
+import {
+  getLastYearSameMonthIncomeSum,
+  getLastYearSamePeriodIncomeSum,
+} from '@/lib/income';
 import AdviceMessage from './components/AdviceMessage';
 import GoToIncomeListButton from './components/GoIncomeListButton';
 import ProportionalBarGraph from './components/ProportionalBarGraph';
@@ -19,6 +19,11 @@ export default async function Income() {
   if (!session) redirect('/login');
 
   const userId = Number(session.user?.id);
+  const now = new Date();
+  const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  const threeMonthAgoStart = new Date(now.getFullYear(), now.getMonth() - 3, 1);
+  const sixMonthAgoStart = new Date(now.getFullYear(), now.getMonth() - 6, 1);
+  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999);
   const [
     lastYearNextMonthSum,
     recent3MonthsSum,
@@ -28,10 +33,10 @@ export default async function Income() {
     lastYearThisMonthsum,
   ] = await Promise.all([
     getLastYearNextMonthIncomeSum(userId),
-    getRecent3MonthsIncomeSum(userId),
+    getIncomeSumByPeriod(userId, threeMonthAgoStart, end),
     getLastYearSamePeriodIncomeSum(userId),
-    getRecent6MonthsIncomeSum(userId),
-    getThisMonthUntilTodayIncomeSum(userId),
+    getIncomeSumByPeriod(userId, sixMonthAgoStart, end),
+    getIncomeSumByPeriod(userId, thisMonthStart, now),
     getLastYearSameMonthIncomeSum(userId),
   ]);
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;

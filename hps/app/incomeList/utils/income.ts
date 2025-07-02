@@ -1,7 +1,4 @@
-import {
-  getLastYearSixMonthIncomesWithUserId,
-  getLatestSixMonthIncomesWithUserId,
-} from '@/lib/actions/income-actions';
+import { getSixMonthIncomesWithUserId } from '@/lib/actions/income-actions';
 
 const getLatestSixMonth = () => {
   const now = new Date();
@@ -25,11 +22,10 @@ const getLatestSixMonth = () => {
 
 export const getSixMonthIncome = async (userId: number) => {
   // 올해 6개월 수입
-  const thisSixMonthIncome = await getLatestSixMonthIncomesWithUserId(userId);
+  const thisSixMonthIncome = await getSixMonthIncomesWithUserId(userId, 5);
 
   // 작년 6개월 수입
-  const lastYearSixMonthIncome =
-    await getLastYearSixMonthIncomesWithUserId(userId);
+  const lastYearSixMonthIncome = await getSixMonthIncomesWithUserId(userId, 17);
 
   // 집계할 6개월에 대한 List
   // ex) ['2025-06', '2025-05', '2025-04', '2025-03', '2025-02', '2025-01']

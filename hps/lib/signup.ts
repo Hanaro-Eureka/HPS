@@ -2,7 +2,7 @@
 
 import { hash } from 'bcryptjs';
 import prisma from '@/lib/db';
-import { signUpValidator } from '../validator';
+import { signUpValidator } from './validator';
 
 type Input = {
   name: string;

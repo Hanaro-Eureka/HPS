@@ -61,7 +61,11 @@ export default async function IncomeList({ month }: Props) {
                       ? `+${diff.toLocaleString()}`
                       : `${diff.toLocaleString()}`}
                   </span>
-                ) : null,
+                ) : (
+                  <span className={`text-xs text-hana-green`}>
+                    +{diff.toLocaleString()}
+                  </span>
+                ),
             };
           });
 

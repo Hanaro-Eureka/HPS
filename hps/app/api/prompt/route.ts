@@ -1,11 +1,9 @@
 import {
-  getLastMonthIncomeSum,
+  getIncomeSumByPeriod,
   getLastYearNextMonthIncomeSum,
-  getLastYearSamePeriodIncomeSum,
-  getRecent3MonthsIncomeSum,
-  getRecent6MonthsIncomeSum,
 } from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
+import { getLastYearSamePeriodIncomeSum } from '@/lib/income';
 
 export async function POST(req: Request) {
   const session = await auth();
@@ -16,13 +14,19 @@ export async function POST(req: Request) {
   const { item, price } = await req.json();
   const userId = Number(session.user?.id);
 
+  const now = new Date();
+  const lastMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+  const threeMonthAgoStart = new Date(now.getFullYear(), now.getMonth() - 3, 1);
+  const sixMonthAgoStart = new Date(now.getFullYear(), now.getMonth() - 6, 1);
+  const end = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59, 999);
+
   const [lastMonthSum, lastYearMonthSum, recent3MonthsSum, lastYear3MonthsSum] =
     await Promise.all([
-      getLastMonthIncomeSum(userId),
+      getIncomeSumByPeriod(userId, lastMonthStart, end),
       getLastYearNextMonthIncomeSum(userId),
-      getRecent3MonthsIncomeSum(userId),
+      getIncomeSumByPeriod(userId, threeMonthAgoStart, end),
       getLastYearSamePeriodIncomeSum(userId),
-      getRecent6MonthsIncomeSum(userId),
+      getIncomeSumByPeriod(userId, sixMonthAgoStart, end),
     ]);
 
   const growthRate = recent3MonthsSum / lastYear3MonthsSum;

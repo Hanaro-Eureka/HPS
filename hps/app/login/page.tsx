@@ -7,7 +7,7 @@ import ToastMsg from '@/components/molcules/ToastMsg';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { handleLogin } from '@/lib/actions/login';
+import { handleLogin } from '@/lib/login';
 
 export default function LoginPage() {
   const [toast, setToast] = useState<{
