@@ -37,22 +37,6 @@ export const getSixMonthIncomesWithUserId = async (
   ORDER BY yearMonth desc;
 `;
 
-// 시작일과 종료일 사이의 수입원 내역 조회
-export const getMonthlyIncome = async (
-  userId: number,
-  startOfMonth: Date,
-  endOfMonth: Date
-) =>
-  prisma.income.findMany({
-    where: {
-      userId,
-      depositDate: {
-        gte: startOfMonth,
-        lte: endOfMonth,
-      },
-    },
-  });
-
 // 한 달 동안의 수입 내역 조회
 export const getMonthlyIncomeWithUserId = async (
   userId: number,
@@ -142,17 +126,18 @@ export const getIncomeSumByPeriod = async (
   startDate: Date,
   endDate: Date
 ) => {
+  const utcTimeStartDate = toUtcFromSeoul(startDate.toISOString());
+  const utcTimeEndDate = toUtcFromSeoul(endDate.toISOString());
   const incomes = await prisma.income.findMany({
     where: {
       userId,
       depositDate: {
-        gte: startDate,
-        lte: endDate,
+        gte: utcTimeStartDate,
+        lte: utcTimeEndDate,
       },
     },
     select: { amount: true },
   });
-
   return incomes.reduce((sum, s) => sum + s.amount, 0);
 };
 
@@ -225,6 +210,7 @@ export const removeIncomeSources = async (
   }
 };
 
+// 수입별 수입원 출처 조회
 export const getIncomeSourcesByUserId = async (
   userId: number,
   startDate: Date

@@ -2,8 +2,9 @@ import Text from '@/components/atoms/Text';
 import Title from '@/components/atoms/Title';
 import HeaderLayout from '@/components/templates/HeaderLayout';
 import { redirect } from 'next/navigation';
-import { getIncomeByUserId } from '@/lib/actions/income-actions';
+import { getIncomesWithUserId } from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
+import { getFirstDayOfThisMonth } from '../utils/income';
 import IncomeSelectorSection from './components/IncomeSelectorSection';
 
 export default async function IncomeSource() {
@@ -12,7 +13,8 @@ export default async function IncomeSource() {
     redirect('/login');
   }
   const userId = Number(session?.user?.id);
-  const rawIncome = await getIncomeByUserId(userId);
+  const thisYearMonth = getFirstDayOfThisMonth();
+  const rawIncome = await getIncomesWithUserId(userId, thisYearMonth);
 
   const existingIncome = rawIncome
     .filter((s) => s.depositorName !== null)
