@@ -27,7 +27,7 @@ export const getSixMonthIncome = async (userId: number) => {
   // 작년 6개월 수입
   const lastYearSixMonthIncome = await getSixMonthIncomesWithUserId(userId, 17);
 
-  // 집계할 6개월에 대한 List
+  // 집계할 6개월에 대한 List key값 가져오기
   // ex) ['2025-06', '2025-05', '2025-04', '2025-03', '2025-02', '2025-01']
   const sixYearMonth = getLatestSixMonth();
 

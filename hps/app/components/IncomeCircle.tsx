@@ -36,7 +36,6 @@ export default async function IncomeCircle() {
     'w-40 h-40',
     'w-45 h-45',
     'w-50 h-50',
-    // 'w-56 h-56',
   ];
 
   const positions = [

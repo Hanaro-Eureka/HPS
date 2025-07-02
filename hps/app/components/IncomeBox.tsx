@@ -3,7 +3,7 @@ import { getPredictedNextMonthIncome } from '@/lib/actions/income-actions';
 import { auth } from '@/lib/auth';
 import { getSumOfThisMonthIncomes } from '../utils/income';
 import HanaMonWithCard from './HanaMonWithCard';
-import IncomeSpendButton from './IncomeSpendButton';
+import IncomeButton from './IncomeButton';
 
 export default async function IncomeBox() {
   const session = await auth();
@@ -20,7 +20,7 @@ export default async function IncomeBox() {
 
   return (
     <div className='flex mt-16 gap-4'>
-      <IncomeSpendButton lastIncome={sumOfIncomes} />
+      <IncomeButton thisMonthIncome={sumOfIncomes} />
       <HanaMonWithCard predictedNextMonthIncome={predictedNextMonthIncome} />
     </div>
   );
