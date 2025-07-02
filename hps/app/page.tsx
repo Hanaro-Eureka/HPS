@@ -15,7 +15,6 @@ export default async function Home() {
   }
 
   const noIncome =
-    // (await getThisMonthUntilTodayIncomeSum(Number(session.user?.id))) === 0;
     (await getIncomeSumByPeriod(
       Number(session.user?.id),
       getFirstDayOfThisMonth(),
