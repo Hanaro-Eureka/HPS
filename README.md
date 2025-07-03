@@ -14,8 +14,6 @@
 ### 🌟 주요 기능
 
 ### 수입 관리
-![Image](https://github.com/user-attachments/assets/9e7f2637-a7c9-47da-88f6-59b9495d5ebf)
-![Image](https://github.com/user-attachments/assets/49419d2c-0bbe-4a9a-b79e-d56fc036ef2c)
 여러 수입원 중 주요 수입원을 사용자가 선택하면, <br/>
 📊 현재 수입과 이번 달 예측 수입을 그래프로 시각화해주고 <br/>
 📊 평균 수입과 다음 달 예측 수입을 모달로 보여줍니다. <br/>
@@ -24,7 +22,6 @@
 <br/>
 
 ### 소비 관리
-![Image](https://github.com/user-attachments/assets/23dd6a68-85d9-4223-8f48-c597190e56b2)
 <div align="center">
 
 | 종류                 | 상황                                                                                                                                                                                                                                                                                                                            | 
@@ -41,7 +38,6 @@
 <br/>
 
 ### 별비서 상담
-![Image](https://github.com/user-attachments/assets/8ccf3ce2-a536-45b8-88bb-c48d3aaea819)
 무엇을 언제 사면 좋을지 고민될 때, <br/>
 💬 별비서 서비스로 상담을 받아보세요. <br/>
 소비 여유나 적정 시점 등을 기반으로 맞춤형 소비 조언을 제공합니다.
